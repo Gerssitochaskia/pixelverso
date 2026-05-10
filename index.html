@@ -1842,13 +1842,19 @@ async function loadProductosJSON(){
     const data = await r.json();
     (data.productos||[]).forEach(p=>{
       PRODUCT_INDEX[p.id] = {
-        id: p.id, nombre: p.nombre, img: p.imagen,
-        orientacion: p.orientacion || 'vertical',
-        categoria: p.categoria || '',
-        descripcion: p.descripcion || '',
-        tamanos: p.tamanos || ['40x30 cm','80x60 cm']
+        id:          p.id,
+        nombre:      p.nombre,
+        img:         p.imagenMockup || p.imagen || '',   // mockup = card y modal
+        imgArt:      p.imagenArt    || p.imagenMockup || p.imagen || '', // art sola = hover
+        orientacion: p.orientacion  || 'vertical',
+        categoria:   p.categoria    || '',
+        descripcion: p.descripcion  || '',
+        tamanos:     p.tamanos      || ['40x30 cm','80x60 cm']
       };
     });
+
+    // Renderizar categorías desde JSON (reemplaza los placeholders de picsum)
+    _renderCategoriasFromJSON();
     console.log('✓ productos.json cargado:', Object.keys(PRODUCT_INDEX).length+' productos en índice');
   }catch(e){ /* fallback silencioso */ }
 }
@@ -2333,6 +2339,51 @@ function tryLottie(containerId, jsonName){
     };
     tryLottie(id, map[id]);
   });
+
+/* =========================================================
+ * Inyectar productos reales desde JSON en sus categorías
+ * ========================================================= */
+function _renderCategoriasFromJSON(){
+  // Agrupar productos del índice por categoría
+  const porCat = {};
+  Object.values(PRODUCT_INDEX).forEach(p=>{
+    if(!p.categoria) return;
+    const slug = _sceneSlug(p.categoria);
+    if(!porCat[slug]) porCat[slug] = [];
+    porCat[slug].push(p);
+  });
+
+  Object.entries(porCat).forEach(([slug, prods])=>{
+    const row = document.getElementById('row-'+slug);
+    if(!row) return;
+    // Limpiar placeholders de picsum solo de esta categoría
+    row.querySelectorAll('.card[data-from-json!="1"]').forEach(c=>c.remove());
+
+    prods.forEach(p=>{
+      const el = document.createElement('div');
+      el.className = 'card orient-'+p.orientacion;
+      el.dataset.id = p.id;
+      el.dataset.fromJson = '1';
+      el.innerHTML = `
+        <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+        <div class="scene-layer">
+          <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
+            <div class="wood-frame size-40 ${p.orientacion}">
+              <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
+            </div>
+          </div>
+        </div>
+        <div class="art-layer"><img loading="lazy" src="${p.imgArt}" alt="${p.nombre}"/></div>
+        <div class="label">${p.nombre}</div>
+        <div class="overlay"><button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${p.id}')">Vista previa</button></div>
+      `;
+      el.onclick = ()=> openPreview(p.id);
+      // Prepend para que aparezcan primero (antes de los placeholders)
+      row.prepend(el);
+      io.observe(el);
+    });
+  });
+}
 
 /* =========================================================
  * Scroll reveal

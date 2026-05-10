@@ -1,37 +1,63 @@
 {
-  "_README": "Edita este archivo para agregar/quitar cuadros sin tocar el HTML. Estructura por producto: id (único), nombre, categoria (slug), imagen (ruta), orientacion ('vertical'|'horizontal'), material ('madera'), tamanos (array de strings), descripcion, destacado (boolean).",
-  "_categorias": [
-    { "slug": "anime",         "nombre": "Anime" },
-    { "slug": "videojuegos",   "nombre": "Videojuegos" },
-    { "slug": "dragonball",    "nombre": "Dragon Ball Z" },
-    { "slug": "marvel",        "nombre": "Marvel" },
-    { "slug": "dc",            "nombre": "DC" },
-    { "slug": "musica",        "nombre": "Música" },
-    { "slug": "autos",         "nombre": "Autos" },
-    { "slug": "pokemon",       "nombre": "Pokémon" },
-    { "slug": "mafia",         "nombre": "Mafia" },
-    { "slug": "enamorados",    "nombre": "Parejas" },
-    { "slug": "familia",       "nombre": "Familia" },
-    { "slug": "mascotas",      "nombre": "Mascotas" },
-    { "slug": "strangerthings","nombre": "Stranger Things" },
-    { "slug": "thelastofus",   "nombre": "The Last of Us" },
-    { "slug": "johnwick",      "nombre": "John Wick" },
-    { "slug": "nintendo",      "nombre": "Nintendo" },
-    { "slug": "cristiana",     "nombre": "Cristiana" },
-    { "slug": "collage",       "nombre": "Collage" },
-    { "slug": "personalizado", "nombre": "Personalizado" }
-  ],
+  "_README": "Para agregar un producto: copia el bloque de ejemplo de la categoría, descomenta, completa nombre y orientacion. Las imágenes van en images/<categoria>/. Cada producto tiene DOS fotos: imagenMockup (obra en bastidor) e imagenArt (obra sola).",
+  "_convencion_archivos": "images/anime/anime-01-mockup.jpg  +  images/anime/anime-01-art.jpg",
+  "_orientacion": "vertical = retrato (alto)  |  horizontal = paisaje (ancho)",
+
   "productos": [
-    {
-      "id": "anime-001",
-      "nombre": "Cuadro estilo anime personalizado",
-      "categoria": "anime",
-      "imagen": "images/cat-anime.png",
-      "orientacion": "vertical",
-      "material": "madera",
-      "tamanos": ["40x30 cm", "80x60 cm"],
-      "descripcion": "Cuadro personalizado impreso sobre madera.",
-      "destacado": true
-    }
+
+    // ══ ANIME ══════════════════════════════════════════════════════
+    // { "id": "anime-01", "nombre": "", "imagenMockup": "images/anime/anime-01-mockup.jpg", "imagenArt": "images/anime/anime-01-art.jpg", "categoria": "Anime", "orientacion": "vertical" },
+
+    // ══ VIDEOJUEGOS ════════════════════════════════════════════════
+    // { "id": "videojuegos-01", "nombre": "", "imagenMockup": "images/videojuegos/videojuegos-01-mockup.jpg", "imagenArt": "images/videojuegos/videojuegos-01-art.jpg", "categoria": "Videojuegos", "orientacion": "vertical" },
+
+    // ══ DRAGON BALL Z ══════════════════════════════════════════════
+    // { "id": "dragonball-01", "nombre": "", "imagenMockup": "images/dragonball/dragonball-01-mockup.jpg", "imagenArt": "images/dragonball/dragonball-01-art.jpg", "categoria": "Dragon Ball Z", "orientacion": "vertical" },
+
+    // ══ MARVEL ═════════════════════════════════════════════════════
+    // { "id": "marvel-01", "nombre": "", "imagenMockup": "images/marvel/marvel-01-mockup.jpg", "imagenArt": "images/marvel/marvel-01-art.jpg", "categoria": "Marvel", "orientacion": "vertical" },
+
+    // ══ DC ═════════════════════════════════════════════════════════
+    // { "id": "dc-01", "nombre": "", "imagenMockup": "images/dc/dc-01-mockup.jpg", "imagenArt": "images/dc/dc-01-art.jpg", "categoria": "DC", "orientacion": "vertical" },
+
+    // ══ MÚSICA ═════════════════════════════════════════════════════
+    // { "id": "musica-01", "nombre": "", "imagenMockup": "images/musica/musica-01-mockup.jpg", "imagenArt": "images/musica/musica-01-art.jpg", "categoria": "Música", "orientacion": "vertical" },
+
+    // ══ AUTOS ══════════════════════════════════════════════════════
+    // { "id": "autos-01", "nombre": "", "imagenMockup": "images/autos/autos-01-mockup.jpg", "imagenArt": "images/autos/autos-01-art.jpg", "categoria": "Autos", "orientacion": "horizontal" },
+
+    // ══ POKÉMON ════════════════════════════════════════════════════
+    // { "id": "pokemon-01", "nombre": "", "imagenMockup": "images/pokemon/pokemon-01-mockup.jpg", "imagenArt": "images/pokemon/pokemon-01-art.jpg", "categoria": "Pokémon", "orientacion": "vertical" },
+
+    // ══ MAFIA ══════════════════════════════════════════════════════
+    // { "id": "mafia-01", "nombre": "", "imagenMockup": "images/mafia/mafia-01-mockup.jpg", "imagenArt": "images/mafia/mafia-01-art.jpg", "categoria": "Mafia", "orientacion": "horizontal" },
+
+    // ══ ENAMORADOS ═════════════════════════════════════════════════
+    // { "id": "enamorados-01", "nombre": "", "imagenMockup": "images/enamorados/enamorados-01-mockup.jpg", "imagenArt": "images/enamorados/enamorados-01-art.jpg", "categoria": "Enamorados", "orientacion": "vertical" },
+
+    // ══ FAMILIA ════════════════════════════════════════════════════
+    // { "id": "familia-01", "nombre": "", "imagenMockup": "images/familia/familia-01-mockup.jpg", "imagenArt": "images/familia/familia-01-art.jpg", "categoria": "Cuadros familiares", "orientacion": "vertical" },
+
+    // ══ STRANGER THINGS ════════════════════════════════════════════
+    // { "id": "strangerthings-01", "nombre": "", "imagenMockup": "images/strangerthings/strangerthings-01-mockup.jpg", "imagenArt": "images/strangerthings/strangerthings-01-art.jpg", "categoria": "Stranger Things", "orientacion": "vertical" },
+
+    // ══ THE LAST OF US ═════════════════════════════════════════════
+    // { "id": "thelastofus-01", "nombre": "", "imagenMockup": "images/thelastofus/thelastofus-01-mockup.jpg", "imagenArt": "images/thelastofus/thelastofus-01-art.jpg", "categoria": "The Last of Us", "orientacion": "horizontal" },
+
+    // ══ JOHN WICK ══════════════════════════════════════════════════
+    // { "id": "johnwick-01", "nombre": "", "imagenMockup": "images/johnwick/johnwick-01-mockup.jpg", "imagenArt": "images/johnwick/johnwick-01-art.jpg", "categoria": "John Wick", "orientacion": "vertical" },
+
+    // ══ NINTENDO ═══════════════════════════════════════════════════
+    // { "id": "nintendo-01", "nombre": "", "imagenMockup": "images/nintendo/nintendo-01-mockup.jpg", "imagenArt": "images/nintendo/nintendo-01-art.jpg", "categoria": "Nintendo", "orientacion": "horizontal" },
+
+    // ══ CRISTIANA ══════════════════════════════════════════════════
+    // { "id": "cristiana-01", "nombre": "", "imagenMockup": "images/cristiana/cristiana-01-mockup.jpg", "imagenArt": "images/cristiana/cristiana-01-art.jpg", "categoria": "Cristiana", "orientacion": "vertical" },
+
+    // ══ COLLAGE ════════════════════════════════════════════════════
+    // { "id": "collage-01", "nombre": "", "imagenMockup": "images/collage/collage-01-mockup.jpg", "imagenArt": "images/collage/collage-01-art.jpg", "categoria": "Collage", "orientacion": "horizontal" },
+
+    // ══ PERSONALIZADO ══════════════════════════════════════════════
+    // { "id": "personalizado-01", "nombre": "", "imagenMockup": "images/personalizado/personalizado-01-mockup.jpg", "imagenArt": "images/personalizado/personalizado-01-art.jpg", "categoria": "Espacio personalizado", "orientacion": "vertical" }
+
   ]
 }
