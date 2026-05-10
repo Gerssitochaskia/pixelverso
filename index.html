@@ -2355,21 +2355,59 @@ function tryLottie(containerId, jsonName){
 /* =========================================================
  * Inyectar productos reales desde JSON en sus categorías
  * ========================================================= */
+// Mapa de nombre de categoría → slug del row
+const CAT_SLUG_MAP = {
+  'anime':               'anime',
+  'videojuegos':         'videojuegos',
+  'dragon ball z':       'dragonball',
+  'dragonball':          'dragonball',
+  'marvel':              'marvel',
+  'dc':                  'dc',
+  'música':              'musica',
+  'musica':              'musica',
+  'autos':               'autos',
+  'pokémon':             'pokemon',
+  'pokemon':             'pokemon',
+  'mafia':               'mafia',
+  'enamorados':          'enamorados',
+  'cuadros familiares':  'familia',
+  'familia':             'familia',
+  'stranger things':     'strangerthings',
+  'the last of us':      'thelastofus',
+  'john wick':           'johnwick',
+  'nintendo':            'nintendo',
+  'cristiana':           'cristiana',
+  'collage':             'collage',
+  'espacio personalizado':'personalizado',
+  'personalizado':       'personalizado',
+};
+function _catToSlug(cat){
+  if(!cat) return null;
+  const key = cat.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  return CAT_SLUG_MAP[key] || CAT_SLUG_MAP[cat.toLowerCase()] || null;
+}
+
 function _renderCategoriasFromJSON(){
-  // Agrupar productos del índice por categoría
-  const porCat = {};
+  // Agrupar productos por slug de row
+  const porSlug = {};
   Object.values(PRODUCT_INDEX).forEach(p=>{
-    if(!p.categoria) return;
-    const slug = _sceneSlug(p.categoria);
-    if(!porCat[slug]) porCat[slug] = [];
-    porCat[slug].push(p);
+    if(!p.categoria || !p.img) return;
+    // Solo productos que vienen del JSON (tienen mockup40 o mockup80)
+    if(!p.mockup40 && !p.mockup80) return;
+    const slug = _catToSlug(p.categoria);
+    if(!slug) return;
+    if(!porSlug[slug]) porSlug[slug] = [];
+    porSlug[slug].push(p);
   });
 
-  Object.entries(porCat).forEach(([slug, prods])=>{
+  Object.entries(porSlug).forEach(([slug, prods])=>{
     const row = document.getElementById('row-'+slug);
     if(!row) return;
-    // Limpiar placeholders de picsum solo de esta categoría
-    row.querySelectorAll('.card[data-from-json!="1"]').forEach(c=>c.remove());
+
+    // Quitar placeholders (cards sin data-from-json)
+    Array.from(row.querySelectorAll('.card')).forEach(c=>{
+      if(c.dataset.fromJson !== '1') c.remove();
+    });
 
     prods.forEach(p=>{
       const el = document.createElement('div');
@@ -2380,7 +2418,7 @@ function _renderCategoriasFromJSON(){
         <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
         <div class="scene-layer">
           <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
-            <div class="wood-frame size-40 ${p.orientacion}">
+            <div class="wood-frame size-80 ${p.orientacion}">
               <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
             </div>
           </div>
@@ -2390,7 +2428,6 @@ function _renderCategoriasFromJSON(){
         <div class="overlay"><button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${p.id}')">Vista previa</button></div>
       `;
       el.onclick = ()=> openPreview(p.id);
-      // Prepend para que aparezcan primero (antes de los placeholders)
       row.prepend(el);
       io.observe(el);
     });
