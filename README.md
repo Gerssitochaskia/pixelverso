@@ -72,21 +72,41 @@ Anime · Videojuegos · Dragon Ball Z · Marvel · DC · Música · Autos · Pok
 
 ## Cómo agregar productos al catálogo
 
-Edita `data/productos.json` y agrega entradas con este formato:
+### Estructura de imágenes
+Cada producto tiene **dos fotos** guardadas en su carpeta de categoría:
+
+```
+images/
+├── anime/
+│   ├── anime-01-mockup.jpg   ← obra en bastidor (se ve en la card)
+│   ├── anime-01-art.jpg      ← obra sola (se ve al hover)
+│   ├── anime-02-mockup.jpg
+│   └── anime-02-art.jpg
+├── dragonball/
+├── marvel/
+└── ...  (18 categorías)
+```
+
+### Agregar un producto nuevo
+
+1. Pon las dos fotos en `images/<categoria>/` con la convención de nombre
+2. Descomenta (o copia) el bloque correspondiente en `data/productos.json`
+3. Completa `nombre` y `orientacion` (`vertical` o `horizontal`)
+4. Guarda — el sitio carga el JSON en runtime, sin recompilar nada
 
 ```json
 {
-  "id": "db-goku-01",
-  "nombre": "Goku Ultra Instinto",
-  "imagen": "images/prod-dragonball-goku.jpg",
-  "categoria": "Dragon Ball Z",
-  "orientacion": "vertical",
-  "descripcion": "Opcional",
-  "tamanos": ["40x30 cm", "80x60 cm"]
+  "id": "anime-01",
+  "nombre": "Eren Titán",
+  "imagenMockup": "images/anime/anime-01-mockup.jpg",
+  "imagenArt":    "images/anime/anime-01-art.jpg",
+  "categoria":    "Anime",
+  "orientacion":  "vertical"
 }
 ```
 
-Luego pon la imagen en `images/`. Sin reiniciar nada — el JSON se carga en runtime.
+> **Convención de nombres:** `<categoria>-<número>-mockup.jpg` y `<categoria>-<número>-art.jpg`
+> Ejemplo: `dragonball-03-mockup.jpg` + `dragonball-03-art.jpg`
 
 ---
 
@@ -114,6 +134,13 @@ Luego pon la imagen en `images/`. Sin reiniciar nada — el JSON se carga en run
 - Vista previa 3D corregida (bug listeners en DOM)
 - Tamaño cambia escala visual del cuadro en el modal
 - Foto personalizada abre el mismo modal con orientación auto-detectada
+
+### v1.3 — 2026-05-10 · Sistema de catálogo con carpetas por categoría
+- 18 carpetas creadas en `images/<categoria>/`
+- `productos.json`: nuevo esquema con `imagenMockup` (obra en bastidor) e `imagenArt` (obra sola)
+- JS: función `_renderCategoriasFromJSON()` — cuando subes productos al JSON, aparecen automáticamente en sus categorías en el sitio
+- Hover de card: muestra `imagenArt`; card y modal usan `imagenMockup`
+- Repo subido a GitHub: [github.com/Gerssitochaskia/pixelverso](https://github.com/Gerssitochaskia/pixelverso)
 
 ### v1.2 — 2026-05-10 · Ajustes de contenido y UI
 - **Trust bar:** textos actualizados a bastidor artesanal, ultra HD, cola fría de madera, retiro/delivery/envío
