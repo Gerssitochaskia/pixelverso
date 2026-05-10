@@ -1,0 +1,10 @@
+# Videos de Pixelito (pesados — guardar localmente, no en GitHub)
+videos/
+
+# Uploads de clientes
+uploads/
+
+# Sistema
+desktop.ini
+Thumbs.db
+.DS_Store

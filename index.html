@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║                  PIXELVERSO STUDIO — index.html                  ║
+  ║              Tu mundo, en cuadros — Concepción, Chile            ║
+  ╚══════════════════════════════════════════════════════════════════╝
+
+  ESTRUCTURA DE CARPETAS:
+    /index.html              → este archivo (todo embebido)
+    /images/                 → logos, banners, categorias (cat-*.png)
+    /videos/                 → animaciones Pixelito (.mp4) + clips reales
+    /animations/             → Lottie .json (opcional, fallback a videos)
+
+  TODOS los puntos de personalización marcados con
+  <!--  REEMPLAZAR: ... -->
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Pixelverso Studio — Arte digital personalizado impreso en canvas, lienzo y metalizado. Envío a todo Chile. Tu mundo, en cuadros." />
+<title>Pixelverso Studio · Tu mundo, en cuadros</title>
+
+<!-- Google Fonts: Bebas Neue + Rajdhani -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lottie CDN (las animaciones se cargan si existen los JSON; fallback automático a <video>) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+<style>
+/* ============================================================
+   1. TOKENS DE DISEÑO
+   ============================================================ */
+:root{
+  --bg:        #08091A;
+  --bg-2:      #0D0F26;
+  --bg-card:   #0E1128;
+  --bg-deep:   #05060F;
+  --cyan:      #00D4FF;
+  --purple:    #7C3AED;
+  --green-promo: #39FF14;
+  --green-wa:  #25D366;
+  --red:       #FF3355;
+  --text:      #FFFFFF;
+  --muted:     #8899AA;
+  --border:    rgba(255,255,255,0.07);
+  --border-2:  rgba(255,255,255,0.14);
+  --shadow-cyan: 0 8px 30px rgba(0,212,255,0.20);
+  --shadow-card: 0 12px 40px rgba(0,0,0,0.55);
+  --radius:    14px;
+  --radius-sm: 10px;
+  --radius-lg: 22px;
+
+  /* Tweakable: energy & density */
+  --shimmer-dur: 2.5s;
+  --pulse-dur:   3s;
+  --hover-lift:  scale(1.03);
+  --section-pad: 80px;
+  --hero-min:    640px;
+  --grid-cols:   6;
+  --title-scale: 1;
+  --img-filter:  brightness(.78) saturate(1.25);
+  --card-hover-filter: brightness(1) saturate(1.35);
+  --shimmer-on: 1; /* 1 = visible / 0 = oculto */
+}
+
+/* === VIBE: Sunset Otaku === */
+body.vibe-sunset{
+  --bg:        #1A0512;
+  --bg-2:      #260A1B;
+  --bg-card:   #2B0E22;
+  --bg-deep:   #100309;
+  --cyan:      #FF4D8B;   /* "acento principal" */
+  --purple:    #FF8A3D;   /* "acento secundario" */
+  --green-promo:#FFD23F;
+  --shadow-cyan: 0 8px 30px rgba(255,77,139,0.28);
+  --border:    rgba(255,200,170,0.08);
+  --border-2:  rgba(255,200,170,0.16);
+}
+/* === VIBE: Mono Coleccionista === */
+body.vibe-mono{
+  --bg:        #0B0B0B;
+  --bg-2:      #141414;
+  --bg-card:   #161616;
+  --bg-deep:   #050505;
+  --cyan:      #F2F2F2;   /* acento es el blanco — galería */
+  --purple:    #FF2D2D;   /* único color = rojo */
+  --green-promo:#FF2D2D;
+  --shadow-cyan: 0 8px 30px rgba(255,255,255,0.10);
+  --border:    rgba(255,255,255,0.06);
+  --border-2:  rgba(255,255,255,0.18);
+  --img-filter: grayscale(.6) brightness(.82) contrast(1.1);
+  --card-hover-filter: grayscale(0) brightness(1) contrast(1.1);
+}
+body.vibe-mono .btn-primary{ color:#0B0B0B; }
+body.vibe-mono .card-upload{
+  background:linear-gradient(135deg,#222 0%,#444 50%,#FF2D2D 100%);
+}
+body.vibe-mono h1, body.vibe-mono h2, body.vibe-mono h3,
+body.vibe-mono .section-title{ letter-spacing:.06em; }
+
+/* === ENERGY: Zen (calmo) === */
+body.energy-zen{
+  --shimmer-dur: 999s; /* prácticamente off */
+  --pulse-dur:   999s;
+  --hover-lift:  translateY(-2px);
+  --shimmer-on: 0;
+}
+body.energy-zen .float-wa{ animation:none; }
+body.energy-zen .announce{ animation-duration:30s; }
+body.energy-zen .cta-banner::before{ animation-duration:30s; }
+
+/* === ENERGY: Arcade (intenso) === */
+body.energy-arcade{
+  --shimmer-dur: 1.2s;
+  --pulse-dur:   1.5s;
+  --hover-lift:  scale(1.06) rotate(-.6deg);
+  --shadow-cyan: 0 0 0 2px var(--cyan), 0 12px 40px rgba(0,212,255,0.45);
+}
+body.energy-arcade .announce{ animation-duration:1.6s; }
+body.energy-arcade .cta-banner::before{ animation-duration:3s; }
+body.energy-arcade h1, body.energy-arcade .section-title{
+  text-shadow: 0 0 24px color-mix(in oklab, var(--cyan) 40%, transparent);
+}
+body.energy-arcade .card{ transition:transform .18s ease, box-shadow .18s ease, filter .18s ease; }
+body.energy-arcade .btn-primary{ box-shadow:0 0 0 0 var(--cyan); animation:arcadeGlow 1.4s ease-in-out infinite; }
+@keyframes arcadeGlow{
+  0%,100%{ box-shadow:0 0 0 0 color-mix(in oklab, var(--cyan) 60%, transparent);}
+  50%{ box-shadow:0 0 28px 6px color-mix(in oklab, var(--cyan) 50%, transparent);}
+}
+
+/* === DENSITY: Cinema (espacioso) === */
+body.density-cinema{
+  --section-pad: 120px;
+  --hero-min:    760px;
+  --grid-cols:   5;
+  --title-scale: 1.18;
+}
+body.density-cinema .container{ max-width:1240px; }
+body.density-cinema .cat-row .card{ flex:0 0 calc((100% - 64px) / 4); min-width:240px; }
+
+/* === DENSITY: Mercado (compacto) === */
+body.density-mercado{
+  --section-pad: 48px;
+  --hero-min:    520px;
+  --grid-cols:   8;
+  --title-scale: .82;
+}
+body.density-mercado .cat-row{ gap:8px; }
+body.density-mercado .grid-6{ gap:8px; }
+body.density-mercado .cat-row .card{ flex:0 0 calc((100% - 56px) / 8); min-width:140px; }
+body.density-mercado .card .label{ font-size:11.5px; padding:6px 8px; }
+body.density-mercado .cat-block{ padding:18px 0; }
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Rajdhani',system-ui,sans-serif;
+  font-weight:500;
+  line-height:1.5;
+  overflow-x:hidden;
+  padding-top:88px; /* announcement bar 40 + navbar 64 */
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font-family:inherit;color:inherit;}
+
+h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.02em;line-height:1;}
+.section-title{font-size:calc(clamp(34px,4.5vw,58px) * var(--title-scale));text-transform:uppercase;}
+.eyebrow{
+  display:inline-block;color:var(--cyan);font-weight:700;font-size:13px;
+  letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px;
+}
+
+/* Helpers */
+.container{max-width:1480px;margin:0 auto;padding:0 40px;}
+.muted{color:var(--muted);}
+.center{text-align:center;}
+.spacer-xl{height:96px;}
+.divider{height:1px;background:var(--border);margin:64px 0;}
+
+/* Botones */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 28px;border-radius:12px;font-weight:700;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;
+  transition:transform .25s ease,box-shadow .25s ease,background .3s ease;
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.btn-primary{background:var(--cyan);color:#001018;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-cyan);}
+.btn-outline{border:2px solid #fff;color:#fff;}
+.btn-outline:hover{background:#fff;color:#001018;}
+.btn-cyan-outline{border:2px solid var(--cyan);color:var(--cyan);}
+.btn-cyan-outline:hover{background:var(--cyan);color:#001018;}
+.btn-wa{background:var(--green-wa);color:#fff;}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.35);}
+
+/* Shimmer en botones primarios */
+.btn-shimmer::before{
+  content:"";position:absolute;top:0;left:-120%;width:80%;height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);
+  animation:shimmer var(--shimmer-dur) infinite;
+  pointer-events:none;
+  opacity:var(--shimmer-on);
+}
+@keyframes shimmer{
+  0%{left:-120%;}
+  60%{left:200%;}
+  100%{left:200%;}
+}
+
+/* ============================================================
+   2. ANNOUNCEMENT BAR
+   ============================================================ */
+.announce{
+  position:fixed;top:0;left:0;right:0;height:40px;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cyan);
+  background:linear-gradient(90deg,#1a3a7a,#2a1a7a,#1a3a7a,#2a1a7a);
+  background-size:300% 100%;
+  animation:slideBar 4s linear infinite;
+}
+.announce span{padding:0 14px;}
+.announce span+span{border-left:1px solid rgba(0,212,255,.3);}
+@keyframes slideBar{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
+
+/* ============================================================
+   3. NAVBAR
+   ============================================================ */
+.nav{
+  position:fixed;top:40px;left:0;right:0;height:64px;z-index:150;
+  display:flex;align-items:center;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;
+}
+.nav.scrolled{
+  background:rgba(8,9,26,0.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-inner{display:flex;align-items:center;gap:28px;width:100%;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;color:var(--cyan);}
+.nav-logo img{width:36px;height:36px;object-fit:cover;border-radius:50%;background:transparent;}
+.nav-links{display:flex;gap:26px;margin-left:18px;}
+.nav-links a{font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#cdd5e0;transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-tools{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.nav-search{display:flex;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.nav-search input{background:transparent;border:none;outline:none;padding:9px 12px;width:200px;color:#fff;font-size:14px;}
+.nav-search input::placeholder{color:#5b6678;}
+.nav-search button{background:var(--cyan);color:#001018;padding:0 14px;height:38px;font-weight:700;letter-spacing:.06em;}
+.nav-icon{
+  position:relative;width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;color:#cdd5e0;transition:.2s;
+}
+.nav-icon:hover{color:var(--cyan);border-color:var(--cyan);}
+.nav-icon .badge{
+  position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;
+  font-size:10px;font-weight:700;border-radius:50%;width:20px;height:20px;
+  display:flex;align-items:center;justify-content:center;
+}
+.hamburger{display:none;width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.05);align-items:center;justify-content:center;}
+.hamburger div{width:18px;height:2px;background:#fff;position:relative;}
+.hamburger div::before,.hamburger div::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff;}
+.hamburger div::before{top:-6px;}.hamburger div::after{top:6px;}
+
+/* Mobile sidebar */
+.mobile-menu{position:fixed;top:0;right:0;width:84vw;max-width:340px;height:100vh;background:var(--bg-2);transform:translateX(100%);transition:transform .3s ease-out;z-index:300;padding:28px 24px;}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{display:block;padding:14px 0;font-size:18px;font-weight:600;border-bottom:1px solid var(--border);}
+.mobile-menu .close{margin-bottom:18px;font-size:24px;}
+
+/* ============================================================
+   4. HERO SLIDER
+   ============================================================ */
+.hero{
+  position:relative;min-height:var(--hero-min);
+  background:radial-gradient(circle at 20% 20%,#101a40,#08091A 65%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:url('images/bg-hero-texture.png'); /* REEMPLAZAR: textura hero */
+  background-size:cover;background-position:center;
+  opacity:.18;mix-blend-mode:screen;pointer-events:none;
+}
+.slides{position:relative;z-index:1;}
+.slide{
+  position:absolute;inset:0;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;
+  align-items:center;padding:60px 0;
+  opacity:0;visibility:hidden;transition:opacity .8s ease;
+}
+.slide.active{opacity:1;visibility:visible;position:relative;}
+.slide-text h1{font-size:clamp(56px,7vw,96px);line-height:.92;}
+.slide-text .ribbon-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.slide-text p.lead{font-size:18px;color:#c8d2dd;max-width:520px;margin-top:20px;}
+.discount{font-family:'Bebas Neue';font-size:clamp(72px,9vw,128px);color:var(--green-promo);line-height:.9;text-shadow:0 0 30px rgba(57,255,20,.25);}
+.mosaic{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(3,1fr);gap:0;border-radius:18px;overflow:hidden;height:480px;}
+.mosaic-3 {grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);}
+.mosaic img{width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(1.3);transition:filter .3s ease,transform .4s ease;}
+.mosaic img:hover{filter:brightness(1) saturate(1.4);transform:scale(1.06);}
+/* Pixelito flotante */
+.pixelito-hero{
+  position:absolute;right:38px;bottom:24px;width:160px;z-index:5;
+  filter:drop-shadow(0 12px 24px rgba(0,212,255,.3));
+}
+.pixelito-hero video,.pixelito-hero img{width:100%;height:auto;border-radius:18px;}
+.dots{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:6;}
+.dot{width:10px;height:10px;border-radius:6px;background:rgba(255,255,255,.3);transition:all .3s;cursor:pointer;}
+.dot.active{width:32px;background:var(--cyan);}
+
+/* ============================================================
+   5. TRUST BAR
+   ============================================================ */
+.trust{padding:54px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.trust-item{padding:0 28px;text-align:center;border-right:1px solid var(--border);}
+.trust-item:last-child{border-right:none;}
+.trust-item h4{font-family:'Rajdhani';font-size:18px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
+.trust-item p{color:var(--muted);font-size:14px;}
+.trust-icon{font-size:30px;margin-bottom:8px;color:var(--cyan);}
+.trust-bottom{margin-top:34px;text-align:center;color:var(--muted);font-size:14px;}
+.trust-bottom .stars{color:#FFD43B;font-size:18px;letter-spacing:.1em;margin-right:10px;}
+
+/* ============================================================
+   6. PRODUCT GRID (Best sellers + categorías)
+   ============================================================ */
+.section{padding:var(--section-pad) 0;position:relative;}
+.section h2{margin-bottom:8px;}
+.section .sub{color:var(--muted);margin-bottom:32px;max-width:680px;}
+.tabs{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;}
+.tab{
+  padding:10px 22px;border-radius:30px;border:1px solid var(--border-2);
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;color:#cdd5e0;
+  transition:.25s;
+}
+.tab.active{background:var(--cyan);color:#001018;border-color:var(--cyan);}
+.grid-6{display:grid;grid-template-columns:repeat(var(--grid-cols),1fr);gap:14px;}
+.card{
+  position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;
+  background:var(--bg-card);border:1px solid var(--border);
+  transition:transform .3s ease,box-shadow .3s ease,filter .3s ease;cursor:pointer;
+}
+.card:hover{transform:var(--hover-lift);box-shadow:var(--shadow-cyan);}
+.card .img-wrap{height:90%;overflow:hidden;}
+.card img{width:100%;height:100%;object-fit:cover;filter:var(--img-filter);transition:.4s;}
+.card:hover img{filter:var(--card-hover-filter);transform:scale(1.07);}
+.card .label{padding:8px 12px;font-size:13px;color:var(--muted);font-weight:600;letter-spacing:.04em;}
+.card .overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;
+  display:flex;align-items:flex-end;justify-content:center;padding:18px;
+  transition:opacity .3s ease;
+}
+.card:hover .overlay{opacity:1;}
+.card .overlay .btn{transform:translateY(28px);transition:transform .3s ease;}
+.card:hover .overlay .btn{transform:translateY(0);}
+.card .badge-promo{
+  position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+  color:#fff;border:1px solid var(--border-2);
+  font-weight:700;font-size:10.5px;padding:4px 9px;border-radius:6px;letter-spacing:.1em;text-transform:uppercase;
+}
+.card .orient-tag{
+  position:absolute;top:10px;right:10px;background:rgba(0,212,255,.18);color:var(--cyan);
+  border:1px solid rgba(0,212,255,.4);
+  font-size:10px;padding:3px 7px;border-radius:6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+}
+/* Tarjeta respeta orientación real del cuadro */
+.card.orient-vertical{ aspect-ratio: 3 / 4; }
+.card.orient-horizontal{ aspect-ratio: 4 / 3; }
+.card .img-wrap{ background:#000; }
+.card.orient-vertical .img-wrap img,
+.card.orient-horizontal .img-wrap img{ object-fit:cover; }
+.card .img-wrap img{ object-position:center; }
+
+/* Card especial "Tu foto aquí" */
+.card-upload{
+  background:linear-gradient(135deg,#0099CC 0%,var(--cyan) 45%,var(--purple) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;color:#fff;
+}
+.card-upload .ico{font-size:46px;margin-bottom:10px;}
+.card-upload h4{font-family:'Bebas Neue';font-size:24px;letter-spacing:.04em;}
+.card-upload p{font-size:13px;opacity:.85;margin-top:6px;}
+
+/* ============================================================
+   7. SECCIÓN HEXAGONAL
+   ============================================================ */
+.hex-section{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;}
+.hex-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 8px;}
+.hex{
+  aspect-ratio:1/1.15;
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  overflow:hidden;cursor:pointer;background:#111;
+  transition:transform .3s ease,filter .3s ease;
+}
+.hex:nth-child(even){transform:translateY(28px);}
+.hex:hover{transform:scale(1.05) translateY(0);filter:brightness(1.2);}
+.hex:nth-child(even):hover{transform:scale(1.05) translateY(28px);filter:brightness(1.2);}
+.hex img{width:100%;height:100%;object-fit:cover;}
+.hex-thumbs{display:flex;gap:10px;overflow-x:auto;margin-top:30px;padding-bottom:8px;}
+.hex-thumbs::-webkit-scrollbar{height:6px;}
+.hex-thumbs::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px;}
+.hex-thumb{
+  flex:0 0 110px;aspect-ratio:1/1.15;
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  overflow:hidden;
+}
+.hex-thumb img{width:100%;height:100%;object-fit:cover;transition:.3s;}
+.hex-thumb:hover img{transform:scale(1.1);filter:brightness(1.2);}
+
+.hex-side .lottie-box{width:140px;margin-top:24px;}
+.hex-side .lottie-box video{width:100%;border-radius:12px;}
+
+/* ============================================================
+   8. CATEGORÍAS — slider horizontal por categoría
+   ============================================================ */
+.cat-block{padding:28px 0;border-bottom:1px solid var(--border);}
+.cat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.cat-head h3{font-size:32px;}
+.cat-head .nav-arrows{display:flex;gap:8px;}
+.arrow{
+  width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.05);
+  border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:#cdd5e0;transition:.25s;
+}
+.arrow:hover{background:var(--cyan);color:#001018;border-color:var(--cyan);}
+.cat-row{display:flex;gap:14px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;}
+.cat-row::-webkit-scrollbar{display:none;}
+.cat-row .card{flex:0 0 calc((100% - 70px) / var(--grid-cols));min-width:180px;}
+
+/* ============================================================
+   9. COMUNIDAD reseñas
+   ============================================================ */
+.reviews{display:flex;gap:18px;overflow-x:auto;padding-bottom:8px;scroll-behavior:smooth;}
+.reviews::-webkit-scrollbar{display:none;}
+.review{
+  flex:0 0 320px;background:var(--bg-card);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:22px;
+}
+.review-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:22px;color:#fff;
+}
+.review-meta{display:flex;flex-direction:column;}
+.review-meta .name{font-weight:700;font-size:15px;}
+.review-meta .date{font-size:12px;color:var(--muted);}
+.review-stars{color:#FFD43B;letter-spacing:.05em;margin-bottom:8px;}
+.review p{font-size:14.5px;color:#dde3ec;}
+.review .ig{margin-top:12px;font-size:13px;color:var(--cyan);display:inline-flex;gap:6px;align-items:center;}
+
+/* ============================================================
+  10. MURO COLECCIONISTAS
+  ============================================================ */
+.wall-row{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;}
+.wall-row::-webkit-scrollbar{display:none;}
+.wall-card{
+  flex:0 0 280px;border-radius:14px;overflow:hidden;background:var(--bg-card);
+  border:1px solid var(--border);transition:.3s;
+}
+.wall-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-cyan);}
+.wall-card img{aspect-ratio:3/4;object-fit:cover;width:100%;filter:brightness(.85) saturate(1.2);}
+.wall-card .meta{padding:14px;}
+.wall-card .meta .nm{font-weight:700;font-size:16px;}
+.wall-card .meta .ct{color:var(--muted);font-size:13px;}
+
+/* ============================================================
+  11. VISUALIZADOR 3D
+  ============================================================ */
+.visu-wrap{display:grid;grid-template-columns:1fr 320px;gap:36px;align-items:start;}
+.visu-stage{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/10;}
+.visu-stage .room{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .4s;}
+.visu-stage .frame{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-58%) perspective(1200px) rotateY(-4deg) scale(1);
+  width:30%;max-width:45%;border-radius:4px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 3px #0a0a10,0 0 0 5px #20232c;
+  transition:transform .4s ease;
+}
+.visu-stage .frame img{width:100%;display:block;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.pill{
+  padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border-2);font-size:13px;font-weight:600;letter-spacing:.05em;
+  color:#cdd5e0;transition:.25s;
+}
+.pill.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
+.thumb-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px;}
+.thumb{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;}
+.thumb.active{border-color:var(--cyan);}
+.thumb img{width:100%;height:100%;object-fit:cover;}
+.visu-side{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.visu-side h4{font-family:'Bebas Neue';font-size:24px;margin-bottom:8px;}
+.visu-side .note{margin-top:14px;font-size:12px;color:var(--muted);}
+.visu-side .lottie-box{margin-top:18px;border-radius:10px;overflow:hidden;}
+.visu-side .lottie-box video{width:100%;}
+
+/* ============================================================
+  12. ENVÍOS
+  ============================================================ */
+.ship-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.ship-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;
+  position:relative;transition:.3s;
+}
+.ship-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-cyan);border-color:var(--cyan);}
+.ship-icon{width:56px;height:56px;border-radius:14px;background:rgba(0,212,255,.1);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--cyan);margin-bottom:14px;}
+.ship-card h4{font-family:'Bebas Neue';font-size:24px;margin-bottom:6px;}
+.ship-card p{color:#bcc6d2;font-size:14.5px;}
+.ship-card .badge{
+  position:absolute;top:18px;right:18px;font-weight:700;font-size:11px;
+  padding:5px 10px;border-radius:20px;letter-spacing:.06em;
+}
+.badge-free{background:var(--green-promo);color:#001018;}
+.badge-fast{background:var(--cyan);color:#001018;}
+.cities{margin-top:12px;font-size:13px;color:var(--muted);}
+.ship-banner{
+  margin-top:28px;background:linear-gradient(90deg,rgba(124,58,237,.15),rgba(0,212,255,.15));
+  border:1px solid var(--border-2);border-radius:14px;padding:22px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+/* ============================================================
+  13. PERSONALIZACIÓN
+  ============================================================ */
+.custom-section{
+  background:linear-gradient(135deg,#1a0f3d 0%,#0d1f3d 50%,#003447 100%);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.custom-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center;}
+.custom-form{background:rgba(8,9,26,.7);backdrop-filter:blur(8px);border:1px solid var(--border-2);border-radius:18px;padding:30px;}
+.dropzone{
+  border:2px dashed var(--cyan);border-radius:14px;padding:32px;text-align:center;
+  background:rgba(0,212,255,.05);transition:.3s;cursor:pointer;
+}
+.dropzone:hover{background:rgba(0,212,255,.1);}
+.dropzone .ico{font-size:36px;color:var(--cyan);margin-bottom:8px;}
+.dropzone p{color:#cdd5e0;font-weight:600;}
+.dropzone small{color:var(--muted);}
+.field{margin-top:18px;}
+.field label{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;color:#cdd5e0;}
+.field input[type="text"],.field textarea{
+  width:100%;padding:11px 14px;border-radius:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border-2);color:#fff;font-size:14.5px;transition:.2s;
+}
+.field input[type="text"]:focus,.field textarea:focus{outline:none;border-color:var(--cyan);background:rgba(0,212,255,.05);}
+.field textarea{min-height:80px;resize:vertical;}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap;}
+.radio-pill{
+  position:relative;cursor:pointer;
+  padding:10px 18px;border-radius:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border-2);font-weight:600;font-size:13.5px;letter-spacing:.04em;transition:.25s;
+}
+.radio-pill input{position:absolute;opacity:0;}
+.radio-pill.checked{background:var(--cyan);border-color:var(--cyan);color:#001018;}
+.steps{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.step{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;}
+.step .num{
+  width:38px;height:38px;border-radius:50%;background:var(--cyan);color:#001018;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue';font-size:22px;margin:0 auto 10px;
+}
+.step h5{font-family:'Bebas Neue';font-size:20px;margin-bottom:4px;}
+.step p{font-size:13.5px;color:var(--muted);}
+
+.lottie-personaliza{width:100%;max-width:420px;margin:0 auto;border-radius:18px;overflow:hidden;}
+.lottie-personaliza video{width:100%;display:block;}
+
+/* ============================================================
+  14. VIDEOS
+  ============================================================ */
+.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.video-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.video-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#000;transform:scale(1.18);transform-origin:center 38%;}
+.video-card .video-frame{position:relative;overflow:hidden;aspect-ratio:16/9;background:#000;}
+.video-card .video-frame::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 70%,rgba(8,9,26,.55) 100%);
+}
+.video-card .meta{padding:18px 20px;}
+.video-card .meta h4{font-family:'Bebas Neue';font-size:24px;}
+.video-card .meta p{color:var(--muted);font-size:14px;}
+
+/* ============================================================
+  15. BANNER CTA FINAL
+  ============================================================ */
+.cta-banner{
+  position:relative;border-radius:24px;overflow:hidden;padding:90px 40px;
+  background:url('images/banner-cta.png') center/cover; /* REEMPLAZAR: banner principal */
+  text-align:center;
+}
+.cta-banner::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(124,58,237,.85),rgba(0,212,255,.5),rgba(124,58,237,.85));
+  background-size:300% 300%;
+  animation:gradMove 8s ease-in-out infinite;
+}
+@keyframes gradMove{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.cta-banner > *{position:relative;z-index:2;}
+.cta-banner h2{font-size:clamp(44px,6vw,84px);text-shadow:0 4px 30px rgba(0,0,0,.4);}
+.cta-banner p{font-size:18px;color:#f0f4fb;max-width:600px;margin:14px auto 28px;}
+.cta-banner .ribbon-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ============================================================
+  16. FOOTER
+  ============================================================ */
+.footer{background:var(--bg-deep);padding:64px 0 24px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:34px;}
+.footer-brand p{color:var(--muted);margin:14px 0 18px;font-size:14.5px;}
+.footer h5{font-family:'Bebas Neue';font-size:20px;letter-spacing:.04em;margin-bottom:14px;}
+.footer ul{list-style:none;}
+.footer ul li{margin-bottom:8px;}
+.footer ul a{color:#cdd5e0;font-size:14px;transition:.2s;}
+.footer ul a:hover{color:var(--cyan);}
+.socials{display:flex;gap:10px;margin-top:10px;}
+.social-ico{
+  width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#cdd5e0;transition:.25s;
+}
+.social-ico:hover{background:var(--cyan);color:#001018;border-color:var(--cyan);}
+.copyright{margin-top:42px;padding-top:24px;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13px;}
+
+/* ============================================================
+  17. CARRITO + WhatsApp flotantes + sidebar
+  ============================================================ */
+.float-cart, .float-wa{
+  position:fixed;bottom:24px;width:60px;height:60px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;z-index:140;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
+  transition:transform .25s;
+}
+.float-cart:hover,.float-wa:hover{transform:scale(1.08);}
+.float-cart{right:24px;background:var(--cyan);color:#001018;}
+.float-wa{left:24px;background:var(--green-wa);color:#fff;animation:wapulse var(--pulse-dur) infinite;}
+@keyframes wapulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+.float-cart .badge-cart{
+  position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;
+  font-size:11px;font-weight:700;border-radius:50%;width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);
+}
+.wa-tooltip{
+  position:absolute;left:72px;top:50%;transform:translateY(-50%);
+  background:#0d0f26;color:#fff;padding:8px 12px;border-radius:8px;font-size:13px;
+  white-space:nowrap;border:1px solid var(--border-2);opacity:0;pointer-events:none;
+  transition:opacity .2s;
+}
+.float-wa:hover .wa-tooltip{opacity:1;}
+
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
+  z-index:298;opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.cart-overlay.open{opacity:1;pointer-events:auto;}
+.cart-sidebar{
+  position:fixed;top:0;right:0;height:100vh;width:380px;max-width:100vw;
+  background:var(--bg-2);border-left:1px solid var(--border-2);z-index:299;
+  transform:translateX(100%);transition:transform .3s ease-out;
+  display:flex;flex-direction:column;
+}
+.cart-sidebar.open{transform:translateX(0);}
+.cart-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 24px;border-bottom:1px solid var(--border);
+}
+.cart-head h3{font-family:'Bebas Neue';font-size:28px;letter-spacing:.04em;}
+.cart-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.cart-body{flex:1;overflow-y:auto;padding:18px 24px;}
+.cart-empty{text-align:center;padding:30px 0;}
+.cart-empty .lottie-box{width:160px;margin:0 auto 14px;}
+.cart-empty .lottie-box video{width:100%;border-radius:12px;}
+.cart-empty p{color:var(--muted);margin-bottom:16px;}
+.cart-item{
+  display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);
+}
+.cart-item img{width:60px;height:60px;border-radius:8px;object-fit:cover;}
+.cart-item .info{flex:1;}
+.cart-item .info .nm{font-weight:700;font-size:14px;}
+.cart-item .info .sub{font-size:12.5px;color:var(--muted);margin-top:2px;}
+.cart-item .rm{color:var(--red);font-size:14px;}
+.cart-foot{padding:18px 24px;border-top:1px solid var(--border);}
+.deliver-radio{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.deliver-radio label{
+  display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);cursor:pointer;
+  font-size:13.5px;font-weight:600;
+}
+.deliver-radio label.checked{border-color:var(--cyan);background:rgba(0,212,255,.07);}
+.deliver-radio input{accent-color:var(--cyan);}
+.deliver-radio .lbl-badge{margin-left:auto;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--green-promo);color:#001018;letter-spacing:.06em;}
+.deliver-radio .lbl-badge.fast{background:var(--cyan);}
+.cart-foot textarea{
+  width:100%;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.04);
+  border:1px solid var(--border-2);color:#fff;min-height:60px;resize:vertical;font-size:14px;margin-bottom:12px;
+}
+.cart-foot .send-wa{width:100%;height:52px;border-radius:12px;}
+.deliver-note{font-size:12px;color:var(--muted);margin:-6px 0 12px;}
+.cart-success{text-align:center;padding:30px 0;display:none;}
+.cart-success.show{display:block;}
+.cart-success .lottie-box{width:170px;margin:0 auto 14px;}
+.cart-success .lottie-box video{width:100%;border-radius:12px;}
+.cart-success p{color:#cdd5e0;font-weight:600;}
+
+/* ============================================================
+  18. RESPONSIVE
+  ============================================================ */
+@media (max-width:1024px){
+  .grid-6{grid-template-columns:repeat(4,1fr);}
+  .cat-row .card{flex:0 0 calc((100% - 42px)/4);}
+  .footer-grid{grid-template-columns:1fr 1fr 1fr;}
+  .visu-wrap{grid-template-columns:1fr;}
+  .hex-section{grid-template-columns:1fr;}
+}
+@media (max-width:768px){
+  body{padding-top:80px;}
+  .nav-links,.nav-search{display:none;}
+  .hamburger{display:flex;}
+  .slide{grid-template-columns:1fr;text-align:center;padding:30px 0;}
+  .mosaic{height:280px;}
+  .pixelito-hero{width:96px;right:14px;bottom:14px;}
+  .grid-6{grid-template-columns:repeat(2,1fr);}
+  .cat-row .card{flex:0 0 70%;min-width:200px;}
+  .trust-grid{grid-template-columns:repeat(2,1fr);}
+  .trust-item{padding:18px 14px;border-right:none;border-bottom:1px solid var(--border);}
+  .ship-grid{grid-template-columns:1fr;}
+  .video-grid{grid-template-columns:1fr;}
+  .custom-grid{grid-template-columns:1fr;}
+  .hex-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .float-cart,.float-wa{width:54px;height:54px;}
+  .section{padding:54px 0;}
+  .container{padding:0 16px;}
+  .cart-sidebar{width:100vw;}
+}
+
+/* ============================================================
+  19. SCROLL REVEAL
+  ============================================================ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* SVG icon size helpers */
+svg.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;}
+svg.ic-lg{width:26px;height:26px;}
+
+/* ============================================================
+  21. VISTA PREVIA (modal de inspección 3D estilo Valorant)
+  ============================================================ */
+.preview-overlay{position:fixed;inset:0;z-index:320;background:radial-gradient(circle at 50% 40%,rgba(20,28,60,.78),rgba(0,0,0,.95));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;padding:24px;}
+.preview-overlay.open{opacity:1;pointer-events:auto;}
+.preview-stage{position:relative;max-width:1200px;width:100%;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
+.preview-art-wrap{perspective:1600px;min-height:420px;display:flex;align-items:center;justify-content:center;position:relative;}
+.preview-art-wrap::before{content:"";position:absolute;inset:-40px;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,212,255,.18),transparent 65%);filter:blur(40px);}
+.preview-art{position:relative;max-width:520px;max-height:65vh;transform-style:preserve-3d;transition:transform .15s ease-out;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 6px #0a0a10,0 0 0 8px rgba(0,212,255,.35),0 0 60px rgba(0,212,255,.25);border-radius:6px;}
+.preview-art.vertical{width:380px;aspect-ratio:3/4;}
+.preview-art.horizontal{width:560px;aspect-ratio:4/3;}
+.preview-art img{width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;}
+.preview-art .scan{position:absolute;inset:0;pointer-events:none;border-radius:6px;overflow:hidden;background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(0,212,255,.18) 50%,transparent 55%,transparent 100%);background-size:100% 200%;animation:scanMove 2.6s linear infinite;}
+@keyframes scanMove{0%{background-position:0 -100%;}100%{background-position:0 100%;}}
+.preview-info h3{font-family:'Bebas Neue';font-size:48px;line-height:1;margin:8px 0 14px;color:#fff;}
+.preview-info .desc{color:#cdd5e0;font-size:15px;max-width:420px;}
+.preview-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0;}
+.preview-meta .m-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+.preview-meta .m-item .lab{font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;font-weight:700;}
+.preview-meta .m-item .val{font-family:'Bebas Neue';font-size:22px;color:#fff;margin-top:2px;}
+.preview-sizes{display:flex;gap:8px;margin-bottom:18px;}
+.preview-sizes .sz{padding:9px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--border-2);font-weight:700;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:.2s;color:#fff;}
+.preview-sizes .sz.active{background:var(--cyan);color:#001018;border-color:var(--cyan);}
+.preview-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.preview-close{position:fixed;top:24px;right:24px;z-index:325;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--border-2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.preview-close:hover{background:var(--cyan);color:#001018;border-color:var(--cyan);}
+.preview-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.5);text-transform:uppercase;pointer-events:none;}
+@media (max-width:900px){.preview-stage{grid-template-columns:1fr;gap:18px;}.preview-art.vertical{width:75vw;max-width:300px;}.preview-art.horizontal{width:90vw;max-width:440px;}.preview-info h3{font-size:34px;}}
+
+/* ============================================================
+  22. SCENES de mockup por categoría + wood-frame con tamaño real
+  ============================================================ */
+.scene{
+  position:relative; width:100%; aspect-ratio: 4/5; overflow:hidden; border-radius:14px;
+  isolation:isolate; transform-style:preserve-3d;
+}
+.scene::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.18), transparent 55%),
+    radial-gradient(ellipse at 50% 110%, rgba(0,0,0,.5), transparent 60%);
+  z-index:1; pointer-events:none;
+}
+.scene::after{ /* línea sutil suelo / muro */
+  content:""; position:absolute; left:0; right:0; bottom:14%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+  z-index:1; pointer-events:none;
+}
+/* Paletas de pared por categoría — auto-mockup */
+.scene-default,.scene-otros{ background:linear-gradient(160deg,#1a1d2e 0%,#0d0f1f 60%,#070811 100%); }
+.scene-anime{        background:linear-gradient(155deg,#7b2c1a 0%,#c25a2e 45%,#3a140a 100%); }
+.scene-videojuegos,.scene-gaming{ background:radial-gradient(ellipse at 30% 30%,#2a0d4f 0%,#0a0420 60%,#000 100%); }
+.scene-autos{        background:linear-gradient(170deg,#1c1c1c 0%,#2a2a2a 50%,#0a0a0a 100%); }
+.scene-autos::before{ background:radial-gradient(ellipse at 50% 30%,rgba(255,200,80,.18),transparent 55%),radial-gradient(ellipse at 50% 110%,rgba(0,0,0,.7),transparent 55%); }
+.scene-parejas,.scene-familia{ background:linear-gradient(165deg,#3d2418 0%,#5a3a26 45%,#1f120a 100%); }
+.scene-mascotas{     background:linear-gradient(160deg,#d8c69a 0%,#a88c5e 55%,#4d3c22 100%); }
+.scene-naturaleza,.scene-paisajes{ background:linear-gradient(165deg,#cfd6dd 0%,#9aa6b3 55%,#3e4a58 100%); }
+.scene-retratos{     background:linear-gradient(160deg,#23262e 0%,#3a3f49 50%,#13151b 100%); }
+.scene-amor,.scene-romance{ background:linear-gradient(165deg,#3a0f24 0%,#7a1f44 50%,#1a0710 100%); }
+.scene-deportes{     background:linear-gradient(160deg,#0a3a1f 0%,#1a6a3a 50%,#04140a 100%); }
+.scene-musica{       background:linear-gradient(160deg,#1a0a2e 0%,#3a1a5a 50%,#0a0414 100%); }
+.scene-cine{         background:linear-gradient(160deg,#1a1812 0%,#3a2e1a 50%,#0a0904 100%); }
+.scene-personalizado{ background:linear-gradient(160deg,#0a1a3a 0%,#1a3a6a 50%,#040a1a 100%); }
+
+/* Textura sutil de pared (ladrillo / yeso) */
+.scene-anime::after{
+  content:""; position:absolute; inset:0; opacity:.18; mix-blend-mode:overlay; z-index:1; pointer-events:none;
+  background:repeating-linear-gradient(0deg, transparent 0 28px, rgba(0,0,0,.4) 28px 30px),
+             repeating-linear-gradient(90deg, transparent 0 60px, rgba(0,0,0,.3) 60px 62px);
+}
+.scene-mascotas::after, .scene-naturaleza::after, .scene-paisajes::after{
+  content:""; position:absolute; inset:0; opacity:.12; mix-blend-mode:multiply; z-index:1; pointer-events:none;
+  background:radial-gradient(circle at 20% 30%, rgba(0,0,0,.4) 0 1px, transparent 2px) 0 0/4px 4px;
+}
+
+/* Wood frame — el cuadro real con marco de madera y matte */
+.wood-frame{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  z-index:2;
+  background:
+    linear-gradient(135deg,#6b4a2b 0%,#8c6238 25%,#5b3d22 55%,#3d2814 100%);
+  padding:2.5%;
+  box-shadow:
+    0 26px 50px rgba(0,0,0,.55),
+    0 8px 14px rgba(0,0,0,.4),
+    inset 0 0 0 1px rgba(0,0,0,.25);
+  border-radius:2px;
+  transition: width .55s cubic-bezier(.2,.8,.2,1), height .55s cubic-bezier(.2,.8,.2,1), transform .15s ease-out;
+  transform-style:preserve-3d;
+}
+.wood-frame > .art{
+  width:100%; height:100%; display:block; object-fit:cover;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.35), inset 0 4px 12px rgba(0,0,0,.35);
+  border-radius:1px;
+}
+/* Tamaños — proporciones reales relativas al scene */
+.wood-frame.size-40.vertical   { width:30%; aspect-ratio:3/4; }
+.wood-frame.size-40.horizontal { width:38%; aspect-ratio:4/3; }
+.wood-frame.size-80.vertical   { width:48%; aspect-ratio:3/4; }
+.wood-frame.size-80.horizontal { width:62%; aspect-ratio:4/3; }
+/* Etiqueta sutil de tamaño dentro de la scene */
+.scene .size-tag{
+  position:absolute; right:10px; bottom:10px; z-index:3;
+  font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  background:rgba(0,0,0,.55); color:#fff; padding:4px 8px; border-radius:5px;
+  border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(4px);
+}
+
+/* === Card hover: crossfade scene → obra sola === */
+.card .scene-layer, .card .art-layer{
+  position:absolute; inset:0; transition:opacity .45s ease;
+}
+.card .art-layer{
+  opacity:0; background:#0a0c1a;
+  display:flex; align-items:center; justify-content:center; padding:14px;
+}
+.card .art-layer img{ max-width:100%; max-height:100%; object-fit:contain; box-shadow:0 12px 30px rgba(0,0,0,.6); }
+.card:hover .scene-layer{ opacity:0; }
+.card:hover .art-layer{ opacity:1; }
+
+/* ============================================================
+  20. TWEAKS PANEL — Vibe / Energy / Density
+  ============================================================ */
+#tweaks-panel{
+  position:fixed; right:24px; bottom:96px; z-index:160;
+  width:300px; background:rgba(13,15,38,.96); backdrop-filter:blur(14px);
+  border:1px solid var(--border-2); border-radius:16px; padding:18px 18px 16px;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+  font-family:'Rajdhani',sans-serif; color:#fff;
+  transform:translateY(20px); opacity:0; pointer-events:none;
+  transition:transform .25s ease, opacity .25s ease;
+  display:none;
+}
+#tweaks-panel.open{ display:block; transform:translateY(0); opacity:1; pointer-events:auto; }
+#tweaks-panel .tw-head{
+  display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;
+}
+#tweaks-panel .tw-head h4{
+  font-family:'Bebas Neue'; font-size:22px; letter-spacing:.06em; color:var(--cyan);
+}
+#tweaks-panel .tw-close{
+  width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+#tweaks-panel .tw-section{ margin-bottom:14px; }
+#tweaks-panel .tw-label{
+  font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:#cdd5e0; margin-bottom:8px; display:flex; justify-content:space-between;
+}
+#tweaks-panel .tw-label .tw-val{ color:var(--cyan); letter-spacing:.08em; }
+#tweaks-panel .tw-seg{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+  background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px;
+  padding:4px;
+}
+#tweaks-panel .tw-seg button{
+  padding:9px 6px; border-radius:7px; font-size:12px; font-weight:600;
+  letter-spacing:.04em; color:#cdd5e0; transition:.2s;
+}
+#tweaks-panel .tw-seg button.active{
+  background:var(--cyan); color:#001018;
+}
+#tweaks-panel .tw-seg button:not(.active):hover{ background:rgba(255,255,255,.06); color:#fff; }
+#tweaks-panel .tw-swatches{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+}
+#tweaks-panel .tw-swatch{
+  position:relative; aspect-ratio:1.4/1; border-radius:9px; overflow:hidden;
+  cursor:pointer; border:2px solid transparent; transition:.2s;
+}
+#tweaks-panel .tw-swatch.active{ border-color:#fff; }
+#tweaks-panel .tw-swatch .sw-name{
+  position:absolute; left:6px; bottom:5px; font-size:10px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:#fff;
+  text-shadow:0 1px 4px rgba(0,0,0,.7);
+}
+#tweaks-panel .sw-cyber{ background:linear-gradient(135deg,#08091A 0%,#7C3AED 50%,#00D4FF 100%); }
+#tweaks-panel .sw-sunset{ background:linear-gradient(135deg,#1A0512 0%,#FF4D8B 50%,#FF8A3D 100%); }
+#tweaks-panel .sw-mono{ background:linear-gradient(135deg,#0B0B0B 0%,#444 60%,#FF2D2D 100%); }
+#tweaks-panel .tw-foot{
+  font-size:11px; color:var(--muted); margin-top:6px; line-height:1.45;
+}
+#tweaks-panel .tw-reset{
+  margin-top:10px; width:100%; padding:9px 10px; border-radius:8px;
+  background:rgba(255,255,255,.04); border:1px solid var(--border);
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:#cdd5e0; transition:.2s;
+}
+#tweaks-panel .tw-reset:hover{ color:var(--cyan); border-color:var(--cyan); }
+@media (max-width:768px){
+  #tweaks-panel{ right:12px; left:12px; width:auto; bottom:88px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     1. ANNOUNCEMENT BAR
+     ============================================================ -->
+<!-- REEMPLAZAR: texto promocional según campañas vigentes -->
+<div class="announce" role="banner">
+  <span>★ Cuadros personalizados en madera</span>
+  <span>Envío a todo Chile</span>
+  <span>Hecho con dedicación en Concepción ★</span>
+</div>
+
+<!-- ============================================================
+     2. NAVBAR
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="#top">
+      <!-- REEMPLAZAR: logo Pixelverso -->
+      <img src="images/logo.png" alt="Pixelverso Studio" onerror="this.style.display='none'" />
+      <span>PIXELVERSO STUDIO</span>
+    </a>
+    <div class="nav-links">
+      <a href="#top">Inicio</a>
+      <a href="#explorar">Explorar</a>
+      <a href="#personalizar">Personalizar</a>
+      <a href="#galeria">Galería</a>
+      <a href="#nosotros">Nosotros</a>
+    </div>
+    <div class="nav-tools">
+      <div class="nav-search">
+        <input id="search-input" type="text" placeholder="Busca tu universo..." aria-label="Buscar" />
+        <button onclick="onSearch()">Search</button>
+      </div>
+      <a class="nav-icon" href="#nosotros" title="Mi cuenta" aria-label="Cuenta">
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+      </a>
+      <a class="nav-icon" href="#galeria" title="Wishlist" aria-label="Wishlist">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+      </a>
+      <button class="nav-icon" onclick="openCart()" title="Carrito" aria-label="Carrito">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="badge" id="nav-cart-badge">0</span>
+      </button>
+      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menú">
+        <div></div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<aside class="mobile-menu" id="mobile-menu">
+  <div class="close" onclick="toggleMobileMenu()">✕  Cerrar</div>
+  <a href="#top" onclick="toggleMobileMenu()">Inicio</a>
+  <a href="#explorar" onclick="toggleMobileMenu()">Explorar</a>
+  <a href="#personalizar" onclick="toggleMobileMenu()">Personalizar</a>
+  <a href="#galeria" onclick="toggleMobileMenu()">Galería</a>
+  <a href="#nosotros" onclick="toggleMobileMenu()">Nosotros</a>
+</aside>
+
+<!-- ============================================================
+     3. HERO SLIDER
+     ============================================================ -->
+<section class="hero" id="top">
+  <div class="container slides" id="hero-slides">
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+      <div class="slide-text">
+        <span class="eyebrow">Cuadros personalizados en madera</span>
+        <h1>AQUÍ INMORTALIZAMOS<br/>TUS FOTOS FAVORITAS</h1>
+        <p class="lead">Convierte tus recuerdos, personajes y momentos especiales en cuadros únicos impresos sobre madera. Disponible en 40×30 cm y 80×60 cm — vertical u horizontal.</p>
+        <div class="ribbon-cta">
+          <a class="btn btn-primary btn-shimmer" href="#explorar">Ver categorías</a>
+          <a class="btn btn-outline" href="#personalizar">Personalizar mi cuadro</a>
+        </div>
+      </div>
+      <div class="mosaic">
+        <!-- REEMPLAZAR: imágenes destacadas hero slide 1 -->
+        <img src="images/cat-anime.png" loading="lazy" alt="Anime"/>
+        <img src="images/cat-marvel.png" loading="lazy" alt="Marvel"/>
+        <img src="images/cat-dragonball.png" loading="lazy" alt="Dragon Ball"/>
+        <img src="images/cat-videojuegos.png" loading="lazy" alt="Videojuegos"/>
+        <img src="images/cat-pokemon.png" loading="lazy" alt="Pokemon"/>
+        <img src="images/cat-strangerthings.png" loading="lazy" alt="Stranger Things"/>
+        <img src="images/cat-thelastofus.png" loading="lazy" alt="The Last of Us"/>
+        <img src="images/cat-johnwick.png" loading="lazy" alt="John Wick"/>
+        <img src="images/cat-mafia.png" loading="lazy" alt="Mafia"/>
+        <img src="images/cat-nintendo.png" loading="lazy" alt="Nintendo"/>
+        <img src="images/cat-musica.png" loading="lazy" alt="Música"/>
+        <img src="images/cat-autos.png" loading="lazy" alt="Autos"/>
+        <img src="images/cat-dc.png" loading="lazy" alt="DC"/>
+        <img src="images/cat-collage.png" loading="lazy" alt="Collage"/>
+        <img src="images/cat-personalizado.png" loading="lazy" alt="Personalizado"/>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+      <div class="slide-text">
+        <span class="eyebrow">Tus recuerdos, en madera</span>
+        <h1>TUS MOMENTOS<br/>HECHOS CUADRO</h1>
+        <p class="lead">Familia, parejas, mascotas, anime, gaming, autos. Tú envías la idea — nosotros la imprimimos sobre madera con acabado premium. Solo dos tamaños: 40×30 y 80×60 cm.</p>
+        <div class="ribbon-cta">
+          <a class="btn btn-primary btn-shimmer" href="#personalizar">Personalizar ahora</a>
+          <a class="btn btn-outline" href="#envios">Ver envíos</a>
+        </div>
+      </div>
+      <div class="mosaic mosaic-3">
+        <!-- REEMPLAZAR: imágenes destacadas hero slide 2 -->
+        <img src="images/cat-enamorados.png" loading="lazy" alt="Enamorados"/>
+        <img src="images/cat-familia.png" loading="lazy" alt="Familia"/>
+        <img src="images/cat-cristiana.png" loading="lazy" alt="Cristiana"/>
+        <img src="images/cat-marvel.png" loading="lazy" alt="Marvel"/>
+        <img src="images/cat-anime.png" loading="lazy" alt="Anime"/>
+        <img src="images/cat-videojuegos.png" loading="lazy" alt="Videojuegos"/>
+        <img src="images/cat-johnwick.png" loading="lazy" alt="John Wick"/>
+        <img src="images/cat-pokemon.png" loading="lazy" alt="Pokemon"/>
+        <img src="images/cat-collage.png" loading="lazy" alt="Collage"/>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dots" id="hero-dots">
+    <button class="dot active" data-i="0" aria-label="Slide 1"></button>
+    <button class="dot" data-i="1" aria-label="Slide 2"></button>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. TRUST BAR
+     ============================================================ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🪵</div>
+        <h4>Bastidor artesanal</h4>
+        <p>Marco de madera MDF trabajado a mano con acabado impecable.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">◉</div>
+        <h4>Imágenes Ultra HD</h4>
+        <p>Mejoramos tu foto a máxima calidad antes de imprimir. Sin pixeles.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🪚</div>
+        <h4>Sin clavos ni taladros</h4>
+        <p>Fijación con cola fría de madera de calidad excepcional. No daña tu pared.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚚</div>
+        <h4>Retiro, delivery y envío</h4>
+        <p>Retira sin costo, entrega a domicilio en Conce o despacho a todo Chile.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. BEST SELLERS
+     ============================================================ -->
+<section class="section" id="explorar">
+  <div class="container">
+    <span class="eyebrow">Catálogo</span>
+    <h2 class="section-title">Cuadros destacados</h2>
+    <p class="sub">Una muestra de los estilos que más nos piden. Todos en madera, 40×30 cm o 80×60 cm.</p>
+    <div class="tabs">
+      <button class="tab active" data-tab="destacados">Destacados</button>
+      <button class="tab" data-tab="nuevos">Nuevos</button>
+      <button class="tab" data-tab="populares">Populares</button>
+    </div>
+
+    <div class="grid-6 reveal" id="bestsellers-grid">
+      <!-- card especial upload -->
+      <a class="card card-upload" href="#personalizar">
+        <div class="ico">⤴</div>
+        <h4>Tu foto aquí</h4>
+        <p>Personaliza tu cuadro</p>
+      </a>
+      <!-- los demás se renderizan por JS -->
+    </div>
+
+    <div style="text-align:center;margin-top:30px;">
+      <a class="btn btn-cyan-outline" href="#galeria">Ver más</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     7. GALERÍA POR CATEGORÍAS (18 categorías)
+     ============================================================ -->
+<section class="section" id="galeria">
+  <div class="container">
+    <span class="eyebrow">Galería</span>
+    <h2 class="section-title">Explora por universo</h2>
+    <p class="sub">18 categorías, infinitos cuadros. Desliza para descubrir lo tuyo.</p>
+
+    <div id="categories-list">
+      <!-- Renderizado por JS — lista hardcoded en el script de abajo -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. COMUNIDAD — RESEÑAS
+     ============================================================ -->
+<section class="section" id="nosotros">
+  <div class="container">
+    <span class="eyebrow">Comunidad</span>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="sub">Reseñas reales de la familia Pixelverso a lo largo de Chile.</p>
+
+    <div style="position:relative;">
+      <button class="arrow" style="position:absolute;left:-14px;top:50%;transform:translateY(-50%);z-index:2;" onclick="slideRow('reviews-row',-1)">‹</button>
+      <button class="arrow" style="position:absolute;right:-14px;top:50%;transform:translateY(-50%);z-index:2;" onclick="slideRow('reviews-row',1)">›</button>
+      <div class="reviews" id="reviews-row">
+        <!-- REEMPLAZAR: reseñas reales -->
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">C</div>
+            <div class="review-meta"><span class="name">Camila R. · Concepción</span><span class="date">Hace 2 semanas</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Quedé enamorada del cuadro de Eren. La calidad es de otro mundo, los colores ni hablar. Mi pieza ahora es un altar."</p>
+          <span class="ig">@camir.art</span>
+        </div>
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">M</div>
+            <div class="review-meta"><span class="name">Matías F. · Santiago</span><span class="date">Hace 1 mes</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Pedí un combo de 3 cuadros gamer y la atención fue una maravilla. Llegó en 2 días por Blue Express bien embalado."</p>
+          <span class="ig">@matiasf.gg</span>
+        </div>
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">V</div>
+            <div class="review-meta"><span class="name">Valentina P. · Talcahuano</span><span class="date">Hace 3 semanas</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"El cuadro de Goku metalizado se ve INCREÍBLE con la luz del living. 100% recomendado, el equipo es muy seco."</p>
+          <span class="ig">@vale.p_</span>
+        </div>
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">D</div>
+            <div class="review-meta"><span class="name">Diego A. · Viña del Mar</span><span class="date">Hace 1 semana</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Personalicé un cuadro con la foto de mi pololeo y le encantó. Excelente trato, súper rápidos para responder por WhatsApp."</p>
+          <span class="ig">@diegoa.cl</span>
+        </div>
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">F</div>
+            <div class="review-meta"><span class="name">Francisca L. · Hualpén</span><span class="date">Hace 2 meses</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Me hicieron un collage de The Last of Us con dedicatoria. Increíble, lo mejor que he comprado este año."</p>
+          <span class="ig">@frann.lop</span>
+        </div>
+        <div class="review">
+          <div class="review-head">
+            <div class="avatar">J</div>
+            <div class="review-meta"><span class="name">Joaquín N. · Coronel</span><span class="date">Hace 3 días</span></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Cuadro de Stranger Things para el cumple de mi hermana. Quedó shockeada, en serio que cumplen lo que prometen."</p>
+          <span class="ig">@joa.coronel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. MURO DE COLECCIONISTAS
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Muro</span>
+    <h2 class="section-title">El muro de los coleccionistas</h2>
+    <p class="sub">Fotos reales de clientes con sus cuadros instalados.</p>
+    <div style="position:relative;">
+      <button class="arrow" style="position:absolute;left:-14px;top:50%;transform:translateY(-50%);z-index:2;" onclick="slideRow('wall-row',-1)">‹</button>
+      <button class="arrow" style="position:absolute;right:-14px;top:50%;transform:translateY(-50%);z-index:2;" onclick="slideRow('wall-row',1)">›</button>
+      <div class="wall-row" id="wall-row">
+        <!-- REEMPLAZAR: fotos reales de coleccionistas -->
+        <!-- Se rellena por JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    10. VISUALIZADOR 3D
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Visualizador</span>
+    <h2 class="section-title">¿Cómo se vería en tu espacio?</h2>
+    <p class="sub">Elige ambiente, cuadro y tamaño. Vista previa instantánea.</p>
+
+    <div class="visu-wrap">
+      <div>
+        <div class="pills" id="env-pills">
+          <button class="pill active" data-env="living">Living Room</button>
+          <button class="pill" data-env="gaming">Gaming Setup</button>
+          <button class="pill" data-env="oficina">Oficina</button>
+          <button class="pill" data-env="dormitorio">Dormitorio</button>
+        </div>
+        <div class="visu-stage">
+          <!-- REEMPLAZAR: imágenes reales de ambientes -->
+          <img class="room" id="visu-room" src="https://picsum.photos/1200/750?random=901" alt="Ambiente"/>
+          <div class="frame" id="visu-frame">
+            <img id="visu-art" src="images/cat-anime.png" alt="Cuadro"/>
+          </div>
+        </div>
+        <div class="thumb-row" id="visu-thumbs">
+          <div class="thumb active" data-art="images/cat-anime.png"><img src="images/cat-anime.png" alt=""/></div>
+          <div class="thumb" data-art="images/cat-dragonball.png"><img src="images/cat-dragonball.png" alt=""/></div>
+          <div class="thumb" data-art="images/cat-marvel.png"><img src="images/cat-marvel.png" alt=""/></div>
+          <div class="thumb" data-art="images/cat-pokemon.png"><img src="images/cat-pokemon.png" alt=""/></div>
+          <div class="thumb" data-art="images/cat-johnwick.png"><img src="images/cat-johnwick.png" alt=""/></div>
+          <div class="thumb" data-art="images/cat-thelastofus.png"><img src="images/cat-thelastofus.png" alt=""/></div>
+        </div>
+      </div>
+      <div class="visu-side">
+        <h4>Configura tu cuadro</h4>
+        <p class="muted" style="font-size:13.5px;">Tamaño elegido</p>
+        <div class="pills" id="size-pills" style="margin-top:8px;">
+          <button class="pill active" data-size="0.85">40×30 cm</button>
+          <button class="pill" data-size="1.4">80×60 cm</button>
+        </div>
+        <p class="muted" style="font-size:12.5px;margin-top:12px;">Material: madera · Disponible vertical u horizontal.</p>
+        <button class="btn btn-primary btn-shimmer" style="margin-top:18px;width:100%;" onclick="addCustomFromVisu()">
+          ★ Me gusta este — Pedir ahora
+        </button>
+        <p class="note">Simulación aproximada. Los colores pueden variar según pantalla.</p>
+        <div class="lottie-box" id="lottie-visualizador" style="width:100%;">
+          <video src="videos/03_pixelito-como-funciona.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    11. ENVÍOS
+     ============================================================ -->
+<section class="section" id="envios">
+  <div class="container">
+    <span class="eyebrow">Envíos</span>
+    <h2 class="section-title">¿Cómo te llegará tu cuadro?</h2>
+    <p class="sub">Tres formas de recibirlo. Tú eliges.</p>
+
+    <div class="ship-grid">
+      <div class="ship-card">
+        <span class="badge badge-free">GRATIS</span>
+        <div class="ship-icon">⌂</div>
+        <h4>Retiro en local</h4>
+        <p>Coordina por WhatsApp y retira sin costo en nuestro punto de Concepción.</p>
+        <div class="cities">
+          Concepción · Disponible de lunes a sábado
+        </div>
+      </div>
+      <div class="ship-card">
+        <span class="badge badge-fast">Zona COnce</span>
+        <div class="ship-icon">🛵</div>
+        <h4>Entrega a domicilio</h4>
+        <p>Te llevamos tu cuadro directo a la puerta de tu casa. Rápido y seguro.</p>
+        <div class="cities"><strong>Mismo día o día siguiente</strong> · Concepción, Talcahuano, Hualpén, San Pedro, Chiguayante, Coronel y más.</div>
+      </div>
+      <div class="ship-card">
+        <div class="ship-icon">✈</div>
+        <h4>Envío a todo Chile</h4>
+        <p>Despachamos por Blue Express o Starken con embalaje rígido y seguimiento.</p>
+        <div class="cities"><strong>1 a 5 días hábiles</strong> · Cotizar por WhatsApp según tu comuna.</div>
+      </div>
+    </div>
+
+    <div class="ship-banner">
+      <div>
+        <h4 style="font-family:'Bebas Neue';font-size:26px;">¿Tienes dudas sobre el envío?</h4>
+        <p class="muted">Te respondemos al toque por WhatsApp.</p>
+      </div>
+      <button class="btn btn-wa" onclick="waMsg('Hola! Quisiera consultar sobre envio para mi pedido.')">
+        <svg class="ic" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13zM8 9c.4-.4 1.5-1 2 0l1 2c.2.4 0 .8-.3 1l-.7.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.7c.2-.3.6-.5 1-.3l2 1c1 .5.4 1.6 0 2-1.5 1.5-4 1-6.4-1.4S6.5 10.5 8 9z"/></svg>
+        Escríbenos
+      </button>
+    </div>
+    <div class="lottie-box" style="margin:32px auto 0;width:160px;">
+      <video src="videos/04_pixelito-envios.mp4" autoplay muted loop playsinline style="width:100%;border-radius:14px;"></video>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    12. PERSONALIZACIÓN
+     ============================================================ -->
+<section class="section custom-section" id="personalizar">
+  <div class="container">
+    <span class="eyebrow">Personaliza</span>
+    <h2 class="section-title">Tu foto, tu cuadro</h2>
+    <p class="sub">Sube tu imagen, elige tamaño y materialidad. Tu universo, impreso.</p>
+
+    <div class="custom-grid">
+      <div class="lottie-personaliza" id="lottie-personaliza">
+        <video src="videos/02_pixelito-personaliza.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <form class="custom-form" id="custom-form" onsubmit="submitCustom(event)">
+        <div class="dropzone" id="dropzone">
+          <div class="ico">⤴</div>
+          <p>Arrastra tu imagen aquí</p>
+          <small>o haz clic para subir · La imagen final la envías por WhatsApp al confirmar</small>
+        </div>
+
+        <div class="field">
+          <label>Tamaño</label>
+          <div class="radio-row" data-group="tamano">
+            <label class="radio-pill checked"><input type="radio" name="tamano" value="40x30 cm" checked />40×30 cm</label>
+            <label class="radio-pill"><input type="radio" name="tamano" value="80x60 cm" />80×60 cm</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Orientación</label>
+          <div class="radio-row" data-group="orientacion">
+            <label class="radio-pill checked"><input type="radio" name="orientacion" value="Vertical" checked />Vertical</label>
+            <label class="radio-pill"><input type="radio" name="orientacion" value="Horizontal" />Horizontal</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Material</label>
+          <div class="radio-row">
+            <label class="radio-pill checked"><input type="radio" name="material" value="Madera" checked />Madera (único)</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Notas (opcional)</label>
+          <textarea name="nota" placeholder="Ocasión, colores preferidos, dedicatoria, formato preferente..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Tu nombre (opcional)</label>
+          <input type="text" name="nombre" placeholder="Ej: Camila R."/>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-shimmer" style="width:100%;margin-top:14px;">
+          Agregar a mi pedido
+        </button>
+        <p class="muted" style="font-size:12.5px;margin-top:10px;">
+          *La imagen final la envías por WhatsApp al confirmar el pedido.
+        </p>
+      </form>
+    </div>
+
+    <!-- 3 pasos -->
+    <div class="steps reveal">
+      <div class="step">
+        <div class="num">1</div>
+        <h5>Subes tu idea</h5>
+        <p>Foto, captura, render — lo que sea. Te mejoramos la imagen a máxima calidad.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h5>Elegimos tamaño</h5>
+        <p>40×30 cm o 80×60 cm, vertical u horizontal. Confirmamos todo por WhatsApp.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h5>Imprimimos en madera</h5>
+        <p>Bastidor MDF artesanal, impresión ultra HD 4K DPI, embalaje rígido y despacho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    13. VIDEOS — proceso + clientes
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Detrás del cuadro</span>
+    <h2 class="section-title">Así nacen nuestros cuadros</h2>
+    <p class="sub">Del archivo digital a tu pared. Cuidamos cada detalle.</p>
+    <div class="video-grid">
+      <div class="video-card">
+        <!-- REEMPLAZAR: video real del proceso de impresión -->
+        <div class="video-frame">
+          <video src="videos/05_pixelito-galeria.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="meta">
+          <h4>El proceso de creación</h4>
+          <p>De la idea al cuadro: impresión sobre madera con acabado premium.</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <!-- REEMPLAZAR: video real de clientes con su cuadro entregado -->
+        <div class="video-frame">
+          <video src="videos/01_pixelito-hero.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="meta">
+          <h4>Clientes reales, cuadros reales</h4>
+          <p>Reacciones auténticas al recibir su pedido en casa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    14. BANNER CTA FINAL
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>¿Listo para transformar<br/>tu espacio?</h2>
+      <p>Arte premium, envío seguro, calidad garantizada.</p>
+      <div class="ribbon-cta">
+        <a class="btn btn-outline" href="#galeria">Ver catálogo</a>
+        <a class="btn btn-primary btn-shimmer" href="#personalizar">Personalizar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+    15. FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="images/logo.png" alt="" style="width:38px;" onerror="this.style.display='none'"/>
+          <span style="font-family:'Bebas Neue';font-size:24px;color:var(--cyan);">PIXELVERSO STUDIO</span>
+        </div>
+        <p>Tu mundo, en cuadros.<br/>Concepción · Chile</p>
+        <button class="btn btn-wa" onclick="waMsg('Hola Pixelverso! Tengo una consulta.')">
+          <svg class="ic" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13z"/></svg>
+          WhatsApp +56 9 3273 4706
+        </button>
+      </div>
+      <div>
+        <h5>Categorías</h5>
+        <ul>
+          <li><a href="#galeria">Anime</a></li>
+          <li><a href="#galeria">Videojuegos</a></li>
+          <li><a href="#galeria">Dragon Ball Z</a></li>
+          <li><a href="#galeria">Marvel</a></li>
+          <li><a href="#galeria">DC</a></li>
+          <li><a href="#galeria">Música</a></li>
+          <li><a href="#galeria">Autos</a></li>
+          <li><a href="#galeria">Pokémon</a></li>
+          <li><a href="#galeria">Mafia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Más categorías</h5>
+        <ul>
+          <li><a href="#galeria">Enamorados</a></li>
+          <li><a href="#galeria">Cuadros familiares</a></li>
+          <li><a href="#galeria">Stranger Things</a></li>
+          <li><a href="#galeria">The Last of Us</a></li>
+          <li><a href="#galeria">John Wick</a></li>
+          <li><a href="#galeria">Nintendo</a></li>
+          <li><a href="#galeria">Cristiana</a></li>
+          <li><a href="#galeria">Collage</a></li>
+          <li><a href="#galeria">Espacio personalizado</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Ayuda</h5>
+        <ul>
+          <li><a href="#envios">Envíos</a></li>
+          <li><a href="#personalizar">Personalización</a></li>
+          <li><a href="#nosotros">Reseñas</a></li>
+          <li><a href="#" onclick="waMsg('Hola, tengo una pregunta sobre tamaños.');return false;">Tamaños</a></li>
+          <li><a href="#" onclick="waMsg('Hola, quiero consultar el estado de mi pedido.');return false;">Estado de pedido</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Síguenos</h5>
+        <div class="socials">
+          <a class="social-ico" href="https://instagram.com/pixelverso.studio" target="_blank" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="social-ico" href="#" target="_blank" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="social-ico" href="https://wa.me/56932734706" target="_blank" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13zM8 9c.4-.4 1.5-1 2 0l1 2c.2.4 0 .8-.3 1l-.7.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.7c.2-.3.6-.5 1-.3l2 1c1 .5.4 1.6 0 2-1.5 1.5-4 1-6.4-1.4S6.5 10.5 8 9z"/></svg>
+          </a>
+        </div>
+        <p class="muted" style="margin-top:14px;font-size:13px;">@pixelverso.studio</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Pixelverso Studio. Todos los derechos reservados. · Hecho con cariño en Concepción.
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+    16. FLOATING BUTTONS + CART SIDEBAR
+     ============================================================ -->
+<button class="float-wa" onclick="waMsg('Hola Pixelverso! Tengo una consulta.')" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13zM8 9c.4-.4 1.5-1 2 0l1 2c.2.4 0 .8-.3 1l-.7.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.7c.2-.3.6-.5 1-.3l2 1c1 .5.4 1.6 0 2-1.5 1.5-4 1-6.4-1.4S6.5 10.5 8 9z"/></svg>
+  <div class="wa-tooltip">¿Tienes dudas? Escríbenos</div>
+</button>
+
+<button class="float-cart" onclick="openCart()" aria-label="Carrito">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#001018" stroke="#001018" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" fill="none"/><path d="M3 6h18" fill="none"/><path d="M16 10a4 4 0 0 1-8 0" fill="none"/></svg>
+  <span class="badge-cart" id="cart-badge">0</span>
+</button>
+
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<aside class="cart-sidebar" id="cart-sidebar" aria-label="Carrito">
+  <div class="cart-head">
+    <h3>Mi pedido</h3>
+    <button class="cart-close" onclick="closeCart()" aria-label="Cerrar">✕</button>
+  </div>
+
+  <!-- Estado: vacío -->
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty" id="cart-empty">
+      <div class="lottie-box" id="lottie-busqueda">
+        <video src="videos/08_pixelito-busqueda.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <p style="color:#fff;font-weight:700;font-size:17px;margin-bottom:6px;">Tu carrito todavía está vacío</p>
+      <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Agrega tu cuadro favorito y empecemos a inmortalizarlo</p>
+      <a class="btn btn-primary btn-shimmer" href="#galeria" onclick="closeCart()">Ver categorías</a>
+    </div>
+    <div id="cart-items"></div>
+    <!-- estado: éxito tras enviar -->
+    <div class="cart-success" id="cart-success">
+      <div class="lottie-box">
+        <video src="videos/07_pixelito-pedido-enviado.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <p>¡Pedido enviado!<br/>Te contactaremos pronto.</p>
+    </div>
+  </div>
+
+  <!-- Footer carrito (entrega + WA) -->
+  <div class="cart-foot" id="cart-foot" style="display:none;">
+    <div class="lottie-box" style="width:90px;margin:0 auto 12px;">
+      <video src="videos/06_pixelito-carrito-lleno.mp4" autoplay muted loop playsinline style="width:100%;border-radius:8px;"></video>
+    </div>
+    <div class="deliver-radio">
+      <label class="checked">
+        <input type="radio" name="entrega" value="Retiro en local (gratis)" checked />
+        Retiro en local
+        <span class="lbl-badge">GRATIS</span>
+      </label>
+      <label>
+        <input type="radio" name="entrega" value="Entrega a domicilio — Concepción y alrededores" />
+        Delivery Concepción
+        <span class="lbl-badge fast">Zona COnce</span>
+      </label>
+      <label>
+        <input type="radio" name="entrega" value="Envío a todo Chile — Blue Express / Starken (cotizar por WhatsApp)" />
+        Blue Express / Starken
+      </label>
+    </div>
+    <p class="deliver-note">El costo se cotiza según tu comuna por WhatsApp.</p>
+    <textarea id="nota-carrito" placeholder="Nota o dirección (opcional)"></textarea>
+    <button class="btn btn-wa send-wa btn-shimmer" onclick="enviarWA()">
+      <svg class="ic" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13z"/></svg>
+      Enviar pedido por WhatsApp
+    </button>
+  </div>
+</aside>
+
+<!-- ============================================================
+                        17. SCRIPTS
+     ============================================================ -->
+<script>
+/* =========================================================
+ * VISTA PREVIA (inspección 3D)
+ * ========================================================= */
+let PREVIEW_CURRENT = null, PREVIEW_SIZE = '40';
+
+/** Mapa categoría → slug para scene CSS */
+function _sceneSlug(cat){
+  if(!cat) return 'default';
+  const s = String(cat).toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z]/g,'');
+  // alias comunes
+  if(s==='gaming') return 'videojuegos';
+  if(s==='paisaje') return 'paisajes';
+  if(s==='retrato') return 'retratos';
+  if(s==='pareja')  return 'parejas';
+  if(s==='mascota') return 'mascotas';
+  return s || 'default';
+}
+
+function openPreview(productId){
+  const p = (window.PRODUCT_INDEX||{})[productId];
+  if(!p){ console.warn('Producto no encontrado:', productId); return; }
+  PREVIEW_CURRENT = p; PREVIEW_SIZE = '40';
+  const orient = p.orientacion || 'vertical';
+  const slug   = _sceneSlug(p.categoria);
+
+  const scene = document.getElementById('preview-scene');
+  const frame = document.getElementById('preview-frame');
+  const img   = document.getElementById('preview-img');
+  const sizeTag = document.getElementById('preview-size-tag');
+
+  scene.className = 'scene scene-'+slug;
+  frame.className = 'wood-frame size-40 '+orient;
+  img.src = p.img; img.alt = p.nombre;
+  sizeTag.textContent = '40 × 30 cm';
+
+  document.getElementById('preview-name').textContent = p.nombre;
+  document.getElementById('preview-cat').textContent  = p.categoria || 'Cuadro';
+  document.getElementById('preview-orient').textContent = (orient==='horizontal')?'Horizontal':'Vertical';
+  document.querySelectorAll('#preview-sizes .sz').forEach((b,i)=> b.classList.toggle('active', i===0));
+
+  document.getElementById('preview-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePreview(){
+  document.getElementById('preview-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  const f=document.getElementById('preview-frame'); if(f) f.style.transform='';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePreview(); });
+
+/** Vista previa para foto personalizada (subida por el usuario) */
+function openCustomPreview(file){
+  const url = URL.createObjectURL(file);
+  const probe = new Image();
+  probe.onload = ()=>{
+    const orient = probe.naturalWidth >= probe.naturalHeight ? 'horizontal' : 'vertical';
+    const id = 'custom-'+Date.now();
+    window.PRODUCT_INDEX[id] = {
+      id, nombre:'Tu foto personalizada', img:url,
+      orientacion: orient, categoria:'Personalizado',
+      esPersonalizado:true
+    };
+    openPreview(id);
+  };
+  probe.src = url;
+}
+
+/* Inspección 3D — listeners delegados sobre document, así no importa cuándo se inserta el modal */
+function _setTiltFromEvent(clientX, clientY){
+  const stage = document.getElementById('preview-art-wrap');
+  const frame = document.getElementById('preview-frame');
+  if(!stage || !frame) return;
+  const r = stage.getBoundingClientRect();
+  if(r.width===0) return;
+  const px = ((clientX - r.left) / r.width)  - 0.5;
+  const py = ((clientY - r.top)  / r.height) - 0.5;
+  frame.style.transform = `translate(-50%,-50%) perspective(900px) rotateY(${px*45}deg) rotateX(${py*-35}deg) translateZ(40px)`;
+}
+function _resetTilt(){
+  const f=document.getElementById('preview-frame'); if(f) f.style.transform='';
+}
+document.addEventListener('mousemove', e=>{
+  const ov = document.getElementById('preview-overlay');
+  if(!ov || !ov.classList.contains('open')) return;
+  const stage = document.getElementById('preview-art-wrap');
+  if(!stage) return;
+  const r = stage.getBoundingClientRect();
+  if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom){ _resetTilt(); return; }
+  _setTiltFromEvent(e.clientX, e.clientY);
+});
+document.addEventListener('touchmove', e=>{
+  const ov = document.getElementById('preview-overlay');
+  if(!ov || !ov.classList.contains('open')) return;
+  if(e.touches[0]) _setTiltFromEvent(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive:true});
+document.addEventListener('touchend', _resetTilt);
+
+/* Cambio de tamaño — el frame REALMENTE crece/decrece */
+document.addEventListener('click', e=>{
+  const b = e.target.closest('#preview-sizes .sz');
+  if(!b) return;
+  document.querySelectorAll('#preview-sizes .sz').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const sz = b.dataset.size;
+  PREVIEW_SIZE = sz;
+  const orient = (PREVIEW_CURRENT && PREVIEW_CURRENT.orientacion) || 'vertical';
+  const slug = _sceneSlug(PREVIEW_CURRENT && PREVIEW_CURRENT.categoria);
+  const frame = document.getElementById('preview-frame');
+  const tag = document.getElementById('preview-size-tag');
+  if(frame){
+    frame.className = 'wood-frame size-'+sz+' '+orient;
+    // micro-animación de "pop" al cambiar tamaño
+    frame.animate([{filter:'brightness(1.4)'},{filter:'brightness(1)'}], {duration:380, easing:'ease-out'});
+  }
+  if(tag) tag.textContent = (sz==='80')?'80 × 60 cm':'40 × 30 cm';
+});
+
+function _sizeLabel(s){ return s==='80' ? '80x60 cm' : '40x30 cm'; }
+function addFromPreview(){
+  if(!PREVIEW_CURRENT) return;
+  addToCart({
+    id: PREVIEW_CURRENT.id+'-'+Date.now(),
+    nombre: PREVIEW_CURRENT.nombre,
+    tamano: _sizeLabel(PREVIEW_SIZE),
+    tipo: 'Madera · '+(PREVIEW_CURRENT.orientacion==='horizontal'?'Horizontal':'Vertical'),
+    img: PREVIEW_CURRENT.img,
+    esPersonalizado: !!PREVIEW_CURRENT.esPersonalizado
+  });
+  closePreview();
+}
+function consultPreviewWA(){
+  if(!PREVIEW_CURRENT) return;
+  waMsg('Hola Pixelverso! Me interesa el cuadro "'+PREVIEW_CURRENT.nombre+'" en '+_sizeLabel(PREVIEW_SIZE)+' (madera).');
+}
+
+/* =========================================================
+ * TWEAKS — Vibe / Energy / Density
+ * ========================================================= */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "vibe": "cyber",
+  "energy": "studio",
+  "density": "studio"
+}/*EDITMODE-END*/;
+let TWEAKS = Object.assign({}, TWEAK_DEFAULTS);
+try{ const s=JSON.parse(localStorage.getItem('pv_tweaks')||'null'); if(s) TWEAKS=Object.assign(TWEAKS,s); }catch(e){}
+const _vibeNames={cyber:'Cyber Neon',sunset:'Sunset Otaku',mono:'Mono Coleccionista'};
+const _energyNames={zen:'Zen',studio:'Studio',arcade:'Arcade'};
+const _densityNames={cinema:'Cinema',studio:'Studio',mercado:'Mercado'};
+function applyTweaks(){
+  document.body.classList.remove('vibe-cyber','vibe-sunset','vibe-mono');
+  if(TWEAKS.vibe && TWEAKS.vibe!=='cyber') document.body.classList.add('vibe-'+TWEAKS.vibe);
+  document.body.classList.remove('energy-zen','energy-studio','energy-arcade');
+  document.body.classList.add('energy-'+(TWEAKS.energy||'studio'));
+  document.body.classList.remove('density-cinema','density-studio','density-mercado');
+  document.body.classList.add('density-'+(TWEAKS.density||'studio'));
+  document.querySelectorAll('#tw-vibes .tw-swatch').forEach(s=>s.classList.toggle('active', s.dataset.vibe===TWEAKS.vibe));
+  document.querySelectorAll('#tw-energy button').forEach(b=>b.classList.toggle('active', b.dataset.energy===TWEAKS.energy));
+  document.querySelectorAll('#tw-density button').forEach(b=>b.classList.toggle('active', b.dataset.density===TWEAKS.density));
+  const vv=document.getElementById('tw-vibe-val'),ev=document.getElementById('tw-energy-val'),dv=document.getElementById('tw-density-val');
+  if(vv) vv.textContent=_vibeNames[TWEAKS.vibe]||'Cyber Neon';
+  if(ev) ev.textContent=_energyNames[TWEAKS.energy]||'Studio';
+  if(dv) dv.textContent=_densityNames[TWEAKS.density]||'Studio';
+}
+function setTweak(k,v){
+  TWEAKS[k]=v;
+  localStorage.setItem('pv_tweaks', JSON.stringify(TWEAKS));
+  try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]:v}}, '*'); }catch(e){}
+  applyTweaks();
+}
+function resetTweaks(){
+  TWEAKS=Object.assign({},TWEAK_DEFAULTS);
+  localStorage.removeItem('pv_tweaks');
+  try{ window.parent.postMessage({type:'__edit_mode_set_keys', edits:TWEAK_DEFAULTS}, '*'); }catch(e){}
+  applyTweaks();
+}
+function openTweaks(){ document.getElementById('tweaks-panel').classList.add('open'); }
+function closeTweaks(){ document.getElementById('tweaks-panel').classList.remove('open'); try{ window.parent.postMessage({type:'__edit_mode_dismissed'},'*'); }catch(e){} }
+document.querySelectorAll('#tw-vibes .tw-swatch').forEach(s=>s.addEventListener('click',()=>setTweak('vibe',s.dataset.vibe)));
+document.querySelectorAll('#tw-energy button').forEach(b=>b.addEventListener('click',()=>setTweak('energy',b.dataset.energy)));
+document.querySelectorAll('#tw-density button').forEach(b=>b.addEventListener('click',()=>setTweak('density',b.dataset.density)));
+window.addEventListener('message',(ev)=>{
+  const t=ev.data&&ev.data.type;
+  if(t==='__activate_edit_mode') openTweaks();
+  if(t==='__deactivate_edit_mode') closeTweaks();
+});
+try{ window.parent.postMessage({type:'__edit_mode_available'},'*'); }catch(e){}
+applyTweaks();
+
+/* =========================================================
+ * Índice de productos en memoria + carga opcional desde productos.json
+ * ========================================================= */
+const PRODUCT_INDEX = {};
+window.PRODUCT_INDEX = PRODUCT_INDEX;
+
+// Carga opcional del JSON externo — NO bloquea el render por defecto.
+// Si existe data/productos.json, los productos ahí se añaden al índice y
+// pueden ser pre-visualizados. Para reemplazar la grilla actual por la del
+// JSON, descomenta el bloque indicado dentro de la función.
+async function loadProductosJSON(){
+  try{
+    const r = await fetch('data/productos.json');
+    if(!r.ok) return;
+    const data = await r.json();
+    (data.productos||[]).forEach(p=>{
+      PRODUCT_INDEX[p.id] = {
+        id: p.id, nombre: p.nombre, img: p.imagen,
+        orientacion: p.orientacion || 'vertical',
+        categoria: p.categoria || '',
+        descripcion: p.descripcion || '',
+        tamanos: p.tamanos || ['40x30 cm','80x60 cm']
+      };
+    });
+    console.log('✓ productos.json cargado:', Object.keys(PRODUCT_INDEX).length+' productos en índice');
+  }catch(e){ /* fallback silencioso */ }
+}
+
+/* =========================================================
+ * Datos del catálogo — REEMPLAZAR con productos reales
+ * ========================================================= */
+const CATEGORIAS = [
+  { slug:'anime',         nombre:'Anime',                 img:'images/cat-anime.png' },
+  { slug:'videojuegos',   nombre:'Videojuegos',           img:'images/cat-videojuegos.png' },
+  { slug:'dragonball',    nombre:'Dragon Ball Z',         img:'images/cat-dragonball.png' },
+  { slug:'marvel',        nombre:'Marvel',                img:'images/cat-marvel.png' },
+  { slug:'dc',            nombre:'DC',                    img:'images/cat-dc.png' },
+  { slug:'musica',        nombre:'Música',                img:'images/cat-musica.png' },
+  { slug:'autos',         nombre:'Autos',                 img:'images/cat-autos.png' },
+  { slug:'pokemon',       nombre:'Pokémon',               img:'images/cat-pokemon.png' },
+  { slug:'mafia',         nombre:'Mafia',                 img:'images/cat-mafia.png' },
+  { slug:'enamorados',    nombre:'Enamorados',            img:'images/cat-enamorados.png' },
+  { slug:'familia',       nombre:'Cuadros familiares',    img:'images/cat-familia.png' },
+  { slug:'strangerthings',nombre:'Stranger Things',       img:'images/cat-strangerthings.png' },
+  { slug:'thelastofus',   nombre:'The Last of Us',        img:'images/cat-thelastofus.png' },
+  { slug:'johnwick',      nombre:'John Wick',             img:'images/cat-johnwick.png' },
+  { slug:'nintendo',      nombre:'Nintendo',              img:'images/cat-nintendo.png' },
+  { slug:'cristiana',     nombre:'Cristiana',             img:'images/cat-cristiana.png' },
+  { slug:'collage',       nombre:'Collage',               img:'images/cat-collage.png' },
+  { slug:'personalizado', nombre:'Espacio personalizado', img:'images/cat-personalizado.png' },
+];
+
+/* genera 6 productos por categoría usando la imagen base + picsum random como variantes */
+function productosCategoria(cat, seedBase){
+  const items = [];
+  const orients = ['vertical','horizontal','vertical','horizontal','vertical','horizontal','vertical','vertical'];
+  for (let i=0; i<8; i++){
+    const usePic = i > 0;
+    items.push({
+      id: cat.slug+'-'+i,
+      nombre: cat.nombre + ' #' + String(i+1).padStart(2,'0'),
+      img: usePic ? `https://picsum.photos/420/${orients[i]==='horizontal'?320:560}?random=${seedBase+i}` : cat.img,
+      cat: cat.slug,
+      orientacion: orients[i],
+    });
+  }
+  return items;
+}
+
+/* =========================================================
+ * Render: best sellers
+ * ========================================================= */
+function renderBestSellers(){
+  const grid = document.getElementById('bestsellers-grid');
+  const items = [
+    { nombre:'Goku Ultra Instinto',     img:'images/cat-dragonball.png',     orient:'vertical' },
+    { nombre:'Spider-Verse',            img:'images/cat-marvel.png',         orient:'vertical' },
+    { nombre:'Eren Titán',              img:'images/cat-anime.png',          orient:'vertical' },
+    { nombre:'Joel & Ellie',            img:'images/cat-thelastofus.png',    orient:'horizontal' },
+    { nombre:'John Wick — Continental', img:'images/cat-johnwick.png',       orient:'vertical' },
+    { nombre:'Pikachu Neón',            img:'images/cat-pokemon.png',        orient:'horizontal' },
+    { nombre:'Stranger Vibes',          img:'images/cat-strangerthings.png', orient:'vertical' },
+    { nombre:'Mafia Skyline',           img:'images/cat-mafia.png',          orient:'horizontal' },
+    { nombre:'Nintendo Classics',       img:'images/cat-nintendo.png',       orient:'horizontal' },
+    { nombre:'Mustang Retro',           img:'images/cat-autos.png',          orient:'horizontal' },
+    { nombre:'DC Heroes',               img:'images/cat-dc.png',             orient:'vertical' },
+  ];
+  items.slice(0,11).forEach((p, idx)=>{
+    const id = 'best-'+idx;
+    const el = document.createElement('div');
+    el.className='card orient-'+p.orient;
+    el.dataset.id = id;
+    const slug = (idx % 6 === 0) ? 'anime'
+                : (idx % 6 === 1) ? 'videojuegos'
+                : (idx % 6 === 2) ? 'autos'
+                : (idx % 6 === 3) ? 'parejas'
+                : (idx % 6 === 4) ? 'familia'
+                : 'mascotas';
+    el.innerHTML = `
+      <span class="orient-tag">${p.orient==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+      <div class="scene-layer">
+        <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
+          <div class="wood-frame size-40 ${p.orient}">
+            <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
+          </div>
+        </div>
+      </div>
+      <div class="art-layer"><img loading="lazy" src="${p.img}" alt="${p.nombre}"/></div>
+      <div class="label">${p.nombre}</div>
+      <div class="overlay"><button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${id}')">Vista previa</button></div>
+    `;
+    el.onclick = ()=> openPreview(id);
+    el._product = { id, nombre:p.nombre, img:p.img, orientacion:p.orient, categoria: slug.charAt(0).toUpperCase()+slug.slice(1) };
+    PRODUCT_INDEX[id] = el._product;
+    grid.appendChild(el);
+  });
+}
+
+/* =========================================================
+ * Render: 18 categorías con scroll horizontal
+ * ========================================================= */
+function renderCategorias(){
+  const list = document.getElementById('categories-list');
+  CATEGORIAS.forEach((cat, idx)=>{
+    const productos = productosCategoria(cat, 100 + idx*10);
+    const block = document.createElement('div');
+    block.className='cat-block reveal';
+    block.id = 'cat-'+cat.slug;
+    block.innerHTML = `
+      <div class="cat-head">
+        <h3>${cat.nombre}</h3>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <a class="btn btn-cyan-outline" href="#" onclick="event.preventDefault();" style="padding:8px 16px;font-size:12px;">Ver más</a>
+          <div class="nav-arrows">
+            <button class="arrow" onclick="slideRow('row-${cat.slug}',-1)">‹</button>
+            <button class="arrow" onclick="slideRow('row-${cat.slug}',1)">›</button>
+          </div>
+        </div>
+      </div>
+      <div class="cat-row" id="row-${cat.slug}">
+        ${productos.map((p)=>{
+          PRODUCT_INDEX[p.id] = { id:p.id, nombre:p.nombre, img:p.img, orientacion:p.orientacion, categoria:cat.nombre };
+          const slug = _sceneSlug(cat.nombre);
+          return `
+          <div class="card orient-${p.orientacion}" data-id="${p.id}" onclick="openPreview('${p.id}')">
+            <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+            <div class="scene-layer">
+              <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
+                <div class="wood-frame size-40 ${p.orientacion}">
+                  <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
+                </div>
+              </div>
+            </div>
+            <div class="art-layer"><img loading="lazy" src="${p.img}" alt="${p.nombre}"/></div>
+            <div class="label">${p.nombre}</div>
+            <div class="overlay"><button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${p.id}')">Vista previa</button></div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+    list.appendChild(block);
+  });
+}
+
+/* =========================================================
+ * Render: muro de coleccionistas
+ * ========================================================= */
+function renderWall(){
+  const wall = document.getElementById('wall-row');
+  const data = [
+    { nm:'Camila R.',    ct:'Concepción' },
+    { nm:'Matías F.',    ct:'Santiago' },
+    { nm:'Valentina P.', ct:'Talcahuano' },
+    { nm:'Diego A.',     ct:'Viña del Mar' },
+    { nm:'Francisca L.', ct:'Hualpén' },
+    { nm:'Joaquín N.',   ct:'Coronel' },
+    { nm:'Antonia M.',   ct:'San Pedro' },
+    { nm:'Tomás S.',     ct:'Chiguayante' },
+  ];
+  data.forEach((d,i)=>{
+    const card = document.createElement('div');
+    card.className='wall-card';
+    card.innerHTML = `
+      <img loading="lazy" src="https://picsum.photos/420/560?random=${500+i}" alt="${d.nm}"/>
+      <div class="meta"><div class="nm">${d.nm}</div><div class="ct">${d.ct}</div></div>
+    `;
+    wall.appendChild(card);
+  });
+}
+
+/* =========================================================
+ * Hero slider
+ * ========================================================= */
+let heroIdx = 0;
+function setHero(i){
+  document.querySelectorAll('#hero-slides .slide').forEach((s,k)=>s.classList.toggle('active', k===i));
+  document.querySelectorAll('#hero-dots .dot').forEach((d,k)=>d.classList.toggle('active', k===i));
+  heroIdx = i;
+}
+function autoHero(){
+  setInterval(()=>{
+    heroIdx = (heroIdx+1) % 2;
+    setHero(heroIdx);
+  }, 5000);
+}
+document.querySelectorAll('#hero-dots .dot').forEach(d=>{
+  d.addEventListener('click', ()=> setHero(parseInt(d.dataset.i,10)));
+});
+
+/* =========================================================
+ * Tabs (best sellers)
+ * ========================================================= */
+document.querySelectorAll('.tabs .tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    // (Demo) en producción se filtraría la grilla. Aquí mostramos un toast simple.
+  });
+});
+
+/* =========================================================
+ * Navbar scroll
+ * ========================================================= */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', ()=>{
+  navEl.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+/* Mobile menu */
+function toggleMobileMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+/* =========================================================
+ * Sliders horizontales (categorías + reseñas + muro)
+ * ========================================================= */
+function slideRow(id, dir){
+  const row = document.getElementById(id);
+  if(!row) return;
+  row.scrollBy({ left: dir * (row.clientWidth * 0.8), behavior:'smooth' });
+}
+
+/* =========================================================
+ * Visualizador 3D
+ * ========================================================= */
+const ROOM_FILTERS = {
+  living:    { src:'https://picsum.photos/1200/750?random=901', filter:'brightness(.95) saturate(1.1)' },
+  gaming:    { src:'https://picsum.photos/1200/750?random=902', filter:'brightness(.7) saturate(1.45) hue-rotate(-10deg)' },
+  oficina:   { src:'https://picsum.photos/1200/750?random=903', filter:'brightness(1.05) saturate(.95)' },
+  dormitorio:{ src:'https://picsum.photos/1200/750?random=904', filter:'brightness(.85) saturate(1.1) sepia(.1)' },
+};
+let visuSize = 1; let visuArt = 'images/cat-anime.png';
+
+function applyVisu(){
+  const frame = document.getElementById('visu-frame');
+  frame.style.transform = `translate(-50%, -58%) perspective(1200px) rotateY(-4deg) scale(${visuSize})`;
+  document.getElementById('visu-art').src = visuArt;
+}
+document.querySelectorAll('#env-pills .pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('#env-pills .pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    const env = ROOM_FILTERS[p.dataset.env];
+    const room = document.getElementById('visu-room');
+    room.src = env.src; room.style.filter = env.filter;
+  });
+});
+document.querySelectorAll('#size-pills .pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('#size-pills .pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    visuSize = parseFloat(p.dataset.size);
+    applyVisu();
+  });
+});
+document.querySelectorAll('#visu-thumbs .thumb').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('#visu-thumbs .thumb').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    visuArt = t.dataset.art;
+    applyVisu();
+  });
+});
+function addCustomFromVisu(){
+  const sizeName = document.querySelector('#size-pills .pill.active')?.textContent || '40×30 cm';
+  addToCart({
+    id:'visu-'+Date.now(),
+    nombre:'Cuadro elegido en visualizador',
+    tamano: sizeName,
+    tipo:'Madera',
+    img: visuArt,
+    esPersonalizado:false
+  });
+}
+
+/* =========================================================
+ * Radio pills (personalización)
+ * ========================================================= */
+document.querySelectorAll('.radio-row').forEach(row=>{
+  row.querySelectorAll('.radio-pill').forEach(pill=>{
+    pill.addEventListener('click',(e)=>{
+      // dejar que el input se marque, sincronizamos clases
+      setTimeout(()=>{
+        row.querySelectorAll('.radio-pill').forEach(p=>p.classList.remove('checked'));
+        pill.classList.add('checked');
+      },0);
+    });
+  });
+});
+
+/* Cart entrega radios */
+document.querySelectorAll('.deliver-radio label').forEach(l=>{
+  l.addEventListener('click',()=>{
+    setTimeout(()=>{
+      document.querySelectorAll('.deliver-radio label').forEach(x=>x.classList.remove('checked'));
+      l.classList.add('checked');
+    },0);
+  });
+});
+
+/* =========================================================
+ * Submit personalización
+ * ========================================================= */
+function submitCustom(ev){
+  ev.preventDefault();
+  const f = ev.target;
+  const tamano = f.tamano.value || '40x30 cm';
+  const orientacion = f.orientacion ? f.orientacion.value : 'Vertical';
+  const nota   = f.nota.value   || '';
+  const nombre = f.nombre.value ? ' — '+f.nombre.value : '';
+  addToCart({
+    id:'custom-'+Date.now(),
+    nombre:'Cuadro personalizado'+nombre,
+    tamano,
+    tipo:'Madera · '+orientacion,
+    nota,
+    img:'images/cat-personalizado.png',
+    esPersonalizado:true
+  });
+  // feedback simple
+  const btn = f.querySelector('button[type="submit"]');
+  const old = btn.textContent;
+  btn.textContent = '✓ Agregado al pedido';
+  setTimeout(()=>{ btn.textContent = old; }, 1800);
+}
+
+/* =========================================================
+ * CARRITO — estado + persistencia + render
+ * ========================================================= */
+function getCart(){ return JSON.parse(localStorage.getItem('carrito') || '[]'); }
+function setCart(c){ localStorage.setItem('carrito', JSON.stringify(c)); renderCart(); }
+
+function addToCart(item){
+  const cart = getCart();
+  cart.push(item);
+  setCart(cart);
+  openCart();
+}
+function removeFromCart(id){
+  const cart = getCart().filter(i=>i.id!==id);
+  setCart(cart);
+}
+function renderCart(){
+  const cart = getCart();
+  const empty = document.getElementById('cart-empty');
+  const items = document.getElementById('cart-items');
+  const foot  = document.getElementById('cart-foot');
+  const success = document.getElementById('cart-success');
+  document.getElementById('cart-badge').textContent = cart.length;
+  document.getElementById('nav-cart-badge').textContent = cart.length;
+  if(success.classList.contains('show')) return; // mantener éxito si está activo
+
+  if(cart.length===0){
+    empty.style.display='block';
+    items.innerHTML='';
+    foot.style.display='none';
+  } else {
+    empty.style.display='none';
+    foot.style.display='block';
+    items.innerHTML = cart.map(it=>`
+      <div class="cart-item">
+        <img src="${it.img||'https://picsum.photos/120/120?random=999'}" alt=""/>
+        <div class="info">
+          <div class="nm">${it.nombre}</div>
+          <div class="sub">${it.tamano} · ${it.tipo}${it.esPersonalizado?' · ★ Personalizado':''}</div>
+          ${it.nota?`<div class="sub" style="font-style:italic;">"${it.nota}"</div>`:''}
+        </div>
+        <button class="rm" onclick="removeFromCart('${it.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+}
+function openCart(){
+  document.getElementById('cart-success').classList.remove('show');
+  renderCart();
+  document.getElementById('cart-sidebar').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cart-sidebar').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+}
+
+/* =========================================================
+ * Función EXACTA del prompt — Enviar pedido por WhatsApp
+ * ========================================================= */
+function enviarWA() {
+  const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+  if(carrito.length===0){ alert('Tu carrito está vacío.'); return; }
+  const items = carrito.map(i => '* ' + i.nombre + ' -- ' + i.tamano + (i.tipo?(' ('+i.tipo+')'):'')).join('\n');
+  const entrega = document.querySelector('input[name=entrega]:checked');
+  const entregaVal = entrega ? entrega.value : 'A coordinar';
+  const nota = document.getElementById('nota-carrito').value;
+  let msg = 'Hola Pixelverso! Quiero hacer un pedido\n\n';
+  msg += 'Mi carrito:\n' + items + '\n\n';
+  msg += 'Entrega: ' + entregaVal + '\n';
+  if (nota) msg += 'Nota: ' + nota + '\n';
+  msg += '\nGracias!';
+  window.open('https://wa.me/56932734706?text=' + encodeURIComponent(msg), '_blank');
+
+  // mostrar éxito
+  document.getElementById('cart-empty').style.display='none';
+  document.getElementById('cart-items').innerHTML='';
+  document.getElementById('cart-foot').style.display='none';
+  document.getElementById('cart-success').classList.add('show');
+  // limpiar carrito tras 2.4s
+  setTimeout(()=>{
+    localStorage.removeItem('carrito');
+    document.getElementById('cart-badge').textContent = 0;
+    document.getElementById('nav-cart-badge').textContent = 0;
+  }, 2400);
+}
+
+/* =========================================================
+ * WhatsApp helper
+ * ========================================================= */
+function waMsg(text){
+  const url = 'https://wa.me/56932734706?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+}
+
+/* =========================================================
+ * Búsqueda — scroll a categoría coincidente
+ * ========================================================= */
+function onSearch(){
+  const q = (document.getElementById('search-input').value || '').toLowerCase().trim();
+  if(!q) return;
+  const found = CATEGORIAS.find(c => c.nombre.toLowerCase().includes(q) || c.slug.includes(q));
+  if(found){
+    document.getElementById('cat-'+found.slug).scrollIntoView({ behavior:'smooth', block:'start' });
+  } else {
+    waMsg('Hola! Estoy buscando: '+q+'. ¿Tienen algo así?');
+  }
+}
+
+/* =========================================================
+ * Drag & drop dropzone (UI only)
+ * ========================================================= */
+const dz = document.getElementById('dropzone');
+if(dz){
+  ['dragenter','dragover'].forEach(e=> dz.addEventListener(e, ev=>{ ev.preventDefault(); dz.style.background='rgba(0,212,255,.15)'; }));
+  ['dragleave','drop'].forEach(e=> dz.addEventListener(e, ev=>{ ev.preventDefault(); dz.style.background='rgba(0,212,255,.05)'; }));
+  dz.addEventListener('drop', (ev)=>{
+    const f = ev.dataTransfer.files[0];
+    if(f && f.type.startsWith('image/')){
+      dz.querySelector('p').textContent = '✓ '+f.name+' · abriendo vista previa…';
+      openCustomPreview(f);
+    }
+  });
+  dz.addEventListener('click', ()=>{
+    const i = document.createElement('input');
+    i.type='file'; i.accept='image/*';
+    i.onchange = e =>{
+      const f=e.target.files[0];
+      if(f){
+        dz.querySelector('p').textContent = '✓ '+f.name+' · abriendo vista previa…';
+        openCustomPreview(f);
+      }
+    };
+    i.click();
+  });
+}
+
+/* =========================================================
+ * Lottie loader (con fallback silencioso si no existe el JSON)
+ * ========================================================= */
+function tryLottie(containerId, jsonName){
+  const el = document.getElementById(containerId);
+  if(!el || !window.lottie) return;
+  // Intenta cargar el JSON; si falla, deja el <video> que ya está en el contenedor.
+  fetch('animations/'+jsonName)
+    .then(r=> r.ok ? r.json() : Promise.reject())
+    .then(data=>{
+      el.innerHTML = '';
+      lottie.loadAnimation({ container: el, renderer:'svg', loop:true, autoplay:true, animationData:data });
+    })
+    .catch(()=>{ /* fallback ya está en el DOM */ });
+}
+['lottie-personaliza','lottie-visualizador','lottie-busqueda']
+  .forEach(id=>{
+    const map = {
+      'lottie-galeria':'05_pixelito-galeria.json',
+      'lottie-personaliza':'02_pixelito-personaliza.json',
+      'lottie-visualizador':'09_pixelito-visualizador-3d.json',
+      'lottie-busqueda':'08_pixelito-busqueda.json',
+    };
+    tryLottie(id, map[id]);
+  });
+
+/* =========================================================
+ * Scroll reveal
+ * ========================================================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold:0.15 });
+document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+/* =========================================================
+ * Init
+ * ========================================================= */
+renderBestSellers();
+renderCategorias();
+renderWall();
+renderCart();
+autoHero();
+loadProductosJSON();
+
+// reveal para cards + bloques renderizados después
+document.querySelectorAll('.cat-block, .card, .review, .wall-card').forEach(el=>{
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+<div class="preview-overlay" id="preview-overlay" onclick="if(event.target===this)closePreview()">
+  <button class="preview-close" onclick="closePreview()" aria-label="Cerrar">✕</button>
+  <div class="preview-stage">
+    <div class="preview-art-wrap" id="preview-art-wrap">
+      <div class="scene scene-default" id="preview-scene" style="width:100%;max-width:560px;aspect-ratio:4/5;">
+        <div class="wood-frame size-40 vertical" id="preview-frame">
+          <img class="art" id="preview-img" src="" alt=""/>
+        </div>
+        <div class="size-tag" id="preview-size-tag">40 × 30 cm</div>
+      </div>
+      <div class="preview-hint">Mueve el mouse · inspección 3D · cambia el tamaño para verlo en escala</div>
+    </div>
+    <div class="preview-info">
+      <span class="eyebrow" id="preview-cat">Cuadro</span>
+      <h3 id="preview-name">—</h3>
+      <p class="desc">Cuadro personalizado impreso sobre madera con acabado premium. Mueve el mouse para inspeccionarlo en 3D.</p>
+      <div class="preview-meta">
+        <div class="m-item"><div class="lab">Material</div><div class="val">Madera</div></div>
+        <div class="m-item"><div class="lab">Orientación</div><div class="val" id="preview-orient">Vertical</div></div>
+      </div>
+      <div style="font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Tamaño</div>
+      <div class="preview-sizes" id="preview-sizes">
+        <button class="sz active" data-size="40">40×30 cm</button>
+        <button class="sz" data-size="80">80×60 cm</button>
+      </div>
+      <div class="preview-actions">
+        <button class="btn btn-primary btn-shimmer" onclick="addFromPreview()">Agregar al carrito</button>
+        <button class="btn btn-wa" onclick="consultPreviewWA()">Consultar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tweaks-panel" aria-label="Tweaks">
+  <div class="tw-head"><h4>Tweaks</h4><button class="tw-close" onclick="closeTweaks()">✕</button></div>
+  <div class="tw-section">
+    <div class="tw-label">Vibe <span class="tw-val" id="tw-vibe-val">Cyber</span></div>
+    <div class="tw-swatches" id="tw-vibes">
+      <div class="tw-swatch sw-cyber active" data-vibe="cyber"><span class="sw-name">Cyber</span></div>
+      <div class="tw-swatch sw-sunset" data-vibe="sunset"><span class="sw-name">Sunset</span></div>
+      <div class="tw-swatch sw-mono" data-vibe="mono"><span class="sw-name">Mono</span></div>
+    </div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Energy <span class="tw-val" id="tw-energy-val">Studio</span></div>
+    <div class="tw-seg" id="tw-energy">
+      <button data-energy="zen">Zen</button>
+      <button class="active" data-energy="studio">Studio</button>
+      <button data-energy="arcade">Arcade</button>
+    </div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Density <span class="tw-val" id="tw-density-val">Studio</span></div>
+    <div class="tw-seg" id="tw-density">
+      <button data-density="cinema">Cinema</button>
+      <button class="active" data-density="studio">Studio</button>
+      <button data-density="mercado">Mercado</button>
+    </div>
+  </div>
+  <button class="tw-reset" onclick="resetTweaks()">Restablecer</button>
+  <p class="tw-foot">Vibe cambia paleta y alma. Energy controla el ritmo de animaciones. Density modifica el layout.</p>
+</div>
+
+</body>
+</html>

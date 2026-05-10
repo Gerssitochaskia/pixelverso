@@ -1,0 +1,37 @@
+{
+  "_README": "Edita este archivo para agregar/quitar cuadros sin tocar el HTML. Estructura por producto: id (único), nombre, categoria (slug), imagen (ruta), orientacion ('vertical'|'horizontal'), material ('madera'), tamanos (array de strings), descripcion, destacado (boolean).",
+  "_categorias": [
+    { "slug": "anime",         "nombre": "Anime" },
+    { "slug": "videojuegos",   "nombre": "Videojuegos" },
+    { "slug": "dragonball",    "nombre": "Dragon Ball Z" },
+    { "slug": "marvel",        "nombre": "Marvel" },
+    { "slug": "dc",            "nombre": "DC" },
+    { "slug": "musica",        "nombre": "Música" },
+    { "slug": "autos",         "nombre": "Autos" },
+    { "slug": "pokemon",       "nombre": "Pokémon" },
+    { "slug": "mafia",         "nombre": "Mafia" },
+    { "slug": "enamorados",    "nombre": "Parejas" },
+    { "slug": "familia",       "nombre": "Familia" },
+    { "slug": "mascotas",      "nombre": "Mascotas" },
+    { "slug": "strangerthings","nombre": "Stranger Things" },
+    { "slug": "thelastofus",   "nombre": "The Last of Us" },
+    { "slug": "johnwick",      "nombre": "John Wick" },
+    { "slug": "nintendo",      "nombre": "Nintendo" },
+    { "slug": "cristiana",     "nombre": "Cristiana" },
+    { "slug": "collage",       "nombre": "Collage" },
+    { "slug": "personalizado", "nombre": "Personalizado" }
+  ],
+  "productos": [
+    {
+      "id": "anime-001",
+      "nombre": "Cuadro estilo anime personalizado",
+      "categoria": "anime",
+      "imagen": "images/cat-anime.png",
+      "orientacion": "vertical",
+      "material": "madera",
+      "tamanos": ["40x30 cm", "80x60 cm"],
+      "descripcion": "Cuadro personalizado impreso sobre madera.",
+      "destacado": true
+    }
+  ]
+}
