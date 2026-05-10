@@ -1655,27 +1655,33 @@ function _sceneSlug(cat){
   return s || 'default';
 }
 
+function _mockupForSize(p, sz){
+  // Devuelve el mockup correcto según el tamaño seleccionado
+  return sz === '80' ? (p.mockup80 || p.img) : (p.mockup40 || p.img);
+}
+
 function openPreview(productId){
   const p = (window.PRODUCT_INDEX||{})[productId];
   if(!p){ console.warn('Producto no encontrado:', productId); return; }
-  PREVIEW_CURRENT = p; PREVIEW_SIZE = '40';
+  PREVIEW_CURRENT = p; PREVIEW_SIZE = '80'; // por defecto abre en 80x60
   const orient = p.orientacion || 'vertical';
   const slug   = _sceneSlug(p.categoria);
 
-  const scene = document.getElementById('preview-scene');
-  const frame = document.getElementById('preview-frame');
-  const img   = document.getElementById('preview-img');
+  const scene   = document.getElementById('preview-scene');
+  const frame   = document.getElementById('preview-frame');
+  const img     = document.getElementById('preview-img');
   const sizeTag = document.getElementById('preview-size-tag');
 
   scene.className = 'scene scene-'+slug;
-  frame.className = 'wood-frame size-40 '+orient;
-  img.src = p.img; img.alt = p.nombre;
-  sizeTag.textContent = '40 × 30 cm';
+  frame.className = 'wood-frame size-80 '+orient;
+  img.src = _mockupForSize(p, '80'); img.alt = p.nombre;
+  sizeTag.textContent = '80 × 60 cm';
 
   document.getElementById('preview-name').textContent = p.nombre;
   document.getElementById('preview-cat').textContent  = p.categoria || 'Cuadro';
   document.getElementById('preview-orient').textContent = (orient==='horizontal')?'Horizontal':'Vertical';
-  document.querySelectorAll('#preview-sizes .sz').forEach((b,i)=> b.classList.toggle('active', i===0));
+  // Marcar el botón 80x60 como activo por defecto
+  document.querySelectorAll('#preview-sizes .sz').forEach(b => b.classList.toggle('active', b.dataset.size==='80'));
 
   document.getElementById('preview-overlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1748,6 +1754,11 @@ document.addEventListener('click', e=>{
   const tag = document.getElementById('preview-size-tag');
   if(frame){
     frame.className = 'wood-frame size-'+sz+' '+orient;
+    // Cambiar imagen al mockup del tamaño elegido
+    const previewImg = document.getElementById('preview-img');
+    if(previewImg && PREVIEW_CURRENT){
+      previewImg.src = _mockupForSize(PREVIEW_CURRENT, sz);
+    }
     // micro-animación de "pop" al cambiar tamaño
     frame.animate([{filter:'brightness(1.4)'},{filter:'brightness(1)'}], {duration:380, easing:'ease-out'});
   }
@@ -1844,12 +1855,13 @@ async function loadProductosJSON(){
       PRODUCT_INDEX[p.id] = {
         id:          p.id,
         nombre:      p.nombre,
-        img:         p.imagenMockup || p.imagen || '',   // mockup = card y modal
-        imgArt:      p.imagenArt    || p.imagenMockup || p.imagen || '', // art sola = hover
-        orientacion: p.orientacion  || 'vertical',
-        categoria:   p.categoria    || '',
-        descripcion: p.descripcion  || '',
-        tamanos:     p.tamanos      || ['40x30 cm','80x60 cm']
+        img:         p.mockup80 || p.imagenMockup || p.imagen || '', // card → siempre 80x60
+        imgArt:      p.art      || p.imagenArt    || p.imagen || '', // hover → obra sola
+        mockup40:    p.mockup40 || p.imagenMockup || p.imagen || '', // modal tamaño 40
+        mockup80:    p.mockup80 || p.imagenMockup || p.imagen || '', // modal tamaño 80
+        orientacion: p.orientacion || 'vertical',
+        categoria:   p.categoria   || '',
+        descripcion: p.descripcion || ''
       };
     });
 

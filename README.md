@@ -73,40 +73,47 @@ Anime · Videojuegos · Dragon Ball Z · Marvel · DC · Música · Autos · Pok
 ## Cómo agregar productos al catálogo
 
 ### Estructura de imágenes
-Cada producto tiene **dos fotos** guardadas en su carpeta de categoría:
+Cada producto tiene **3 archivos** guardados en su carpeta de categoría:
 
 ```
 images/
 ├── anime/
-│   ├── anime-01-mockup.jpg   ← obra en bastidor (se ve en la card)
-│   ├── anime-01-art.jpg      ← obra sola (se ve al hover)
-│   ├── anime-02-mockup.jpg
+│   ├── anime-01-mockup-40x30.jpg  ← mockup tamaño pequeño (modal al elegir 40x30)
+│   ├── anime-01-mockup-80x60.jpg  ← mockup tamaño grande (card + modal por defecto)
+│   ├── anime-01-art.jpg           ← obra sola sin bastidor (aparece al hover)
+│   ├── anime-02-mockup-40x30.jpg
+│   ├── anime-02-mockup-80x60.jpg
 │   └── anime-02-art.jpg
 ├── dragonball/
 ├── marvel/
 └── ...  (18 categorías)
 ```
 
+### Comportamiento visual por archivo
+
+| Archivo | Dónde se usa |
+|---|---|
+| `mockup-80x60.jpg` | Card del catálogo (siempre visible) · Modal cuando se elige 80×60 |
+| `mockup-40x30.jpg` | Modal cuando se elige 40×30 cm |
+| `art.jpg` | Al pasar el mouse sobre la card (crossfade) |
+
 ### Agregar un producto nuevo
 
-1. Pon las dos fotos en `images/<categoria>/` con la convención de nombre
-2. Descomenta (o copia) el bloque correspondiente en `data/productos.json`
-3. Completa `nombre` y `orientacion` (`vertical` o `horizontal`)
-4. Guarda — el sitio carga el JSON en runtime, sin recompilar nada
+1. Pon los 3 archivos en `images/<categoria>/`
+2. Descomenta el bloque en `data/productos.json` y completa `nombre` y `orientacion`
+3. Guarda — el sitio carga el JSON en runtime
 
 ```json
 {
   "id": "anime-01",
   "nombre": "Eren Titán",
-  "imagenMockup": "images/anime/anime-01-mockup.jpg",
-  "imagenArt":    "images/anime/anime-01-art.jpg",
-  "categoria":    "Anime",
-  "orientacion":  "vertical"
+  "mockup40":    "images/anime/anime-01-mockup-40x30.jpg",
+  "mockup80":    "images/anime/anime-01-mockup-80x60.jpg",
+  "art":         "images/anime/anime-01-art.jpg",
+  "categoria":   "Anime",
+  "orientacion": "vertical"
 }
 ```
-
-> **Convención de nombres:** `<categoria>-<número>-mockup.jpg` y `<categoria>-<número>-art.jpg`
-> Ejemplo: `dragonball-03-mockup.jpg` + `dragonball-03-art.jpg`
 
 ---
 
@@ -134,6 +141,13 @@ images/
 - Vista previa 3D corregida (bug listeners en DOM)
 - Tamaño cambia escala visual del cuadro en el modal
 - Foto personalizada abre el mismo modal con orientación auto-detectada
+
+### v1.4 — 2026-05-10 · Mockup por tamaño en vista previa
+- Esquema de 3 archivos: `mockup-40x30`, `mockup-80x60` y `art`
+- Card del catálogo → siempre muestra `mockup-80x60` (más impacto visual)
+- Modal vista previa → al elegir 40×30 cambia a `mockup-40x30`, al elegir 80×60 cambia a `mockup-80x60`
+- Hover de card → crossfade a `art.jpg` (obra sola)
+- `productos.json` actualizado con campos `mockup40`, `mockup80`, `art`
 
 ### v1.3 — 2026-05-10 · Sistema de catálogo con carpetas por categoría
 - 18 carpetas creadas en `images/<categoria>/`

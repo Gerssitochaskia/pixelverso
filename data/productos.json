@@ -1,63 +1,207 @@
 {
-  "_README": "Para agregar un producto: copia el bloque de ejemplo de la categoría, descomenta, completa nombre y orientacion. Las imágenes van en images/<categoria>/. Cada producto tiene DOS fotos: imagenMockup (obra en bastidor) e imagenArt (obra sola).",
-  "_convencion_archivos": "images/anime/anime-01-mockup.jpg  +  images/anime/anime-01-art.jpg",
+  "_README": "Cada producto tiene 3 archivos: mockup-40x30, mockup-80x60 y art (obra sola). La card muestra el 80x60. Al hover se ve el art. En el modal al elegir tamaño cambia el mockup.",
+  "_convencion_archivos": "anime-01-mockup-40x30.jpg | anime-01-mockup-80x60.jpg | anime-01-art.jpg",
   "_orientacion": "vertical = retrato (alto)  |  horizontal = paisaje (ancho)",
 
   "productos": [
 
     // ══ ANIME ══════════════════════════════════════════════════════
-    // { "id": "anime-01", "nombre": "", "imagenMockup": "images/anime/anime-01-mockup.jpg", "imagenArt": "images/anime/anime-01-art.jpg", "categoria": "Anime", "orientacion": "vertical" },
+    // {
+    //   "id": "anime-01",
+    //   "nombre": "",
+    //   "mockup40": "images/anime/anime-01-mockup-40x30.jpg",
+    //   "mockup80": "images/anime/anime-01-mockup-80x60.jpg",
+    //   "art":      "images/anime/anime-01-art.jpg",
+    //   "categoria": "Anime",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ VIDEOJUEGOS ════════════════════════════════════════════════
-    // { "id": "videojuegos-01", "nombre": "", "imagenMockup": "images/videojuegos/videojuegos-01-mockup.jpg", "imagenArt": "images/videojuegos/videojuegos-01-art.jpg", "categoria": "Videojuegos", "orientacion": "vertical" },
+    // {
+    //   "id": "videojuegos-01",
+    //   "nombre": "",
+    //   "mockup40": "images/videojuegos/videojuegos-01-mockup-40x30.jpg",
+    //   "mockup80": "images/videojuegos/videojuegos-01-mockup-80x60.jpg",
+    //   "art":      "images/videojuegos/videojuegos-01-art.jpg",
+    //   "categoria": "Videojuegos",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ DRAGON BALL Z ══════════════════════════════════════════════
-    // { "id": "dragonball-01", "nombre": "", "imagenMockup": "images/dragonball/dragonball-01-mockup.jpg", "imagenArt": "images/dragonball/dragonball-01-art.jpg", "categoria": "Dragon Ball Z", "orientacion": "vertical" },
+    // {
+    //   "id": "dragonball-01",
+    //   "nombre": "",
+    //   "mockup40": "images/dragonball/dragonball-01-mockup-40x30.jpg",
+    //   "mockup80": "images/dragonball/dragonball-01-mockup-80x60.jpg",
+    //   "art":      "images/dragonball/dragonball-01-art.jpg",
+    //   "categoria": "Dragon Ball Z",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ MARVEL ═════════════════════════════════════════════════════
-    // { "id": "marvel-01", "nombre": "", "imagenMockup": "images/marvel/marvel-01-mockup.jpg", "imagenArt": "images/marvel/marvel-01-art.jpg", "categoria": "Marvel", "orientacion": "vertical" },
+    // {
+    //   "id": "marvel-01",
+    //   "nombre": "",
+    //   "mockup40": "images/marvel/marvel-01-mockup-40x30.jpg",
+    //   "mockup80": "images/marvel/marvel-01-mockup-80x60.jpg",
+    //   "art":      "images/marvel/marvel-01-art.jpg",
+    //   "categoria": "Marvel",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ DC ═════════════════════════════════════════════════════════
-    // { "id": "dc-01", "nombre": "", "imagenMockup": "images/dc/dc-01-mockup.jpg", "imagenArt": "images/dc/dc-01-art.jpg", "categoria": "DC", "orientacion": "vertical" },
+    // {
+    //   "id": "dc-01",
+    //   "nombre": "",
+    //   "mockup40": "images/dc/dc-01-mockup-40x30.jpg",
+    //   "mockup80": "images/dc/dc-01-mockup-80x60.jpg",
+    //   "art":      "images/dc/dc-01-art.jpg",
+    //   "categoria": "DC",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ MÚSICA ═════════════════════════════════════════════════════
-    // { "id": "musica-01", "nombre": "", "imagenMockup": "images/musica/musica-01-mockup.jpg", "imagenArt": "images/musica/musica-01-art.jpg", "categoria": "Música", "orientacion": "vertical" },
+    // {
+    //   "id": "musica-01",
+    //   "nombre": "",
+    //   "mockup40": "images/musica/musica-01-mockup-40x30.jpg",
+    //   "mockup80": "images/musica/musica-01-mockup-80x60.jpg",
+    //   "art":      "images/musica/musica-01-art.jpg",
+    //   "categoria": "Música",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ AUTOS ══════════════════════════════════════════════════════
-    // { "id": "autos-01", "nombre": "", "imagenMockup": "images/autos/autos-01-mockup.jpg", "imagenArt": "images/autos/autos-01-art.jpg", "categoria": "Autos", "orientacion": "horizontal" },
+    // {
+    //   "id": "autos-01",
+    //   "nombre": "",
+    //   "mockup40": "images/autos/autos-01-mockup-40x30.jpg",
+    //   "mockup80": "images/autos/autos-01-mockup-80x60.jpg",
+    //   "art":      "images/autos/autos-01-art.jpg",
+    //   "categoria": "Autos",
+    //   "orientacion": "horizontal"
+    // },
 
     // ══ POKÉMON ════════════════════════════════════════════════════
-    // { "id": "pokemon-01", "nombre": "", "imagenMockup": "images/pokemon/pokemon-01-mockup.jpg", "imagenArt": "images/pokemon/pokemon-01-art.jpg", "categoria": "Pokémon", "orientacion": "vertical" },
+    // {
+    //   "id": "pokemon-01",
+    //   "nombre": "",
+    //   "mockup40": "images/pokemon/pokemon-01-mockup-40x30.jpg",
+    //   "mockup80": "images/pokemon/pokemon-01-mockup-80x60.jpg",
+    //   "art":      "images/pokemon/pokemon-01-art.jpg",
+    //   "categoria": "Pokémon",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ MAFIA ══════════════════════════════════════════════════════
-    // { "id": "mafia-01", "nombre": "", "imagenMockup": "images/mafia/mafia-01-mockup.jpg", "imagenArt": "images/mafia/mafia-01-art.jpg", "categoria": "Mafia", "orientacion": "horizontal" },
+    // {
+    //   "id": "mafia-01",
+    //   "nombre": "",
+    //   "mockup40": "images/mafia/mafia-01-mockup-40x30.jpg",
+    //   "mockup80": "images/mafia/mafia-01-mockup-80x60.jpg",
+    //   "art":      "images/mafia/mafia-01-art.jpg",
+    //   "categoria": "Mafia",
+    //   "orientacion": "horizontal"
+    // },
 
     // ══ ENAMORADOS ═════════════════════════════════════════════════
-    // { "id": "enamorados-01", "nombre": "", "imagenMockup": "images/enamorados/enamorados-01-mockup.jpg", "imagenArt": "images/enamorados/enamorados-01-art.jpg", "categoria": "Enamorados", "orientacion": "vertical" },
+    // {
+    //   "id": "enamorados-01",
+    //   "nombre": "",
+    //   "mockup40": "images/enamorados/enamorados-01-mockup-40x30.jpg",
+    //   "mockup80": "images/enamorados/enamorados-01-mockup-80x60.jpg",
+    //   "art":      "images/enamorados/enamorados-01-art.jpg",
+    //   "categoria": "Enamorados",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ FAMILIA ════════════════════════════════════════════════════
-    // { "id": "familia-01", "nombre": "", "imagenMockup": "images/familia/familia-01-mockup.jpg", "imagenArt": "images/familia/familia-01-art.jpg", "categoria": "Cuadros familiares", "orientacion": "vertical" },
+    // {
+    //   "id": "familia-01",
+    //   "nombre": "",
+    //   "mockup40": "images/familia/familia-01-mockup-40x30.jpg",
+    //   "mockup80": "images/familia/familia-01-mockup-80x60.jpg",
+    //   "art":      "images/familia/familia-01-art.jpg",
+    //   "categoria": "Cuadros familiares",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ STRANGER THINGS ════════════════════════════════════════════
-    // { "id": "strangerthings-01", "nombre": "", "imagenMockup": "images/strangerthings/strangerthings-01-mockup.jpg", "imagenArt": "images/strangerthings/strangerthings-01-art.jpg", "categoria": "Stranger Things", "orientacion": "vertical" },
+    // {
+    //   "id": "strangerthings-01",
+    //   "nombre": "",
+    //   "mockup40": "images/strangerthings/strangerthings-01-mockup-40x30.jpg",
+    //   "mockup80": "images/strangerthings/strangerthings-01-mockup-80x60.jpg",
+    //   "art":      "images/strangerthings/strangerthings-01-art.jpg",
+    //   "categoria": "Stranger Things",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ THE LAST OF US ═════════════════════════════════════════════
-    // { "id": "thelastofus-01", "nombre": "", "imagenMockup": "images/thelastofus/thelastofus-01-mockup.jpg", "imagenArt": "images/thelastofus/thelastofus-01-art.jpg", "categoria": "The Last of Us", "orientacion": "horizontal" },
+    // {
+    //   "id": "thelastofus-01",
+    //   "nombre": "",
+    //   "mockup40": "images/thelastofus/thelastofus-01-mockup-40x30.jpg",
+    //   "mockup80": "images/thelastofus/thelastofus-01-mockup-80x60.jpg",
+    //   "art":      "images/thelastofus/thelastofus-01-art.jpg",
+    //   "categoria": "The Last of Us",
+    //   "orientacion": "horizontal"
+    // },
 
     // ══ JOHN WICK ══════════════════════════════════════════════════
-    // { "id": "johnwick-01", "nombre": "", "imagenMockup": "images/johnwick/johnwick-01-mockup.jpg", "imagenArt": "images/johnwick/johnwick-01-art.jpg", "categoria": "John Wick", "orientacion": "vertical" },
+    // {
+    //   "id": "johnwick-01",
+    //   "nombre": "",
+    //   "mockup40": "images/johnwick/johnwick-01-mockup-40x30.jpg",
+    //   "mockup80": "images/johnwick/johnwick-01-mockup-80x60.jpg",
+    //   "art":      "images/johnwick/johnwick-01-art.jpg",
+    //   "categoria": "John Wick",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ NINTENDO ═══════════════════════════════════════════════════
-    // { "id": "nintendo-01", "nombre": "", "imagenMockup": "images/nintendo/nintendo-01-mockup.jpg", "imagenArt": "images/nintendo/nintendo-01-art.jpg", "categoria": "Nintendo", "orientacion": "horizontal" },
+    // {
+    //   "id": "nintendo-01",
+    //   "nombre": "",
+    //   "mockup40": "images/nintendo/nintendo-01-mockup-40x30.jpg",
+    //   "mockup80": "images/nintendo/nintendo-01-mockup-80x60.jpg",
+    //   "art":      "images/nintendo/nintendo-01-art.jpg",
+    //   "categoria": "Nintendo",
+    //   "orientacion": "horizontal"
+    // },
 
     // ══ CRISTIANA ══════════════════════════════════════════════════
-    // { "id": "cristiana-01", "nombre": "", "imagenMockup": "images/cristiana/cristiana-01-mockup.jpg", "imagenArt": "images/cristiana/cristiana-01-art.jpg", "categoria": "Cristiana", "orientacion": "vertical" },
+    // {
+    //   "id": "cristiana-01",
+    //   "nombre": "",
+    //   "mockup40": "images/cristiana/cristiana-01-mockup-40x30.jpg",
+    //   "mockup80": "images/cristiana/cristiana-01-mockup-80x60.jpg",
+    //   "art":      "images/cristiana/cristiana-01-art.jpg",
+    //   "categoria": "Cristiana",
+    //   "orientacion": "vertical"
+    // },
 
     // ══ COLLAGE ════════════════════════════════════════════════════
-    // { "id": "collage-01", "nombre": "", "imagenMockup": "images/collage/collage-01-mockup.jpg", "imagenArt": "images/collage/collage-01-art.jpg", "categoria": "Collage", "orientacion": "horizontal" },
+    // {
+    //   "id": "collage-01",
+    //   "nombre": "",
+    //   "mockup40": "images/collage/collage-01-mockup-40x30.jpg",
+    //   "mockup80": "images/collage/collage-01-mockup-80x60.jpg",
+    //   "art":      "images/collage/collage-01-art.jpg",
+    //   "categoria": "Collage",
+    //   "orientacion": "horizontal"
+    // },
 
     // ══ PERSONALIZADO ══════════════════════════════════════════════
-    // { "id": "personalizado-01", "nombre": "", "imagenMockup": "images/personalizado/personalizado-01-mockup.jpg", "imagenArt": "images/personalizado/personalizado-01-art.jpg", "categoria": "Espacio personalizado", "orientacion": "vertical" }
+    // {
+    //   "id": "personalizado-01",
+    //   "nombre": "",
+    //   "mockup40": "images/personalizado/personalizado-01-mockup-40x30.jpg",
+    //   "mockup80": "images/personalizado/personalizado-01-mockup-80x60.jpg",
+    //   "art":      "images/personalizado/personalizado-01-art.jpg",
+    //   "categoria": "Espacio personalizado",
+    //   "orientacion": "vertical"
+    // }
 
   ]
 }
