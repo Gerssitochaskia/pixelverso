@@ -5,6 +5,28 @@
 
   "productos": [
 
+    // ══ CRISTIANA ══════════════════════════════════════════════════
+    {
+      "id": "cristiana-01",
+      "nombre": "Cristiana #01",
+      "mockup40": "images/cristiana/cristiana-01-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-01-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-01-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+
+    // ══ DRAGON BALL Z ══════════════════════════════════════════════
+    {
+      "id": "dragonball-01",
+      "nombre": "Dragon Ball Z #01",
+      "mockup40": "images/dragonball/dragonball-01-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-01-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-01-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "vertical"
+    },
+
     // ══ ANIME ══════════════════════════════════════════════════════
     // {
     //   "id": "anime-01",
