@@ -382,28 +382,45 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .card.orient-horizontal .img-wrap img{ object-fit:cover; }
 .card .img-wrap img{ object-position:center; }
 
-/* Productos reales del JSON: el mockup llena toda la tarjeta directamente */
+/* ── Tarjetas reales (JSON): mockup llena la tarjeta, altura fija en cat-row ── */
+.cat-row .card[data-from-json="1"] {
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+  height: 280px;
+  aspect-ratio: unset !important;
+}
+.cat-row .card[data-from-json="1"].orient-vertical   { width: 210px; }
+.cat-row .card[data-from-json="1"].orient-horizontal  { width: 374px; }
+
 .card[data-from-json="1"] .scene-layer {
-  overflow:hidden;
-  border-radius:inherit;
-  z-index:1;
+  overflow:hidden; border-radius:inherit; z-index:1;
 }
 .card[data-from-json="1"] .scene-layer > img {
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-  display:block;
-  transition:transform .4s ease;
+  width:100%; height:100%; object-fit:cover; object-position:center;
+  display:block; transition:transform .4s ease;
 }
 .card[data-from-json="1"]:hover .scene-layer > img { transform:scale(1.04); }
 .card[data-from-json="1"] .art-layer  { z-index:2; }
 .card[data-from-json="1"] .orient-tag { z-index:4; }
 .card[data-from-json="1"] .overlay    { z-index:5; }
-/* Nombre del producto: fijo al fondo con gradiente oscuro */
 .card[data-from-json="1"] .label {
   position:absolute; bottom:0; left:0; right:0; z-index:3;
-  background:linear-gradient(transparent, rgba(0,0,0,.85));
+  background:linear-gradient(transparent, rgba(0,0,0,.88));
   color:#fff; font-size:12px; font-weight:700; letter-spacing:.04em;
   padding:28px 12px 10px; text-align:center;
+}
+
+/* ── Preview foto personalizada: pared de ladrillos CSS ── */
+.preview-art-wrap.wall-bg {
+  background:
+    repeating-linear-gradient(180deg, rgba(0,0,0,.22) 0px, rgba(0,0,0,.22) 2px, transparent 2px, transparent 34px),
+    repeating-linear-gradient(90deg,  rgba(0,0,0,.15) 0px, rgba(0,0,0,.15) 1px, transparent 1px, transparent 62px),
+    #8b4513;
+  border-radius:16px; padding:36px 52px;
+  box-shadow:inset 0 0 80px rgba(0,0,0,.5);
+}
+.preview-art-wrap.wall-bg #preview-art {
+  max-width:58%; box-shadow:0 24px 60px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08);
 }
 
 /* Card especial "Tu foto aquí" */
@@ -1698,6 +1715,9 @@ function openPreview(productId){
   art.className = 'preview-art '+orient;
   art.style.transform = '';
   img.src = _mockupForSize(p, '80'); img.alt = p.nombre;
+  // Foto personalizada: fondo de pared de ladrillos
+  const wrap = document.getElementById('preview-art-wrap');
+  if(wrap) wrap.classList.toggle('wall-bg', !!p.esPersonalizado);
   sizeTag.textContent = '80 × 60 cm';
 
   document.getElementById('preview-name').textContent = p.nombre;
@@ -1916,6 +1936,7 @@ const CATEGORIAS = [
   { slug:'johnwick',      nombre:'John Wick',             img:'images/cat-johnwick.png' },
   { slug:'nintendo',      nombre:'Nintendo',              img:'images/cat-nintendo.png' },
   { slug:'cristiana',     nombre:'Cristiana',             img:'images/cat-cristiana.png' },
+  { slug:'deportes',      nombre:'Deportes',              img:'images/cat-deportes.png' },
   { slug:'collage',       nombre:'Collage',               img:'images/cat-collage.png' },
   { slug:'personalizado', nombre:'Espacio personalizado', img:'images/cat-personalizado.png' },
 ];
@@ -2402,6 +2423,7 @@ const CAT_SLUG_MAP = {
   'john wick':           'johnwick',
   'nintendo':            'nintendo',
   'cristiana':           'cristiana',
+  'deportes':            'deportes',
   'collage':             'collage',
   'espacio personalizado':'personalizado',
   'personalizado':       'personalizado',
