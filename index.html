@@ -382,6 +382,30 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .card.orient-horizontal .img-wrap img{ object-fit:cover; }
 .card .img-wrap img{ object-position:center; }
 
+/* Productos reales del JSON: el mockup llena toda la tarjeta directamente */
+.card[data-from-json="1"] .scene-layer {
+  overflow:hidden;
+  border-radius:inherit;
+  z-index:1;
+}
+.card[data-from-json="1"] .scene-layer > img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block;
+  transition:transform .4s ease;
+}
+.card[data-from-json="1"]:hover .scene-layer > img { transform:scale(1.04); }
+.card[data-from-json="1"] .art-layer  { z-index:2; }
+.card[data-from-json="1"] .orient-tag { z-index:4; }
+.card[data-from-json="1"] .overlay    { z-index:5; }
+/* Nombre del producto: fijo al fondo con gradiente oscuro */
+.card[data-from-json="1"] .label {
+  position:absolute; bottom:0; left:0; right:0; z-index:3;
+  background:linear-gradient(transparent, rgba(0,0,0,.85));
+  color:#fff; font-size:12px; font-weight:700; letter-spacing:.04em;
+  padding:28px 12px 10px; text-align:center;
+}
+
 /* Card especial "Tu foto aquí" */
 .card-upload{
   background:linear-gradient(135deg,#0099CC 0%,var(--cyan) 45%,var(--purple) 100%);
@@ -2417,11 +2441,7 @@ function _renderCategoriasFromJSON(){
       el.innerHTML = `
         <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
         <div class="scene-layer">
-          <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
-            <div class="wood-frame size-80 ${p.orientacion}">
-              <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
-            </div>
-          </div>
+          <img loading="lazy" src="${p.img}" alt="${p.nombre}"/>
         </div>
         <div class="art-layer"><img loading="lazy" src="${p.imgArt}" alt="${p.nombre}"/></div>
         <div class="label">${p.nombre}</div>

@@ -1,6 +1,87 @@
 {
   "productos": [
     {
+      "id": "anime-01",
+      "nombre": "Anime #01",
+      "mockup40": "images/anime/anime-01-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-01-mockup-80x60.jpg",
+      "art":      "images/anime/anime-01-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "anime-02",
+      "nombre": "Anime #02",
+      "mockup40": "images/anime/anime-02-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-02-mockup-80x60.jpg",
+      "art":      "images/anime/anime-02-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "anime-03",
+      "nombre": "Anime #03",
+      "mockup40": "images/anime/anime-03-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-03-mockup-80x60.jpg",
+      "art":      "images/anime/anime-03-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "anime-04",
+      "nombre": "Anime #04",
+      "mockup40": "images/anime/anime-04-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-04-mockup-80x60.jpg",
+      "art":      "images/anime/anime-04-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "anime-05",
+      "nombre": "Anime #05",
+      "mockup40": "images/anime/anime-05-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-05-mockup-80x60.jpg",
+      "art":      "images/anime/anime-05-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "anime-06",
+      "nombre": "Anime #06",
+      "mockup40": "images/anime/anime-06-mockup-40x30.jpg",
+      "mockup80": "images/anime/anime-06-mockup-80x60.jpg",
+      "art":      "images/anime/anime-06-art.jpg",
+      "categoria": "Anime",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "collage-01",
+      "nombre": "Collage #01",
+      "mockup40": "images/collage/collage-01-mockup-40x30.jpg",
+      "mockup80": "images/collage/collage-01-mockup-80x60.jpg",
+      "art":      "images/collage/collage-01-art.jpg",
+      "categoria": "Collage",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "collage-02",
+      "nombre": "Collage #02",
+      "mockup40": "images/collage/collage-02-mockup-40x30.jpg",
+      "mockup80": "images/collage/collage-02-mockup-80x60.jpg",
+      "art":      "images/collage/collage-02-art.jpg",
+      "categoria": "Collage",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "collage-03",
+      "nombre": "Collage #03",
+      "mockup40": "images/collage/collage-03-mockup-40x30.jpg",
+      "mockup80": "images/collage/collage-03-mockup-80x60.jpg",
+      "art":      "images/collage/collage-03-art.jpg",
+      "categoria": "Collage",
+      "orientacion": "horizontal"
+    },
+    {
       "id": "cristiana-01",
       "nombre": "Cristiana #01",
       "mockup40": "images/cristiana/cristiana-01-mockup-40x30.jpg",
@@ -10,12 +91,219 @@
       "orientacion": "vertical"
     },
     {
+      "id": "cristiana-02",
+      "nombre": "Cristiana #02",
+      "mockup40": "images/cristiana/cristiana-02-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-02-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-02-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "cristiana-03",
+      "nombre": "Cristiana #03",
+      "mockup40": "images/cristiana/cristiana-03-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-03-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-03-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "cristiana-04",
+      "nombre": "Cristiana #04",
+      "mockup40": "images/cristiana/cristiana-04-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-04-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-04-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "cristiana-05",
+      "nombre": "Cristiana #05",
+      "mockup40": "images/cristiana/cristiana-05-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-05-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-05-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "cristiana-06",
+      "nombre": "Cristiana #06",
+      "mockup40": "images/cristiana/cristiana-06-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-06-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-06-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "cristiana-07",
+      "nombre": "Cristiana #07",
+      "mockup40": "images/cristiana/cristiana-07-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-07-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-07-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "cristiana-08",
+      "nombre": "Cristiana #08",
+      "mockup40": "images/cristiana/cristiana-08-mockup-40x30.jpg",
+      "mockup80": "images/cristiana/cristiana-08-mockup-80x60.jpg",
+      "art":      "images/cristiana/cristiana-08-art.jpg",
+      "categoria": "Cristiana",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "dc-01",
+      "nombre": "DC #01",
+      "mockup40": "images/dc/dc-01-mockup-40x30.jpg",
+      "mockup80": "images/dc/dc-01-mockup-80x60.jpg",
+      "art":      "images/dc/dc-01-art.jpg",
+      "categoria": "DC",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "dc-02",
+      "nombre": "DC #02",
+      "mockup40": "images/dc/dc-02-mockup-40x30.jpg",
+      "mockup80": "images/dc/dc-02-mockup-80x60.jpg",
+      "art":      "images/dc/dc-02-art.jpg",
+      "categoria": "DC",
+      "orientacion": "vertical"
+    },
+    {
       "id": "dragonball-01",
       "nombre": "Dragon Ball Z #01",
       "mockup40": "images/dragonball/dragonball-01-mockup-40x30.jpg",
       "mockup80": "images/dragonball/dragonball-01-mockup-80x60.jpg",
       "art":      "images/dragonball/dragonball-01-art.jpg",
       "categoria": "Dragon Ball Z",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "dragonball-02",
+      "nombre": "Dragon Ball Z #02",
+      "mockup40": "images/dragonball/dragonball-02-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-02-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-02-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "dragonball-03",
+      "nombre": "Dragon Ball Z #03",
+      "mockup40": "images/dragonball/dragonball-03-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-03-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-03-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "dragonball-04",
+      "nombre": "Dragon Ball Z #04",
+      "mockup40": "images/dragonball/dragonball-04-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-04-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-04-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "dragonball-05",
+      "nombre": "Dragon Ball Z #05",
+      "mockup40": "images/dragonball/dragonball-05-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-05-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-05-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "dragonball-06",
+      "nombre": "Dragon Ball Z #06",
+      "mockup40": "images/dragonball/dragonball-06-mockup-40x30.jpg",
+      "mockup80": "images/dragonball/dragonball-06-mockup-80x60.jpg",
+      "art":      "images/dragonball/dragonball-06-art.jpg",
+      "categoria": "Dragon Ball Z",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "johnwick-01",
+      "nombre": "John Wick #01",
+      "mockup40": "images/johnwick/johnwick-01-mockup-40x30.jpg",
+      "mockup80": "images/johnwick/johnwick-01-mockup-80x60.jpg",
+      "art":      "images/johnwick/johnwick-01-art.jpg",
+      "categoria": "John Wick",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "johnwick-02",
+      "nombre": "John Wick #02",
+      "mockup40": "images/johnwick/johnwick-02-mockup-40x30.jpg",
+      "mockup80": "images/johnwick/johnwick-02-mockup-80x60.jpg",
+      "art":      "images/johnwick/johnwick-02-art.jpg",
+      "categoria": "John Wick",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "mafia-01",
+      "nombre": "Mafia #01",
+      "mockup40": "images/mafia/mafia-01-mockup-40x30.jpg",
+      "mockup80": "images/mafia/mafia-01-mockup-80x60.jpg",
+      "art":      "images/mafia/mafia-01-art.jpg",
+      "categoria": "Mafia",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "marvel-01",
+      "nombre": "Marvel #01",
+      "mockup40": "images/marvel/marvel-01-mockup-40x30.jpg",
+      "mockup80": "images/marvel/marvel-01-mockup-80x60.jpg",
+      "art":      "images/marvel/marvel-01-art.jpg",
+      "categoria": "Marvel",
+      "orientacion": "horizontal"
+    },
+    {
+      "id": "musica-01",
+      "nombre": "Música #01",
+      "mockup40": "images/musica/musica-01-mockup-40x30.jpg",
+      "mockup80": "images/musica/musica-01-mockup-80x60.jpg",
+      "art":      "images/musica/musica-01-art.jpg",
+      "categoria": "Música",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "pokemon-01",
+      "nombre": "Pokémon #01",
+      "mockup40": "images/pokemon/pokemon-01-mockup-40x30.jpg",
+      "mockup80": "images/pokemon/pokemon-01-mockup-80x60.jpg",
+      "art":      "images/pokemon/pokemon-01-art.jpg",
+      "categoria": "Pokémon",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "pokemon-02",
+      "nombre": "Pokémon #02",
+      "mockup40": "images/pokemon/pokemon-02-mockup-40x30.jpg",
+      "mockup80": "images/pokemon/pokemon-02-mockup-80x60.jpg",
+      "art":      "images/pokemon/pokemon-02-art.jpg",
+      "categoria": "Pokémon",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "pokemon-03",
+      "nombre": "Pokémon #03",
+      "mockup40": "images/pokemon/pokemon-03-mockup-40x30.jpg",
+      "mockup80": "images/pokemon/pokemon-03-mockup-80x60.jpg",
+      "art":      "images/pokemon/pokemon-03-art.jpg",
+      "categoria": "Pokémon",
+      "orientacion": "vertical"
+    },
+    {
+      "id": "pokemon-04",
+      "nombre": "Pokémon #04",
+      "mockup40": "images/pokemon/pokemon-04-mockup-40x30.jpg",
+      "mockup80": "images/pokemon/pokemon-04-mockup-80x60.jpg",
+      "art":      "images/pokemon/pokemon-04-art.jpg",
+      "categoria": "Pokémon",
       "orientacion": "vertical"
     }
   ]
