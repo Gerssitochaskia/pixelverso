@@ -786,10 +786,11 @@ svg.ic-lg{width:26px;height:26px;}
 .preview-stage{position:relative;max-width:1200px;width:100%;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
 .preview-art-wrap{perspective:1600px;min-height:420px;display:flex;align-items:center;justify-content:center;position:relative;}
 .preview-art-wrap::before{content:"";position:absolute;inset:-40px;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,212,255,.18),transparent 65%);filter:blur(40px);}
-.preview-art{position:relative;max-width:520px;max-height:65vh;transform-style:preserve-3d;transition:transform .15s ease-out;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 6px #0a0a10,0 0 0 8px rgba(0,212,255,.35),0 0 60px rgba(0,212,255,.25);border-radius:6px;}
-.preview-art.vertical{width:380px;aspect-ratio:3/4;}
-.preview-art.horizontal{width:560px;aspect-ratio:4/3;}
-.preview-art img{width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;}
+.preview-art{position:relative;transform-style:preserve-3d;transition:transform .18s cubic-bezier(.2,.8,.2,1), filter .35s ease;will-change:transform;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(0,212,255,.45),0 0 60px rgba(0,212,255,.2);border-radius:8px;overflow:hidden;cursor:none;}
+.preview-art.vertical{width:min(360px,72vw);aspect-ratio:3/4;}
+.preview-art.horizontal{width:min(560px,88vw);aspect-ratio:4/3;}
+.preview-art img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;}
+.preview-size-label{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.55);text-transform:uppercase;pointer-events:none;white-space:nowrap;}
 .preview-art .scan{position:absolute;inset:0;pointer-events:none;border-radius:6px;overflow:hidden;background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(0,212,255,.18) 50%,transparent 55%,transparent 100%);background-size:100% 200%;animation:scanMove 2.6s linear infinite;}
 @keyframes scanMove{0%{background-position:0 -100%;}100%{background-position:0 100%;}}
 .preview-info h3{font-family:'Bebas Neue';font-size:48px;line-height:1;margin:8px 0 14px;color:#fff;}
@@ -1687,24 +1688,21 @@ function _mockupForSize(p, sz){
 function openPreview(productId){
   const p = (window.PRODUCT_INDEX||{})[productId];
   if(!p){ console.warn('Producto no encontrado:', productId); return; }
-  PREVIEW_CURRENT = p; PREVIEW_SIZE = '80'; // por defecto abre en 80x60
+  PREVIEW_CURRENT = p; PREVIEW_SIZE = '80';
   const orient = p.orientacion || 'vertical';
-  const slug   = _sceneSlug(p.categoria);
 
-  const scene   = document.getElementById('preview-scene');
-  const frame   = document.getElementById('preview-frame');
+  const art     = document.getElementById('preview-art');
   const img     = document.getElementById('preview-img');
   const sizeTag = document.getElementById('preview-size-tag');
 
-  scene.className = 'scene scene-'+slug;
-  frame.className = 'wood-frame size-80 '+orient;
+  art.className = 'preview-art '+orient;
+  art.style.transform = '';
   img.src = _mockupForSize(p, '80'); img.alt = p.nombre;
   sizeTag.textContent = '80 × 60 cm';
 
   document.getElementById('preview-name').textContent = p.nombre;
   document.getElementById('preview-cat').textContent  = p.categoria || 'Cuadro';
   document.getElementById('preview-orient').textContent = (orient==='horizontal')?'Horizontal':'Vertical';
-  // Marcar el botón 80x60 como activo por defecto
   document.querySelectorAll('#preview-sizes .sz').forEach(b => b.classList.toggle('active', b.dataset.size==='80'));
 
   document.getElementById('preview-overlay').classList.add('open');
@@ -1713,7 +1711,7 @@ function openPreview(productId){
 function closePreview(){
   document.getElementById('preview-overlay').classList.remove('open');
   document.body.style.overflow='';
-  const f=document.getElementById('preview-frame'); if(f) f.style.transform='';
+  const a=document.getElementById('preview-art'); if(a) a.style.transform='';
 }
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePreview(); });
 
@@ -1734,19 +1732,25 @@ function openCustomPreview(file){
   probe.src = url;
 }
 
-/* Inspección 3D — listeners delegados sobre document, así no importa cuándo se inserta el modal */
+/* Inspección 3D con RAF para máxima fluidez */
+let _tiltRAF = null;
 function _setTiltFromEvent(clientX, clientY){
-  const stage = document.getElementById('preview-art-wrap');
-  const frame = document.getElementById('preview-frame');
-  if(!stage || !frame) return;
-  const r = stage.getBoundingClientRect();
-  if(r.width===0) return;
-  const px = ((clientX - r.left) / r.width)  - 0.5;
-  const py = ((clientY - r.top)  / r.height) - 0.5;
-  frame.style.transform = `translate(-50%,-50%) perspective(900px) rotateY(${px*45}deg) rotateX(${py*-35}deg) translateZ(40px)`;
+  if(_tiltRAF) return; // throttle: una actualización por frame
+  _tiltRAF = requestAnimationFrame(()=>{
+    _tiltRAF = null;
+    const stage = document.getElementById('preview-art-wrap');
+    const art   = document.getElementById('preview-art');
+    if(!stage || !art) return;
+    const r = stage.getBoundingClientRect();
+    if(r.width===0) return;
+    const px = ((clientX - r.left) / r.width)  - 0.5;
+    const py = ((clientY - r.top)  / r.height) - 0.5;
+    art.style.transform = `perspective(1000px) rotateY(${px*22}deg) rotateX(${py*-16}deg) scale(1.03)`;
+  });
 }
 function _resetTilt(){
-  const f=document.getElementById('preview-frame'); if(f) f.style.transform='';
+  const a = document.getElementById('preview-art');
+  if(a) a.style.transform = '';
 }
 document.addEventListener('mousemove', e=>{
   const ov = document.getElementById('preview-overlay');
@@ -1756,7 +1760,7 @@ document.addEventListener('mousemove', e=>{
   const r = stage.getBoundingClientRect();
   if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom){ _resetTilt(); return; }
   _setTiltFromEvent(e.clientX, e.clientY);
-});
+}, {passive:true});
 document.addEventListener('touchmove', e=>{
   const ov = document.getElementById('preview-overlay');
   if(!ov || !ov.classList.contains('open')) return;
@@ -1773,18 +1777,15 @@ document.addEventListener('click', e=>{
   const sz = b.dataset.size;
   PREVIEW_SIZE = sz;
   const orient = (PREVIEW_CURRENT && PREVIEW_CURRENT.orientacion) || 'vertical';
-  const slug = _sceneSlug(PREVIEW_CURRENT && PREVIEW_CURRENT.categoria);
-  const frame = document.getElementById('preview-frame');
+  const art = document.getElementById('preview-art');
   const tag = document.getElementById('preview-size-tag');
-  if(frame){
-    frame.className = 'wood-frame size-'+sz+' '+orient;
-    // Cambiar imagen al mockup del tamaño elegido
+  if(art){
+    art.className = 'preview-art '+orient;
     const previewImg = document.getElementById('preview-img');
     if(previewImg && PREVIEW_CURRENT){
       previewImg.src = _mockupForSize(PREVIEW_CURRENT, sz);
     }
-    // micro-animación de "pop" al cambiar tamaño
-    frame.animate([{filter:'brightness(1.4)'},{filter:'brightness(1)'}], {duration:380, easing:'ease-out'});
+    art.animate([{filter:'brightness(1.35)'},{filter:'brightness(1)'}], {duration:350, easing:'ease-out'});
   }
   if(tag) tag.textContent = (sz==='80')?'80 × 60 cm':'40 × 30 cm';
 });
@@ -2484,12 +2485,11 @@ document.querySelectorAll('.cat-block, .card, .review, .wall-card').forEach(el=>
   <button class="preview-close" onclick="closePreview()" aria-label="Cerrar">✕</button>
   <div class="preview-stage">
     <div class="preview-art-wrap" id="preview-art-wrap">
-      <div class="scene scene-default" id="preview-scene" style="width:100%;max-width:560px;aspect-ratio:4/5;">
-        <div class="wood-frame size-40 vertical" id="preview-frame">
-          <img class="art" id="preview-img" src="" alt=""/>
-        </div>
-        <div class="size-tag" id="preview-size-tag">40 × 30 cm</div>
+      <div class="preview-art vertical" id="preview-art">
+        <img id="preview-img" src="" alt=""/>
+        <div class="scan"></div>
       </div>
+      <span class="preview-size-label" id="preview-size-tag">80 × 60 cm</span>
       <div class="preview-hint">Mueve el mouse · inspección 3D · cambia el tamaño para verlo en escala</div>
     </div>
     <div class="preview-info">
