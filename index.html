@@ -423,6 +423,40 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
   max-width:58%; box-shadow:0 24px 60px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08);
 }
 
+/* ── Cards destacadas: flotación + brillo + pulso ── */
+@keyframes float-card{
+  0%,100%{transform:translateY(0px) rotate(0deg);}
+  30%{transform:translateY(-7px) rotate(0.4deg);}
+  60%{transform:translateY(-3px) rotate(-0.25deg);}
+  80%{transform:translateY(-5px) rotate(0.15deg);}
+}
+@keyframes border-pulse{
+  0%,100%{box-shadow:0 4px 20px rgba(0,0,0,.4);}
+  50%{box-shadow:0 0 22px rgba(0,212,255,.45),0 0 44px rgba(124,58,237,.25),0 4px 20px rgba(0,0,0,.3);}
+}
+@keyframes shimmer-flash{
+  0%,88%,100%{opacity:0;}
+  93%{opacity:1;}
+  96%{opacity:.5;}
+}
+.card-featured{
+  animation:
+    float-card   var(--fd,5s) ease-in-out infinite var(--fd-delay,0s),
+    border-pulse var(--bp,7s) ease-in-out infinite var(--bp-delay,0s);
+  z-index:1;
+}
+.card-featured::after{
+  content:'';
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.18) 50%,transparent 80%);
+  animation:shimmer-flash var(--sf,9s) ease-in-out infinite var(--sf-delay,0s);
+  z-index:10;
+}
+.card-featured:hover{
+  animation:none;
+  box-shadow:var(--shadow-cyan);
+}
+
 /* Card especial "Tu foto aquí" */
 .card-upload{
   background:linear-gradient(135deg,#0099CC 0%,var(--cyan) 45%,var(--purple) 100%);
@@ -1914,6 +1948,8 @@ async function loadProductosJSON(){
 
     // Renderizar categorías desde JSON (reemplaza los placeholders de picsum)
     _renderCategoriasFromJSON();
+    // Cuadros destacados: productos reales aleatorios
+    renderBestSellersFromJSON();
     console.log('✓ productos.json cargado:', Object.keys(PRODUCT_INDEX).length+' productos en índice');
   }catch(e){ /* fallback silencioso */ }
 }
@@ -1962,51 +1998,67 @@ function productosCategoria(cat, seedBase){
 }
 
 /* =========================================================
- * Render: best sellers
+ * Render: best sellers — cards reales aleatorias desde JSON
  * ========================================================= */
 function renderBestSellers(){
+  // Solo deja la card de upload; los cuadros reales los agrega renderBestSellersFromJSON()
+  // (se llama tras cargar productos.json)
+}
+
+function renderBestSellersFromJSON(){
   const grid = document.getElementById('bestsellers-grid');
-  const items = [
-    { nombre:'Goku Ultra Instinto',     img:'images/cat-dragonball.png',     orient:'vertical' },
-    { nombre:'Spider-Verse',            img:'images/cat-marvel.png',         orient:'vertical' },
-    { nombre:'Eren Titán',              img:'images/cat-anime.png',          orient:'vertical' },
-    { nombre:'Joel & Ellie',            img:'images/cat-thelastofus.png',    orient:'horizontal' },
-    { nombre:'John Wick — Continental', img:'images/cat-johnwick.png',       orient:'vertical' },
-    { nombre:'Pikachu Neón',            img:'images/cat-pokemon.png',        orient:'horizontal' },
-    { nombre:'Stranger Vibes',          img:'images/cat-strangerthings.png', orient:'vertical' },
-    { nombre:'Mafia Skyline',           img:'images/cat-mafia.png',          orient:'horizontal' },
-    { nombre:'Nintendo Classics',       img:'images/cat-nintendo.png',       orient:'horizontal' },
-    { nombre:'Mustang Retro',           img:'images/cat-autos.png',          orient:'horizontal' },
-    { nombre:'DC Heroes',               img:'images/cat-dc.png',             orient:'vertical' },
-  ];
-  items.slice(0,11).forEach((p, idx)=>{
-    const id = 'best-'+idx;
+  const EXCLUIR = ['familia','personalizado'];
+
+  // Pool de productos reales del JSON, sin categorías excluidas
+  const pool = Object.values(PRODUCT_INDEX).filter(p =>
+    p.mockup80 && p.categoria &&
+    !EXCLUIR.some(ex => (p.id||'').startsWith(ex))
+  );
+  if(!pool.length) return;
+
+  // Borrar cards previas (no la de upload)
+  Array.from(grid.querySelectorAll('.card:not(.card-upload)')).forEach(c => c.remove());
+
+  // Mezcla aleatoria y toma 11
+  const shuffled = pool.slice().sort(()=> Math.random()-.5).slice(0,11);
+
+  shuffled.forEach((p, idx)=>{
     const el = document.createElement('div');
-    el.className='card orient-'+p.orient;
-    el.dataset.id = id;
-    const slug = (idx % 6 === 0) ? 'anime'
-                : (idx % 6 === 1) ? 'videojuegos'
-                : (idx % 6 === 2) ? 'autos'
-                : (idx % 6 === 3) ? 'parejas'
-                : (idx % 6 === 4) ? 'familia'
-                : 'mascotas';
+    el.className = `card card-featured orient-${p.orientacion}`;
+    el.dataset.id = p.id;
+    el.dataset.fromJson = '1';
+
+    // Tiempos aleatorios distintos para cada card → efecto orgánico
+    const fd       = (3.5 + Math.random()*2.5).toFixed(2)+'s';
+    const fdDelay  = (Math.random()*3).toFixed(2)+'s';
+    const bp       = (5 + Math.random()*4).toFixed(2)+'s';
+    const bpDelay  = (Math.random()*4).toFixed(2)+'s';
+    const sf       = (7 + Math.random()*6).toFixed(2)+'s';
+    const sfDelay  = (Math.random()*8).toFixed(2)+'s';
+    el.style.cssText = `--fd:${fd};--fd-delay:${fdDelay};--bp:${bp};--bp-delay:${bpDelay};--sf:${sf};--sf-delay:${sfDelay}`;
+
     el.innerHTML = `
-      <span class="orient-tag">${p.orient==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
-      <div class="scene-layer">
-        <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
-          <div class="wood-frame size-40 ${p.orient}">
-            <img class="art" loading="lazy" src="${p.img}" alt="${p.nombre}"/>
-          </div>
-        </div>
+      <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+      <div class="scene-layer" style="position:absolute;inset:0;">
+        <img loading="lazy" src="${p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s ease;"/>
       </div>
-      <div class="art-layer"><img loading="lazy" src="${p.img}" alt="${p.nombre}"/></div>
+      <div class="art-layer" style="position:absolute;inset:0;opacity:0;transition:opacity .4s ease;">
+        <img loading="lazy" src="${p.imgArt||p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
       <div class="label">${p.nombre}</div>
-      <div class="overlay"><button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${id}')">Vista previa</button></div>
+      <div class="overlay">
+        <button class="btn btn-primary" onclick="event.stopPropagation();openPreview('${p.id}')">Vista previa</button>
+      </div>
     `;
-    el.onclick = ()=> openPreview(id);
-    el._product = { id, nombre:p.nombre, img:p.img, orientacion:p.orient, categoria: slug.charAt(0).toUpperCase()+slug.slice(1) };
-    PRODUCT_INDEX[id] = el._product;
-    grid.appendChild(el);
+    // hover crossfade art
+    el.addEventListener('mouseenter', ()=> el.querySelector('.art-layer').style.opacity='1');
+    el.addEventListener('mouseleave', ()=> el.querySelector('.art-layer').style.opacity='0');
+    el.addEventListener('mouseover',  ()=> { const i=el.querySelector('.scene-layer img'); if(i) i.style.transform='scale(1.05)'; });
+    el.addEventListener('mouseout',   ()=> { const i=el.querySelector('.scene-layer img'); if(i) i.style.transform='scale(1)'; });
+    el.onclick = ()=> openPreview(p.id);
+
+    grid.insertBefore(el, grid.querySelector('.card-upload'));
+    io.observe(el);
   });
 }
 
