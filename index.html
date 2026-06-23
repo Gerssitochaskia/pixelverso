@@ -2536,18 +2536,18 @@ function initVisuFromJSON(){
       const div = document.createElement('div');
       div.className = 'thumb'+(i===0?' active':'');
       div.style.cssText = 'width:72px;height:72px;flex-shrink:0;';
-      div.innerHTML = `<img src="${p.art||p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"/>`;
+      div.innerHTML = `<img src="${p.imgArt||p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"/>`;
       div.addEventListener('click',()=>{
         thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         div.classList.add('active');
-        visuArt = p.art;
+        visuArt = p.imgArt;
         visuOrient = (p.orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
         applyVisu();
       });
       thumbRow.appendChild(div);
     });
     if(prods.length){
-      visuArt = prods[0].art;
+      visuArt = prods[0].imgArt;
       visuOrient = (prods[0].orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
       applyVisu();
     }
