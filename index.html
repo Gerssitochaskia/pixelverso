@@ -558,12 +558,13 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .visu-stage .room{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .4s;}
 .visu-stage .frame{
   position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-58%) perspective(1200px) rotateY(-4deg) scale(1);
-  width:30%;max-width:45%;border-radius:4px;overflow:hidden;
+  transform:translate(-50%,-50%) perspective(1200px) rotateY(-4deg) scale(1);
+  width:46%;max-width:56%;border-radius:4px;overflow:hidden;
   box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 3px #0a0a10,0 0 0 5px #20232c;
   transition:transform .4s ease;
 }
-.visu-stage .frame img{width:100%;display:block;}
+.visu-stage .frame.orient-horizontal{ width:66%;max-width:74%; }
+.visu-stage .frame img{width:100%;height:auto;display:block;object-fit:contain;}
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
 .pill{
   padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
@@ -571,7 +572,7 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
   color:#cdd5e0;transition:.25s;
 }
 .pill.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
-.thumb-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px;}
+.thumb-row{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:14px;}
 .thumb{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;}
 .thumb.active{border-color:var(--cyan);}
 .thumb img{width:100%;height:100%;object-fit:cover;}
@@ -2254,10 +2255,9 @@ async function loadProductosJSON(){
       };
     });
 
-    // Renderizar categorías desde JSON (reemplaza los placeholders de picsum)
     _renderCategoriasFromJSON();
-    // Cuadros destacados: productos reales aleatorios
     renderBestSellersFromJSON();
+    initVisuFromJSON();
     console.log('✓ productos.json cargado:', Object.keys(PRODUCT_INDEX).length+' productos en índice');
   }catch(e){ /* fallback silencioso */ }
 }
@@ -2503,13 +2503,46 @@ const ROOM_FILTERS = {
   oficina:   { src:'https://picsum.photos/1200/750?random=903', filter:'brightness(1.05) saturate(.95)' },
   dormitorio:{ src:'https://picsum.photos/1200/750?random=904', filter:'brightness(.85) saturate(1.1) sepia(.1)' },
 };
-let visuSize = 1; let visuArt = 'images/cat-anime.png';
+let visuSize = 1; let visuArt = 'images/cat-anime.png'; let visuOrient = 'vertical';
 
 function applyVisu(){
   const frame = document.getElementById('visu-frame');
-  frame.style.transform = `translate(-50%, -58%) perspective(1200px) rotateY(-4deg) scale(${visuSize})`;
+  frame.style.transform = `translate(-50%,-50%) perspective(1200px) rotateY(-4deg) scale(${visuSize})`;
+  frame.className = 'frame orient-' + visuOrient;
   document.getElementById('visu-art').src = visuArt;
 }
+
+function initVisuFromJSON(){
+  const pool = Object.values(PRODUCT_INDEX).filter(p => p.mockup80);
+  if(!pool.length) return;
+  // 1 producto por categoría, orden aleatorio, máx 10 thumbs
+  const byCat = {};
+  pool.forEach(p=>{ if(!byCat[p.categoria]) byCat[p.categoria] = p; });
+  const picks = Object.values(byCat).sort(()=>Math.random()-.5).slice(0,10);
+  const thumbRow = document.getElementById('visu-thumbs');
+  thumbRow.innerHTML = '';
+  picks.forEach((p,i)=>{
+    const div = document.createElement('div');
+    div.className = 'thumb'+(i===0?' active':'');
+    div.dataset.art = p.mockup80;
+    div.dataset.orient = p.orientacion||'vertical';
+    div.innerHTML = `<img src="${p.mockup80}" alt="${p.nombre}"/>`;
+    div.addEventListener('click',()=>{
+      thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
+      div.classList.add('active');
+      visuArt = p.mockup80;
+      visuOrient = p.orientacion||'vertical';
+      applyVisu();
+    });
+    thumbRow.appendChild(div);
+  });
+  if(picks.length){
+    visuArt = picks[0].mockup80;
+    visuOrient = picks[0].orientacion||'vertical';
+    applyVisu();
+  }
+}
+
 document.querySelectorAll('#env-pills .pill').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('#env-pills .pill').forEach(x=>x.classList.remove('active'));
@@ -2524,14 +2557,6 @@ document.querySelectorAll('#size-pills .pill').forEach(p=>{
     document.querySelectorAll('#size-pills .pill').forEach(x=>x.classList.remove('active'));
     p.classList.add('active');
     visuSize = parseFloat(p.dataset.size);
-    applyVisu();
-  });
-});
-document.querySelectorAll('#visu-thumbs .thumb').forEach(t=>{
-  t.addEventListener('click',()=>{
-    document.querySelectorAll('#visu-thumbs .thumb').forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    visuArt = t.dataset.art;
     applyVisu();
   });
 });
