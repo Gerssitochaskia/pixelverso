@@ -2828,6 +2828,7 @@ function _renderCategoriasFromJSON(){
       if(c.dataset.fromJson !== '1') c.remove();
     });
 
+    prods.sort(()=> Math.random() - 0.5);
     prods.forEach(p=>{
       const el = document.createElement('div');
       el.className = 'card orient-'+p.orientacion;
