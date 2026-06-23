@@ -2522,14 +2522,14 @@ function initVisuFromJSON(){
       div.addEventListener('click',()=>{
         thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         div.classList.add('active');
-        visuArt = p.mockup80;
+        visuArt = p.art;
         visuOrient = (p.orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
         applyVisu();
       });
       thumbRow.appendChild(div);
     });
     if(prods.length){
-      visuArt = prods[0].mockup80;
+      visuArt = prods[0].art;
       visuOrient = (prods[0].orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
       applyVisu();
     }
