@@ -1508,12 +1508,6 @@ svg.ic-lg{width:26px;height:26px;}
     <span class="eyebrow">Catálogo</span>
     <h2 class="section-title">Cuadros destacados</h2>
     <p class="sub">Una muestra de los estilos que más nos piden. Todos en madera, 40×30 cm o 80×60 cm.</p>
-    <div class="tabs">
-      <button class="tab active" data-tab="destacados">Destacados</button>
-      <button class="tab" data-tab="nuevos">Nuevos</button>
-      <button class="tab" data-tab="populares">Populares</button>
-    </div>
-
     <div class="grid-6 reveal" id="bestsellers-grid">
       <!-- card especial upload -->
       <a class="card card-upload" href="#personalizar">
@@ -2272,26 +2266,26 @@ async function loadProductosJSON(){
  * Datos del catálogo — REEMPLAZAR con productos reales
  * ========================================================= */
 const CATEGORIAS = [
+  { slug:'deportes',      nombre:'Deportes',              img:'images/cat-deportes.png' },
+  { slug:'cristiana',     nombre:'Cristiana',             img:'images/cat-cristiana.png' },
+  { slug:'strangerthings',nombre:'Stranger Things',       img:'images/cat-strangerthings.png' },
   { slug:'anime',         nombre:'Anime',                 img:'images/cat-anime.png' },
-  { slug:'videojuegos',   nombre:'Videojuegos',           img:'images/cat-videojuegos.png' },
-  { slug:'dragonball',    nombre:'Dragon Ball Z',         img:'images/cat-dragonball.png' },
-  { slug:'marvel',        nombre:'Marvel',                img:'images/cat-marvel.png' },
-  { slug:'dc',            nombre:'DC',                    img:'images/cat-dc.png' },
   { slug:'musica',        nombre:'Música',                img:'images/cat-musica.png' },
+  { slug:'dragonball',    nombre:'Dragon Ball Z',         img:'images/cat-dragonball.png' },
+  { slug:'mafia',         nombre:'Mafia',                 img:'images/cat-mafia.png' },
   { slug:'autos',         nombre:'Autos',                 img:'images/cat-autos.png' },
   { slug:'pokemon',       nombre:'Pokémon',               img:'images/cat-pokemon.png' },
-  { slug:'mafia',         nombre:'Mafia',                 img:'images/cat-mafia.png' },
-  { slug:'enamorados',    nombre:'Enamorados',            img:'images/cat-enamorados.png' },
-  { slug:'familia',       nombre:'Cuadros familiares',    img:'images/cat-familia.png' },
-  { slug:'strangerthings',nombre:'Stranger Things',       img:'images/cat-strangerthings.png' },
   { slug:'thelastofus',   nombre:'The Last of Us',        img:'images/cat-thelastofus.png' },
-  { slug:'johnwick',      nombre:'John Wick',             img:'images/cat-johnwick.png' },
-  { slug:'nintendo',      nombre:'Nintendo',              img:'images/cat-nintendo.png' },
-  { slug:'cristiana',     nombre:'Cristiana',             img:'images/cat-cristiana.png' },
-  { slug:'deportes',      nombre:'Deportes',              img:'images/cat-deportes.png' },
-  { slug:'collage',       nombre:'Collage',               img:'images/cat-collage.png' },
   { slug:'peliculas',     nombre:'Películas',             img:'images/cat-peliculas.png' },
+  { slug:'dc',            nombre:'DC Comics',             img:'images/cat-dc.png' },
+  { slug:'enamorados',    nombre:'Enamorados',            img:'images/cat-enamorados.png' },
   { slug:'personalizado', nombre:'Espacio personalizado', img:'images/cat-personalizado.png' },
+  { slug:'collage',       nombre:'Collage',               img:'images/cat-collage.png' },
+  { slug:'familia',       nombre:'Cuadros familiares',    img:'images/cat-familia.png' },
+  { slug:'johnwick',      nombre:'John Wick',             img:'images/cat-johnwick.png' },
+  { slug:'marvel',        nombre:'Marvel',                img:'images/cat-marvel.png' },
+  { slug:'videojuegos',   nombre:'Videojuegos',           img:'images/cat-videojuegos.png' },
+  { slug:'nintendo',      nombre:'Nintendo',              img:'images/cat-nintendo.png' },
 ];
 
 /* genera 6 productos por categoría usando la imagen base + picsum random como variantes */
