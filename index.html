@@ -559,8 +559,7 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .visu-wrap{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
 .visu-wrap > div{min-width:0;}
 .visu-stage{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;min-width:0;}
-#visu-art{position:absolute;object-fit:fill;display:block;}
-#visu-room{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;mix-blend-mode:screen;}
+#visu-canvas{display:block;width:100%;height:100%;}
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
 .pill{
   padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
@@ -1627,8 +1626,7 @@ svg.ic-lg{width:26px;height:26px;}
           <button class="pill" data-env="dormitorio">Dormitorio</button>
         </div>
         <div class="visu-stage" id="visu-stage">
-          <img id="visu-art" src="" alt="Cuadro"/>
-          <img id="visu-room" src="" alt="Ambiente"/>
+          <canvas id="visu-canvas" style="width:100%;height:100%;display:block;"></canvas>
         </div>
         <div class="visu-cat-tabs" id="visu-cat-tabs"></div>
         <div class="thumb-row" id="visu-thumbs"></div>
@@ -2484,18 +2482,38 @@ const MOCKUP_COORDS = {
 const MOCKUP_RATIO = { dormitorio:'1586/992', gaming:'1448/1086', living:'1448/1086', oficina:'1448/1086' };
 let visuEnv = 'living'; let visuSize = '40'; let visuOrient = 'v'; let visuArt = '';
 
-function applyVisu(){
+function loadImg(src){ return new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=src; }); }
+
+async function applyVisu(){
   const key = `${visuEnv}-${visuSize}${visuOrient}`;
   const c = MOCKUP_COORDS[key] || MOCKUP_COORDS['living-40v'];
-  const stage = document.getElementById('visu-stage');
-  stage.style.aspectRatio = MOCKUP_RATIO[visuEnv] || '1448/1086';
-  const artEl = document.getElementById('visu-art');
-  artEl.style.left   = c.l + '%';
-  artEl.style.top    = c.t + '%';
-  artEl.style.width  = c.w + '%';
-  artEl.style.height = c.h + '%';
-  if(visuArt) artEl.src = visuArt;
-  document.getElementById('visu-room').src = `images/mockups/${key}.png`;
+  document.getElementById('visu-stage').style.aspectRatio = MOCKUP_RATIO[visuEnv] || '1448/1086';
+
+  const [roomImg, artImg] = await Promise.all([
+    loadImg(`images/mockups/${key}.png`),
+    visuArt ? loadImg(visuArt) : Promise.resolve(null)
+  ]);
+  if(!roomImg) return;
+
+  const canvas = document.getElementById('visu-canvas');
+  const W = roomImg.naturalWidth, H = roomImg.naturalHeight;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // 1. Fondo negro
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, W, H);
+
+  // 2. Arte en las coordenadas del marco
+  if(artImg){
+    const ax = W*c.l/100, ay = H*c.t/100, aw = W*c.w/100, ah = H*c.h/100;
+    ctx.drawImage(artImg, ax, ay, aw, ah);
+  }
+
+  // 3. Mockup de habitación encima con screen blend
+  ctx.globalCompositeOperation = 'screen';
+  ctx.drawImage(roomImg, 0, 0, W, H);
+  ctx.globalCompositeOperation = 'source-over';
 }
 
 function initVisuFromJSON(){
