@@ -559,16 +559,8 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .visu-wrap{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
 .visu-wrap > div{min-width:0;}
 .visu-stage{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;min-width:0;}
-.visu-stage .room{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .4s;}
-.visu-stage .frame{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%) perspective(1200px) rotateY(-4deg) scale(1);
-  width:30%;max-width:34%;border-radius:2px;overflow:hidden;
-  box-shadow:0 20px 55px rgba(0,0,0,.8);
-  transition:transform .4s ease;
-}
-.visu-stage .frame.orient-horizontal{ width:50%;max-width:56%; }
-.visu-stage .frame img{width:100%;height:auto;display:block;}
+#visu-art{position:absolute;object-fit:fill;display:block;}
+#visu-room{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;display:block;mix-blend-mode:screen;}
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
 .pill{
   padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
@@ -1634,12 +1626,9 @@ svg.ic-lg{width:26px;height:26px;}
           <button class="pill" data-env="oficina">Oficina</button>
           <button class="pill" data-env="dormitorio">Dormitorio</button>
         </div>
-        <div class="visu-stage">
-          <!-- REEMPLAZAR: imágenes reales de ambientes -->
-          <img class="room" id="visu-room" src="images/room-living.jpg" alt="Ambiente"/>
-          <div class="frame" id="visu-frame">
-            <img id="visu-art" src="" alt="Cuadro"/>
-          </div>
+        <div class="visu-stage" id="visu-stage">
+          <img id="visu-art" src="" alt="Cuadro"/>
+          <img id="visu-room" src="" alt="Ambiente"/>
         </div>
         <div class="visu-cat-tabs" id="visu-cat-tabs"></div>
         <div class="thumb-row" id="visu-thumbs"></div>
@@ -1648,8 +1637,8 @@ svg.ic-lg{width:26px;height:26px;}
         <h4>Configura tu cuadro</h4>
         <p class="muted" style="font-size:13.5px;">Tamaño elegido</p>
         <div class="pills" id="size-pills" style="margin-top:8px;">
-          <button class="pill active" data-size="0.85">40×30 cm</button>
-          <button class="pill" data-size="1.4">80×60 cm</button>
+          <button class="pill active" data-size="40">40×30 cm</button>
+          <button class="pill" data-size="80">80×60 cm</button>
         </div>
         <p class="muted" style="font-size:12.5px;margin-top:12px;">Material: madera · Disponible vertical u horizontal.</p>
         <button class="btn btn-primary btn-shimmer" style="margin-top:18px;width:100%;" onclick="addCustomFromVisu()">
@@ -2474,19 +2463,39 @@ function slideRow(id, dir){
 /* =========================================================
  * Visualizador 3D
  * ========================================================= */
-const ROOM_FILTERS = {
-  living:    { src:'images/room-living.jpg',     filter:'brightness(.9) saturate(1.05)' },
-  gaming:    { src:'images/room-gaming.jpg',     filter:'brightness(1) saturate(1.1)' },
-  oficina:   { src:'images/room-oficina.jpg',    filter:'brightness(1) saturate(1)' },
-  dormitorio:{ src:'images/room-dormitorio.jpg', filter:'brightness(.95) saturate(1.05)' },
+const MOCKUP_COORDS = {
+  'dormitorio-40v': { l:34, t:6,  w:32, h:43 },
+  'dormitorio-40h': { l:28, t:20, w:44, h:33 },
+  'dormitorio-80v': { l:27, t:4,  w:46, h:62 },
+  'dormitorio-80h': { l:17, t:13, w:66, h:50 },
+  'gaming-40v':     { l:37, t:26, w:26, h:35 },
+  'gaming-40h':     { l:28, t:33, w:44, h:33 },
+  'gaming-80v':     { l:32, t:14, w:36, h:48 },
+  'gaming-80h':     { l:15, t:24, w:70, h:53 },
+  'living-40v':     { l:12, t:26, w:26, h:35 },
+  'living-40h':     { l:6,  t:32, w:44, h:33 },
+  'living-80v':     { l:8,  t:12, w:36, h:48 },
+  'living-80h':     { l:4,  t:22, w:66, h:50 },
+  'oficina-40v':    { l:36, t:18, w:26, h:35 },
+  'oficina-40h':    { l:28, t:26, w:44, h:33 },
+  'oficina-80v':    { l:30, t:6,  w:40, h:53 },
+  'oficina-80h':    { l:18, t:18, w:64, h:48 },
 };
-let visuSize = 1; let visuArt = 'images/cat-anime.png'; let visuOrient = 'vertical';
+const MOCKUP_RATIO = { dormitorio:'1586/992', gaming:'1448/1086', living:'1448/1086', oficina:'1448/1086' };
+let visuEnv = 'living'; let visuSize = '40'; let visuOrient = 'v'; let visuArt = '';
 
 function applyVisu(){
-  const frame = document.getElementById('visu-frame');
-  frame.style.transform = `translate(-50%,-50%) perspective(1200px) rotateY(-4deg) scale(${visuSize})`;
-  frame.className = 'frame orient-' + visuOrient;
-  document.getElementById('visu-art').src = visuArt;
+  const key = `${visuEnv}-${visuSize}${visuOrient}`;
+  const c = MOCKUP_COORDS[key] || MOCKUP_COORDS['living-40v'];
+  const stage = document.getElementById('visu-stage');
+  stage.style.aspectRatio = MOCKUP_RATIO[visuEnv] || '1448/1086';
+  const artEl = document.getElementById('visu-art');
+  artEl.style.left   = c.l + '%';
+  artEl.style.top    = c.t + '%';
+  artEl.style.width  = c.w + '%';
+  artEl.style.height = c.h + '%';
+  if(visuArt) artEl.src = visuArt;
+  document.getElementById('visu-room').src = `images/mockups/${key}.png`;
 }
 
 function initVisuFromJSON(){
@@ -2514,14 +2523,14 @@ function initVisuFromJSON(){
         thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         div.classList.add('active');
         visuArt = p.mockup80;
-        visuOrient = p.orientacion||'vertical';
+        visuOrient = (p.orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
         applyVisu();
       });
       thumbRow.appendChild(div);
     });
     if(prods.length){
       visuArt = prods[0].mockup80;
-      visuOrient = prods[0].orientacion||'vertical';
+      visuOrient = (prods[0].orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
       applyVisu();
     }
   }
@@ -2561,16 +2570,15 @@ document.querySelectorAll('#env-pills .pill').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('#env-pills .pill').forEach(x=>x.classList.remove('active'));
     p.classList.add('active');
-    const env = ROOM_FILTERS[p.dataset.env];
-    const room = document.getElementById('visu-room');
-    room.src = env.src; room.style.filter = env.filter;
+    visuEnv = p.dataset.env;
+    applyVisu();
   });
 });
 document.querySelectorAll('#size-pills .pill').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('#size-pills .pill').forEach(x=>x.classList.remove('active'));
     p.classList.add('active');
-    visuSize = parseFloat(p.dataset.size);
+    visuSize = p.dataset.size;
     applyVisu();
   });
 });
