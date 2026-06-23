@@ -559,12 +559,12 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .visu-stage .frame{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%) perspective(1200px) rotateY(-4deg) scale(1);
-  width:46%;max-width:56%;border-radius:4px;overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 0 3px #0a0a10,0 0 0 5px #20232c;
+  width:46%;max-width:56%;border-radius:2px;overflow:hidden;
+  box-shadow:0 28px 70px rgba(0,0,0,.75);
   transition:transform .4s ease;
 }
-.visu-stage .frame.orient-horizontal{ width:66%;max-width:74%; }
-.visu-stage .frame img{width:100%;height:auto;display:block;object-fit:contain;}
+.visu-stage .frame.orient-horizontal{ width:68%;max-width:76%; }
+.visu-stage .frame img{width:100%;height:auto;display:block;object-fit:cover;}
 .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
 .pill{
   padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
@@ -2507,14 +2507,14 @@ function initVisuFromJSON(){
       div.addEventListener('click',()=>{
         thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         div.classList.add('active');
-        visuArt = p.art || p.mockup80;
+        visuArt = p.mockup80;
         visuOrient = p.orientacion||'vertical';
         applyVisu();
       });
       thumbRow.appendChild(div);
     });
     if(prods.length){
-      visuArt = prods[0].art || prods[0].mockup80;
+      visuArt = prods[0].mockup80;
       visuOrient = prods[0].orientacion||'vertical';
       applyVisu();
     }
