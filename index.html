@@ -2507,14 +2507,14 @@ function initVisuFromJSON(){
       div.addEventListener('click',()=>{
         thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
         div.classList.add('active');
-        visuArt = p.mockup80;
+        visuArt = p.art || p.mockup80;
         visuOrient = p.orientacion||'vertical';
         applyVisu();
       });
       thumbRow.appendChild(div);
     });
     if(prods.length){
-      visuArt = prods[0].mockup80;
+      visuArt = prods[0].art || prods[0].mockup80;
       visuOrient = prods[0].orientacion||'vertical';
       applyVisu();
     }
