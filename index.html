@@ -538,17 +538,20 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 /* ============================================================
   10. MURO COLECCIONISTAS
   ============================================================ */
-.wall-row{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;}
-.wall-row::-webkit-scrollbar{display:none;}
+.wall-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
 .wall-card{
-  flex:0 0 280px;border-radius:14px;overflow:hidden;background:var(--bg-card);
-  border:1px solid var(--border);transition:.3s;
+  border-radius:16px;overflow:hidden;background:var(--bg-card);
+  border:1px solid var(--border);transition:.3s;display:flex;flex-direction:column;
 }
-.wall-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-cyan);}
-.wall-card img{aspect-ratio:3/4;object-fit:cover;width:100%;filter:brightness(.85) saturate(1.2);}
-.wall-card .meta{padding:14px;}
-.wall-card .meta .nm{font-weight:700;font-size:16px;}
-.wall-card .meta .ct{color:var(--muted);font-size:13px;}
+.wall-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-cyan);}
+.wall-card .wall-img-wrap{overflow:hidden;aspect-ratio:4/5;flex-shrink:0;}
+.wall-card .wall-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9) saturate(1.15);transition:transform .4s;}
+.wall-card:hover .wall-img-wrap img{transform:scale(1.04);}
+.wall-card .meta{padding:16px 18px;background:var(--bg-card);}
+.wall-card .meta .nm-ct{font-weight:700;font-size:16px;display:flex;align-items:center;gap:6px;}
+.wall-card .meta .nm-ct .dot{color:var(--muted);font-weight:400;}
+.wall-card .meta .nm-ct .ct{color:var(--muted);font-weight:500;font-size:14px;}
+.wall-card .meta .tag{color:var(--muted);font-size:12px;margin-top:5px;display:flex;align-items:center;gap:5px;}
 
 /* ============================================================
   11. VISUALIZADOR 3D
@@ -1092,7 +1095,7 @@ svg.ic-lg{width:26px;height:26px;}
   .reviews{ gap:12px; }
   .review{ flex:0 0 260px; padding:16px; }
   .wall-row{ gap:12px; }
-  .wall-card{ flex:0 0 220px; }
+  .wall-card{ flex:none; }
 
   /* VISUALIZER */
   .visu-wrap{ grid-template-columns:1fr; gap:20px; }
@@ -1209,9 +1212,8 @@ svg.ic-lg{width:26px;height:26px;}
   .review p{ font-size:13px; }
 
   /* WALL */
-  .wall-row{ gap:10px; }
-  .wall-card{ flex:0 0 180px; }
-  .wall-card .meta .nm{ font-size:14px; }
+  .wall-row{ grid-template-columns:repeat(2,1fr); gap:10px; }
+  .wall-card .meta .nm-ct{ font-size:14px; }
 
   /* VISU */
   .visu-stage{ aspect-ratio:4/3; }
@@ -2407,8 +2409,11 @@ function renderWall(){
     const card = document.createElement('div');
     card.className='wall-card';
     card.innerHTML = `
-      <img loading="lazy" src="${d.img}" alt="${d.nm}"/>
-      <div class="meta"><div class="nm">${d.nm}</div><div class="ct">${d.ct}</div></div>
+      <div class="wall-img-wrap"><img loading="lazy" src="${d.img}" alt="${d.nm}"/></div>
+      <div class="meta">
+        <div class="nm-ct"><span>${d.nm}</span><span class="dot">·</span><span class="ct">${d.ct}</span></div>
+        <div class="tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Foto real enviada por cliente</div>
+      </div>
     `;
     wall.appendChild(card);
   });
