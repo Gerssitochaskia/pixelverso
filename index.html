@@ -2400,16 +2400,16 @@ function renderCategorias(){
 function renderWall(){
   const wall = document.getElementById('wall-row');
   const data = [
-    { nm:'Jenny',    ct:'Concepción',  img:'images/wall-jenny.jpg' },
-    { nm:'Karen',    ct:'Concepción',  img:'images/wall-karen.jpg' },
-    { nm:'Paola',    ct:'Hualqui',     img:'images/wall-paola.jpg' },
-    { nm:'Edgar',    ct:'Concepción',  img:'images/wall-edgar.jpg' },
+    { nm:'Jenny',    ct:'Concepción',  img:'images/wall-jenny.jpg', pos:'center center' },
+    { nm:'Karen',    ct:'Concepción',  img:'images/wall-karen.jpg', pos:'20% 28%' },
+    { nm:'Paola',    ct:'Hualqui',     img:'images/wall-paola.jpg', pos:'center 35%' },
+    { nm:'Edgar',    ct:'Concepción',  img:'images/wall-edgar.jpg', pos:'28% 18%' },
   ];
   data.forEach((d)=>{
     const card = document.createElement('div');
     card.className='wall-card';
     card.innerHTML = `
-      <div class="wall-img-wrap"><img loading="lazy" src="${d.img}" alt="${d.nm}"/></div>
+      <div class="wall-img-wrap"><img loading="lazy" src="${d.img}" alt="${d.nm}" style="object-position:${d.pos||'center center'}"/></div>
       <div class="meta">
         <div class="nm-ct"><span>${d.nm}</span><span class="dot">·</span><span class="ct">${d.ct}</span></div>
         <div class="tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Foto real enviada por cliente</div>
