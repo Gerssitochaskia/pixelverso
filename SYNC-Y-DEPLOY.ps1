@@ -97,11 +97,32 @@ if ($gitStatus) {
     Write-Host "   Sin cambios nuevos" -ForegroundColor Gray
 }
 
-# 4. FIREBASE DEPLOY
-Write-Host "4. Desplegando Firebase..." -ForegroundColor Yellow
+# 4. LIMPIAR VERSIONES VIEJAS DE FIREBASE (mantener solo las 2 ultimas)
+Write-Host "4. Limpiando versiones viejas de Firebase..." -ForegroundColor Yellow
+try {
+    $cfg = Get-Content "C:\Users\elbol\.config\configstore\firebase-tools.json" -Raw | ConvertFrom-Json
+    $rt = $cfg.tokens.refresh_token
+    $b = "grant_type=refresh_token&refresh_token=$([Uri]::EscapeDataString($rt))&client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&client_secret=j9iVZfS8kkCEFUPaAeJV0sAi"
+    $tk = (Invoke-RestMethod -Method Post -Uri "https://oauth2.googleapis.com/token" -Body $b -ContentType "application/x-www-form-urlencoded").access_token
+    $vs = (Invoke-RestMethod -Uri "https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/pixelverso-studio/versions?pageSize=25" -Headers @{ Authorization = "Bearer $tk" }).versions
+    $old = $vs | Sort-Object createTime | Select-Object -SkipLast 2
+    foreach ($v in $old) {
+        Invoke-RestMethod -Method Delete -Uri "https://firebasehosting.googleapis.com/v1beta1/$($v.name)" -Headers @{ Authorization = "Bearer $tk" } | Out-Null
+    }
+    if ($old.Count -gt 0) { Write-Host "   Eliminadas $($old.Count) versiones viejas" -ForegroundColor Gray }
+    else { Write-Host "   Sin versiones viejas" -ForegroundColor Gray }
+} catch { Write-Host "   (limpieza omitida)" -ForegroundColor Gray }
+
+# 5. FIREBASE DEPLOY
+Write-Host "5. Desplegando Firebase..." -ForegroundColor Yellow
 firebase login:use respetadoresdocentes@gmail.com 2>&1 | Out-Null
 firebase use pixelverso-studio 2>&1 | Out-Null
-firebase deploy --only hosting 2>&1 | Out-Null
-Write-Host "   OK: https://pixelverso-studio.web.app" -ForegroundColor Green
+$deployResult = firebase deploy --only hosting 2>&1
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "   OK: https://pixelverso-studio.web.app" -ForegroundColor Green
+} else {
+    Write-Host "   ERROR en deploy:" -ForegroundColor Red
+    $deployResult | Select-String "Error" | ForEach-Object { Write-Host "   $_" -ForegroundColor Red }
+}
 
 Write-Host "=== LISTO ===" -ForegroundColor Cyan
