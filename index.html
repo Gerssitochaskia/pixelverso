@@ -572,7 +572,11 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
   color:#cdd5e0;transition:.25s;
 }
 .pill.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
-.thumb-row{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:14px;}
+.visu-cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;margin-bottom:8px;}
+.visu-cat-tab{padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--border-2);font-size:11px;font-weight:600;color:#cdd5e0;cursor:pointer;transition:.2s;white-space:nowrap;}
+.visu-cat-tab:hover{border-color:var(--cyan);color:var(--cyan);}
+.visu-cat-tab.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
+.thumb-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
 .thumb{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;}
 .thumb.active{border-color:var(--cyan);}
 .thumb img{width:100%;height:100%;object-fit:cover;}
@@ -1652,19 +1656,13 @@ svg.ic-lg{width:26px;height:26px;}
         </div>
         <div class="visu-stage">
           <!-- REEMPLAZAR: imágenes reales de ambientes -->
-          <img class="room" id="visu-room" src="https://picsum.photos/1200/750?random=901" alt="Ambiente"/>
+          <img class="room" id="visu-room" src="images/room-living.jpg" alt="Ambiente"/>
           <div class="frame" id="visu-frame">
-            <img id="visu-art" src="images/cat-anime.png" alt="Cuadro"/>
+            <img id="visu-art" src="" alt="Cuadro"/>
           </div>
         </div>
-        <div class="thumb-row" id="visu-thumbs">
-          <div class="thumb active" data-art="images/cat-anime.png"><img src="images/cat-anime.png" alt=""/></div>
-          <div class="thumb" data-art="images/cat-dragonball.png"><img src="images/cat-dragonball.png" alt=""/></div>
-          <div class="thumb" data-art="images/cat-marvel.png"><img src="images/cat-marvel.png" alt=""/></div>
-          <div class="thumb" data-art="images/cat-pokemon.png"><img src="images/cat-pokemon.png" alt=""/></div>
-          <div class="thumb" data-art="images/cat-johnwick.png"><img src="images/cat-johnwick.png" alt=""/></div>
-          <div class="thumb" data-art="images/cat-thelastofus.png"><img src="images/cat-thelastofus.png" alt=""/></div>
-        </div>
+        <div class="visu-cat-tabs" id="visu-cat-tabs"></div>
+        <div class="thumb-row" id="visu-thumbs"></div>
       </div>
       <div class="visu-side">
         <h4>Configura tu cuadro</h4>
@@ -2515,32 +2513,69 @@ function applyVisu(){
 function initVisuFromJSON(){
   const pool = Object.values(PRODUCT_INDEX).filter(p => p.mockup80);
   if(!pool.length) return;
-  // 1 producto por categoría, orden aleatorio, máx 10 thumbs
+
+  // Agrupar por categoría
   const byCat = {};
-  pool.forEach(p=>{ if(!byCat[p.categoria]) byCat[p.categoria] = p; });
-  const picks = Object.values(byCat).sort(()=>Math.random()-.5).slice(0,10);
-  const thumbRow = document.getElementById('visu-thumbs');
-  thumbRow.innerHTML = '';
-  picks.forEach((p,i)=>{
-    const div = document.createElement('div');
-    div.className = 'thumb'+(i===0?' active':'');
-    div.dataset.art = p.mockup80;
-    div.dataset.orient = p.orientacion||'vertical';
-    div.innerHTML = `<img src="${p.mockup80}" alt="${p.nombre}"/>`;
-    div.addEventListener('click',()=>{
-      thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
-      div.classList.add('active');
-      visuArt = p.mockup80;
-      visuOrient = p.orientacion||'vertical';
-      applyVisu();
-    });
-    thumbRow.appendChild(div);
+  pool.forEach(p=>{
+    if(!byCat[p.categoria]) byCat[p.categoria] = [];
+    byCat[p.categoria].push(p);
   });
-  if(picks.length){
-    visuArt = picks[0].mockup80;
-    visuOrient = picks[0].orientacion||'vertical';
-    applyVisu();
+
+  const catTabs = document.getElementById('visu-cat-tabs');
+  const thumbRow = document.getElementById('visu-thumbs');
+
+  function renderThumbs(prods){
+    thumbRow.innerHTML = '';
+    prods.forEach((p,i)=>{
+      const div = document.createElement('div');
+      div.className = 'thumb'+(i===0?' active':'');
+      div.style.cssText = 'width:72px;height:72px;flex-shrink:0;';
+      div.innerHTML = `<img src="${p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"/>`;
+      div.addEventListener('click',()=>{
+        thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
+        div.classList.add('active');
+        visuArt = p.mockup80;
+        visuOrient = p.orientacion||'vertical';
+        applyVisu();
+      });
+      thumbRow.appendChild(div);
+    });
+    if(prods.length){
+      visuArt = prods[0].mockup80;
+      visuOrient = prods[0].orientacion||'vertical';
+      applyVisu();
+    }
   }
+
+  // Botón "Mix" — 1 producto random por categoría
+  catTabs.innerHTML = '';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'visu-cat-tab active';
+  allBtn.textContent = 'Mix';
+  allBtn.addEventListener('click',()=>{
+    catTabs.querySelectorAll('.visu-cat-tab').forEach(x=>x.classList.remove('active'));
+    allBtn.classList.add('active');
+    const mix = Object.values(byCat).map(arr=>arr[Math.floor(Math.random()*arr.length)]);
+    renderThumbs(mix);
+  });
+  catTabs.appendChild(allBtn);
+
+  // Un botón por categoría, orden alfabético
+  Object.keys(byCat).sort().forEach(cat=>{
+    const btn = document.createElement('button');
+    btn.className = 'visu-cat-tab';
+    btn.textContent = cat;
+    btn.addEventListener('click',()=>{
+      catTabs.querySelectorAll('.visu-cat-tab').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      renderThumbs(byCat[cat]);
+    });
+    catTabs.appendChild(btn);
+  });
+
+  // Mostrar mix inicial
+  const mix = Object.values(byCat).map(arr=>arr[Math.floor(Math.random()*arr.length)]);
+  renderThumbs(mix);
 }
 
 document.querySelectorAll('#env-pills .pill').forEach(p=>{
