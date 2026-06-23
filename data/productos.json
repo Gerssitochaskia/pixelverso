@@ -649,33 +649,6 @@
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "strangerthings-13",
-                          "nombre":  "Stranger Things #13",
-                          "mockup40":  "images/strangerthings/strangerthings-13-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-13-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-13-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "horizontal"
-                      },
-                      {
-                          "id":  "strangerthings-14",
-                          "nombre":  "Stranger Things #14",
-                          "mockup40":  "images/strangerthings/strangerthings-14-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-14-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-14-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "horizontal"
-                      },
-                      {
-                          "id":  "strangerthings-15",
-                          "nombre":  "Stranger Things #15",
-                          "mockup40":  "images/strangerthings/strangerthings-15-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-15-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-15-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "horizontal"
-                      },
-                      {
                           "id":  "thelastofus-01",
                           "nombre":  "The Last of Us #1",
                           "mockup40":  "images/thelastofus/thelastofus-01-mockup-40x30.jpg",
