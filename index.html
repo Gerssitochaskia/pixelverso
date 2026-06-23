@@ -2397,20 +2397,16 @@ function renderCategorias(){
 function renderWall(){
   const wall = document.getElementById('wall-row');
   const data = [
-    { nm:'Camila R.',    ct:'Concepción' },
-    { nm:'Matías F.',    ct:'Santiago' },
-    { nm:'Valentina P.', ct:'Talcahuano' },
-    { nm:'Diego A.',     ct:'Viña del Mar' },
-    { nm:'Francisca L.', ct:'Hualpén' },
-    { nm:'Joaquín N.',   ct:'Coronel' },
-    { nm:'Antonia M.',   ct:'San Pedro' },
-    { nm:'Tomás S.',     ct:'Chiguayante' },
+    { nm:'Jenny',    ct:'Concepción',  img:'images/wall-jenny.jpg' },
+    { nm:'Karen',    ct:'Concepción',  img:'images/wall-karen.jpg' },
+    { nm:'Paola',    ct:'Hualqui',     img:'images/wall-paola.jpg' },
+    { nm:'Edgar',    ct:'Concepción',  img:'images/wall-edgar.jpg' },
   ];
-  data.forEach((d,i)=>{
+  data.forEach((d)=>{
     const card = document.createElement('div');
     card.className='wall-card';
     card.innerHTML = `
-      <img loading="lazy" src="https://picsum.photos/420/560?random=${500+i}" alt="${d.nm}"/>
+      <img loading="lazy" src="${d.img}" alt="${d.nm}"/>
       <div class="meta"><div class="nm">${d.nm}</div><div class="ct">${d.ct}</div></div>
     `;
     wall.appendChild(card);
