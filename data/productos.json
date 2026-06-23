@@ -1,15 +1,6 @@
 {
     "productos":  [
                       {
-                          "id":  "anime-01",
-                          "nombre":  "Anime #1",
-                          "mockup40":  "images/anime/anime-01-mockup-40x30.jpg",
-                          "mockup80":  "images/anime/anime-01-mockup-80x60.jpg",
-                          "art":  "images/anime/anime-01-art.jpg",
-                          "categoria":  "Anime",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "anime-02",
                           "nombre":  "Anime #2",
                           "mockup40":  "images/anime/anime-02-mockup-40x30.jpg",
@@ -19,22 +10,13 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "anime-03",
-                          "nombre":  "Anime #3",
-                          "mockup40":  "images/anime/anime-03-mockup-40x30.jpg",
-                          "mockup80":  "images/anime/anime-03-mockup-80x60.jpg",
-                          "art":  "images/anime/anime-03-art.jpg",
-                          "categoria":  "Anime",
-                          "orientacion":  "horizontal"
-                      },
-                      {
                           "id":  "anime-04",
                           "nombre":  "Anime #4",
                           "mockup40":  "images/anime/anime-04-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-04-mockup-80x60.jpg",
                           "art":  "images/anime/anime-04-art.jpg",
                           "categoria":  "Anime",
-                          "orientacion":  "vertical"
+                          "orientacion":  "horizontal"
                       },
                       {
                           "id":  "anime-05",
@@ -64,12 +46,21 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "autos-01",
-                          "nombre":  "Autos #1",
-                          "mockup40":  "images/autos/autos-01-mockup-40x30.jpg",
-                          "mockup80":  "images/autos/autos-01-mockup-80x60.jpg",
-                          "art":  "images/autos/autos-01-art.jpg",
-                          "categoria":  "Autos",
+                          "id":  "anime-08",
+                          "nombre":  "Anime #8",
+                          "mockup40":  "images/anime/anime-08-mockup-40x30.jpg",
+                          "mockup80":  "images/anime/anime-08-mockup-80x60.jpg",
+                          "art":  "images/anime/anime-08-art.jpg",
+                          "categoria":  "Anime",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "anime-09",
+                          "nombre":  "Anime #9",
+                          "mockup40":  "images/anime/anime-09-mockup-40x30.jpg",
+                          "mockup80":  "images/anime/anime-09-mockup-80x60.jpg",
+                          "art":  "images/anime/anime-09-art.jpg",
+                          "categoria":  "Anime",
                           "orientacion":  "vertical"
                       },
                       {
@@ -88,7 +79,7 @@
                           "mockup80":  "images/autos/autos-03-mockup-80x60.jpg",
                           "art":  "images/autos/autos-03-art.jpg",
                           "categoria":  "Autos",
-                          "orientacion":  "horizontal"
+                          "orientacion":  "vertical"
                       },
                       {
                           "id":  "autos-04",
@@ -100,20 +91,29 @@
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "collage-01",
-                          "nombre":  "Collage #1",
-                          "mockup40":  "images/collage/collage-01-mockup-40x30.jpg",
-                          "mockup80":  "images/collage/collage-01-mockup-80x60.jpg",
-                          "art":  "images/collage/collage-01-art.jpg",
+                          "id":  "autos-05",
+                          "nombre":  "Autos #5",
+                          "mockup40":  "images/autos/autos-05-mockup-40x30.jpg",
+                          "mockup80":  "images/autos/autos-05-mockup-80x60.jpg",
+                          "art":  "images/autos/autos-05-art.jpg",
+                          "categoria":  "Autos",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "collage-05",
+                          "nombre":  "Collage #5",
+                          "mockup40":  "images/collage/collage-05-mockup-40x30.jpg",
+                          "mockup80":  "images/collage/collage-05-mockup-80x60.jpg",
+                          "art":  "images/collage/collage-05-art.jpg",
                           "categoria":  "Collage",
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "collage-02",
-                          "nombre":  "Collage #2",
-                          "mockup40":  "images/collage/collage-02-mockup-40x30.jpg",
-                          "mockup80":  "images/collage/collage-02-mockup-80x60.jpg",
-                          "art":  "images/collage/collage-02-art.jpg",
+                          "id":  "collage-06",
+                          "nombre":  "Collage #6",
+                          "mockup40":  "images/collage/collage-06-mockup-40x30.jpg",
+                          "mockup80":  "images/collage/collage-06-mockup-80x60.jpg",
+                          "art":  "images/collage/collage-06-art.jpg",
                           "categoria":  "Collage",
                           "orientacion":  "horizontal"
                       },
@@ -163,15 +163,6 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "cristiana-06",
-                          "nombre":  "Cristiana #6",
-                          "mockup40":  "images/cristiana/cristiana-06-mockup-40x30.jpg",
-                          "mockup80":  "images/cristiana/cristiana-06-mockup-80x60.jpg",
-                          "art":  "images/cristiana/cristiana-06-art.jpg",
-                          "categoria":  "Cristiana",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "cristiana-07",
                           "nombre":  "Cristiana #7",
                           "mockup40":  "images/cristiana/cristiana-07-mockup-40x30.jpg",
@@ -186,6 +177,15 @@
                           "mockup40":  "images/cristiana/cristiana-08-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-08-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-08-art.jpg",
+                          "categoria":  "Cristiana",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "cristiana-09",
+                          "nombre":  "Cristiana #9",
+                          "mockup40":  "images/cristiana/cristiana-09-mockup-40x30.jpg",
+                          "mockup80":  "images/cristiana/cristiana-09-mockup-80x60.jpg",
+                          "art":  "images/cristiana/cristiana-09-art.jpg",
                           "categoria":  "Cristiana",
                           "orientacion":  "vertical"
                       },
@@ -235,213 +235,6 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "deportes-03",
-                          "nombre":  "Deportes #3",
-                          "mockup40":  "images/deportes/deportes-03-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-03-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-03-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-04",
-                          "nombre":  "Deportes #4",
-                          "mockup40":  "images/deportes/deportes-04-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-04-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-04-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-05",
-                          "nombre":  "Deportes #5",
-                          "mockup40":  "images/deportes/deportes-05-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-05-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-05-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-06",
-                          "nombre":  "Deportes #6",
-                          "mockup40":  "images/deportes/deportes-06-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-06-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-06-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-07",
-                          "nombre":  "Deportes #7",
-                          "mockup40":  "images/deportes/deportes-07-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-07-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-07-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-08",
-                          "nombre":  "Deportes #8",
-                          "mockup40":  "images/deportes/deportes-08-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-08-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-08-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-09",
-                          "nombre":  "Deportes #9",
-                          "mockup40":  "images/deportes/deportes-09-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-09-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-09-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-10",
-                          "nombre":  "Deportes #10",
-                          "mockup40":  "images/deportes/deportes-10-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-10-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-10-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-11",
-                          "nombre":  "Deportes #11",
-                          "mockup40":  "images/deportes/deportes-11-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-11-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-11-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-12",
-                          "nombre":  "Deportes #12",
-                          "mockup40":  "images/deportes/deportes-12-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-12-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-12-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-13",
-                          "nombre":  "Deportes #13",
-                          "mockup40":  "images/deportes/deportes-13-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-13-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-13-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-14",
-                          "nombre":  "Deportes #14",
-                          "mockup40":  "images/deportes/deportes-14-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-14-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-14-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-15",
-                          "nombre":  "Deportes #15",
-                          "mockup40":  "images/deportes/deportes-15-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-15-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-15-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-16",
-                          "nombre":  "Deportes #16",
-                          "mockup40":  "images/deportes/deportes-16-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-16-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-16-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-17",
-                          "nombre":  "Deportes #17",
-                          "mockup40":  "images/deportes/deportes-17-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-17-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-17-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-18",
-                          "nombre":  "Deportes #18",
-                          "mockup40":  "images/deportes/deportes-18-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-18-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-18-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-19",
-                          "nombre":  "Deportes #19",
-                          "mockup40":  "images/deportes/deportes-19-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-19-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-19-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-20",
-                          "nombre":  "Deportes #20",
-                          "mockup40":  "images/deportes/deportes-20-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-20-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-20-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-21",
-                          "nombre":  "Deportes #21",
-                          "mockup40":  "images/deportes/deportes-21-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-21-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-21-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-22",
-                          "nombre":  "Deportes #22",
-                          "mockup40":  "images/deportes/deportes-22-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-22-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-22-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-23",
-                          "nombre":  "Deportes #23",
-                          "mockup40":  "images/deportes/deportes-23-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-23-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-23-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-24",
-                          "nombre":  "Deportes #24",
-                          "mockup40":  "images/deportes/deportes-24-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-24-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-24-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "deportes-25",
-                          "nombre":  "Deportes #25",
-                          "mockup40":  "images/deportes/deportes-25-mockup-40x30.jpg",
-                          "mockup80":  "images/deportes/deportes-25-mockup-80x60.jpg",
-                          "art":  "images/deportes/deportes-25-art.jpg",
-                          "categoria":  "Deportes",
-                          "orientacion":  "horizontal"
-                      },
-                      {
                           "id":  "dragonball-01",
                           "nombre":  "Dragon Ball Z #1",
                           "mockup40":  "images/dragonball/dragonball-01-mockup-40x30.jpg",
@@ -449,15 +242,6 @@
                           "art":  "images/dragonball/dragonball-01-art.jpg",
                           "categoria":  "Dragon Ball Z",
                           "orientacion":  "horizontal"
-                      },
-                      {
-                          "id":  "dragonball-02",
-                          "nombre":  "Dragon Ball Z #2",
-                          "mockup40":  "images/dragonball/dragonball-02-mockup-40x30.jpg",
-                          "mockup80":  "images/dragonball/dragonball-02-mockup-80x60.jpg",
-                          "art":  "images/dragonball/dragonball-02-art.jpg",
-                          "categoria":  "Dragon Ball Z",
-                          "orientacion":  "vertical"
                       },
                       {
                           "id":  "dragonball-03",
@@ -478,20 +262,29 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "dragonball-05",
-                          "nombre":  "Dragon Ball Z #5",
-                          "mockup40":  "images/dragonball/dragonball-05-mockup-40x30.jpg",
-                          "mockup80":  "images/dragonball/dragonball-05-mockup-80x60.jpg",
-                          "art":  "images/dragonball/dragonball-05-art.jpg",
-                          "categoria":  "Dragon Ball Z",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "dragonball-06",
                           "nombre":  "Dragon Ball Z #6",
                           "mockup40":  "images/dragonball/dragonball-06-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-06-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-06-art.jpg",
+                          "categoria":  "Dragon Ball Z",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "dragonball-07",
+                          "nombre":  "Dragon Ball Z #7",
+                          "mockup40":  "images/dragonball/dragonball-07-mockup-40x30.jpg",
+                          "mockup80":  "images/dragonball/dragonball-07-mockup-80x60.jpg",
+                          "art":  "images/dragonball/dragonball-07-art.jpg",
+                          "categoria":  "Dragon Ball Z",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "dragonball-08",
+                          "nombre":  "Dragon Ball Z #8",
+                          "mockup40":  "images/dragonball/dragonball-08-mockup-40x30.jpg",
+                          "mockup80":  "images/dragonball/dragonball-08-mockup-80x60.jpg",
+                          "art":  "images/dragonball/dragonball-08-art.jpg",
                           "categoria":  "Dragon Ball Z",
                           "orientacion":  "vertical"
                       },
@@ -505,20 +298,20 @@
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "enamorados-02",
-                          "nombre":  "Enamorados #2",
-                          "mockup40":  "images/enamorados/enamorados-02-mockup-40x30.jpg",
-                          "mockup80":  "images/enamorados/enamorados-02-mockup-80x60.jpg",
-                          "art":  "images/enamorados/enamorados-02-art.jpg",
-                          "categoria":  "Enamorados",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "enamorados-03",
                           "nombre":  "Enamorados #3",
                           "mockup40":  "images/enamorados/enamorados-03-mockup-40x30.jpg",
                           "mockup80":  "images/enamorados/enamorados-03-mockup-80x60.jpg",
                           "art":  "images/enamorados/enamorados-03-art.jpg",
+                          "categoria":  "Enamorados",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "enamorados-04",
+                          "nombre":  "Enamorados #4",
+                          "mockup40":  "images/enamorados/enamorados-04-mockup-40x30.jpg",
+                          "mockup80":  "images/enamorados/enamorados-04-mockup-80x60.jpg",
+                          "art":  "images/enamorados/enamorados-04-art.jpg",
                           "categoria":  "Enamorados",
                           "orientacion":  "vertical"
                       },
@@ -568,15 +361,6 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "mafia-02",
-                          "nombre":  "Mafia #2",
-                          "mockup40":  "images/mafia/mafia-02-mockup-40x30.jpg",
-                          "mockup80":  "images/mafia/mafia-02-mockup-80x60.jpg",
-                          "art":  "images/mafia/mafia-02-art.jpg",
-                          "categoria":  "Mafia",
-                          "orientacion":  "horizontal"
-                      },
-                      {
                           "id":  "mafia-03",
                           "nombre":  "Mafia #3",
                           "mockup40":  "images/mafia/mafia-03-mockup-40x30.jpg",
@@ -592,14 +376,23 @@
                           "mockup80":  "images/mafia/mafia-04-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-04-art.jpg",
                           "categoria":  "Mafia",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "mafia-06",
+                          "nombre":  "Mafia #6",
+                          "mockup40":  "images/mafia/mafia-06-mockup-40x30.jpg",
+                          "mockup80":  "images/mafia/mafia-06-mockup-80x60.jpg",
+                          "art":  "images/mafia/mafia-06-art.jpg",
+                          "categoria":  "Mafia",
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "mafia-05",
-                          "nombre":  "Mafia #5",
-                          "mockup40":  "images/mafia/mafia-05-mockup-40x30.jpg",
-                          "mockup80":  "images/mafia/mafia-05-mockup-80x60.jpg",
-                          "art":  "images/mafia/mafia-05-art.jpg",
+                          "id":  "mafia-08",
+                          "nombre":  "Mafia #8",
+                          "mockup40":  "images/mafia/mafia-08-mockup-40x30.jpg",
+                          "mockup80":  "images/mafia/mafia-08-mockup-80x60.jpg",
+                          "art":  "images/mafia/mafia-08-art.jpg",
                           "categoria":  "Mafia",
                           "orientacion":  "vertical"
                       },
@@ -623,65 +416,65 @@
                       },
                       {
                           "id":  "musica-01",
-                          "nombre":  "Música #1",
+                          "nombre":  "Musica #1",
                           "mockup40":  "images/musica/musica-01-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-01-mockup-80x60.jpg",
                           "art":  "images/musica/musica-01-art.jpg",
-                          "categoria":  "Música",
+                          "categoria":  "Musica",
                           "orientacion":  "vertical"
                       },
                       {
                           "id":  "musica-02",
-                          "nombre":  "Música #2",
+                          "nombre":  "Musica #2",
                           "mockup40":  "images/musica/musica-02-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-02-mockup-80x60.jpg",
                           "art":  "images/musica/musica-02-art.jpg",
-                          "categoria":  "Música",
+                          "categoria":  "Musica",
                           "orientacion":  "horizontal"
                       },
                       {
                           "id":  "musica-03",
-                          "nombre":  "Música #3",
+                          "nombre":  "Musica #3",
                           "mockup40":  "images/musica/musica-03-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-03-mockup-80x60.jpg",
                           "art":  "images/musica/musica-03-art.jpg",
-                          "categoria":  "Música",
+                          "categoria":  "Musica",
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "musica-04",
-                          "nombre":  "Música #4",
-                          "mockup40":  "images/musica/musica-04-mockup-40x30.jpg",
-                          "mockup80":  "images/musica/musica-04-mockup-80x60.jpg",
-                          "art":  "images/musica/musica-04-art.jpg",
-                          "categoria":  "Música",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "musica-05",
-                          "nombre":  "Música #5",
+                          "nombre":  "Musica #5",
                           "mockup40":  "images/musica/musica-05-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-05-mockup-80x60.jpg",
                           "art":  "images/musica/musica-05-art.jpg",
-                          "categoria":  "Música",
+                          "categoria":  "Musica",
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "musica-06",
-                          "nombre":  "Música #6",
-                          "mockup40":  "images/musica/musica-06-mockup-40x30.jpg",
-                          "mockup80":  "images/musica/musica-06-mockup-80x60.jpg",
-                          "art":  "images/musica/musica-06-art.jpg",
-                          "categoria":  "Música",
+                          "id":  "musica-08",
+                          "nombre":  "Musica #8",
+                          "mockup40":  "images/musica/musica-08-mockup-40x30.jpg",
+                          "mockup80":  "images/musica/musica-08-mockup-80x60.jpg",
+                          "art":  "images/musica/musica-08-art.jpg",
+                          "categoria":  "Musica",
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "musica-07",
-                          "nombre":  "Música #7",
-                          "mockup40":  "images/musica/musica-07-mockup-40x30.jpg",
-                          "mockup80":  "images/musica/musica-07-mockup-80x60.jpg",
-                          "art":  "images/musica/musica-07-art.jpg",
-                          "categoria":  "Música",
+                          "id":  "musica-09",
+                          "nombre":  "Musica #9",
+                          "mockup40":  "images/musica/musica-09-mockup-40x30.jpg",
+                          "mockup80":  "images/musica/musica-09-mockup-80x60.jpg",
+                          "art":  "images/musica/musica-09-art.jpg",
+                          "categoria":  "Musica",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "musica-10",
+                          "nombre":  "Musica #10",
+                          "mockup40":  "images/musica/musica-10-mockup-40x30.jpg",
+                          "mockup80":  "images/musica/musica-10-mockup-80x60.jpg",
+                          "art":  "images/musica/musica-10-art.jpg",
+                          "categoria":  "Musica",
                           "orientacion":  "vertical"
                       },
                       {
@@ -695,29 +488,29 @@
                       },
                       {
                           "id":  "peliculas-01",
-                          "nombre":  "Películas #1",
+                          "nombre":  "Peliculas #1",
                           "mockup40":  "images/peliculas/peliculas-01-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-01-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-01-art.jpg",
-                          "categoria":  "Películas",
+                          "categoria":  "Peliculas",
                           "orientacion":  "vertical"
                       },
                       {
                           "id":  "peliculas-02",
-                          "nombre":  "Películas #2",
+                          "nombre":  "Peliculas #2",
                           "mockup40":  "images/peliculas/peliculas-02-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-02-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-02-art.jpg",
-                          "categoria":  "Películas",
+                          "categoria":  "Peliculas",
                           "orientacion":  "horizontal"
                       },
                       {
                           "id":  "peliculas-03",
-                          "nombre":  "Películas #3",
+                          "nombre":  "Peliculas #3",
                           "mockup40":  "images/peliculas/peliculas-03-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-03-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-03-art.jpg",
-                          "categoria":  "Películas",
+                          "categoria":  "Peliculas",
                           "orientacion":  "horizontal"
                       },
                       {
@@ -748,39 +541,39 @@
                           "orientacion":  "horizontal"
                       },
                       {
-                          "id":  "pokemon-01",
-                          "nombre":  "Pokémon #1",
-                          "mockup40":  "images/pokemon/pokemon-01-mockup-40x30.jpg",
-                          "mockup80":  "images/pokemon/pokemon-01-mockup-80x60.jpg",
-                          "art":  "images/pokemon/pokemon-01-art.jpg",
-                          "categoria":  "Pokémon",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "pokemon-02",
-                          "nombre":  "Pokémon #2",
+                          "nombre":  "Pokemon #2",
                           "mockup40":  "images/pokemon/pokemon-02-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-02-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-02-art.jpg",
-                          "categoria":  "Pokémon",
+                          "categoria":  "Pokemon",
                           "orientacion":  "vertical"
                       },
                       {
                           "id":  "pokemon-03",
-                          "nombre":  "Pokémon #3",
+                          "nombre":  "Pokemon #3",
                           "mockup40":  "images/pokemon/pokemon-03-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-03-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-03-art.jpg",
-                          "categoria":  "Pokémon",
+                          "categoria":  "Pokemon",
                           "orientacion":  "vertical"
                       },
                       {
                           "id":  "pokemon-04",
-                          "nombre":  "Pokémon #4",
+                          "nombre":  "Pokemon #4",
                           "mockup40":  "images/pokemon/pokemon-04-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-04-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-04-art.jpg",
-                          "categoria":  "Pokémon",
+                          "categoria":  "Pokemon",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "pokemon-05",
+                          "nombre":  "Pokemon #5",
+                          "mockup40":  "images/pokemon/pokemon-05-mockup-40x30.jpg",
+                          "mockup80":  "images/pokemon/pokemon-05-mockup-80x60.jpg",
+                          "art":  "images/pokemon/pokemon-05-art.jpg",
+                          "categoria":  "Pokemon",
                           "orientacion":  "vertical"
                       },
                       {
@@ -789,24 +582,6 @@
                           "mockup40":  "images/strangerthings/strangerthings-01-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-01-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-01-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "strangerthings-02",
-                          "nombre":  "Stranger Things #2",
-                          "mockup40":  "images/strangerthings/strangerthings-02-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-02-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-02-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "strangerthings-03",
-                          "nombre":  "Stranger Things #3",
-                          "mockup40":  "images/strangerthings/strangerthings-03-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-03-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-03-art.jpg",
                           "categoria":  "Stranger Things",
                           "orientacion":  "vertical"
                       },
@@ -820,31 +595,13 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "strangerthings-05",
-                          "nombre":  "Stranger Things #5",
-                          "mockup40":  "images/strangerthings/strangerthings-05-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-05-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-05-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "vertical"
-                      },
-                      {
-                          "id":  "strangerthings-06",
-                          "nombre":  "Stranger Things #6",
-                          "mockup40":  "images/strangerthings/strangerthings-06-mockup-40x30.jpg",
-                          "mockup80":  "images/strangerthings/strangerthings-06-mockup-80x60.jpg",
-                          "art":  "images/strangerthings/strangerthings-06-art.jpg",
-                          "categoria":  "Stranger Things",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "strangerthings-07",
                           "nombre":  "Stranger Things #7",
                           "mockup40":  "images/strangerthings/strangerthings-07-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-07-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-07-art.jpg",
                           "categoria":  "Stranger Things",
-                          "orientacion":  "horizontal"
+                          "orientacion":  "vertical"
                       },
                       {
                           "id":  "strangerthings-08",
@@ -853,7 +610,70 @@
                           "mockup80":  "images/strangerthings/strangerthings-08-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-08-art.jpg",
                           "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-09",
+                          "nombre":  "Stranger Things #9",
+                          "mockup40":  "images/strangerthings/strangerthings-09-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-09-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-09-art.jpg",
+                          "categoria":  "Stranger Things",
                           "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "strangerthings-10",
+                          "nombre":  "Stranger Things #10",
+                          "mockup40":  "images/strangerthings/strangerthings-10-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-10-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-10-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-11",
+                          "nombre":  "Stranger Things #11",
+                          "mockup40":  "images/strangerthings/strangerthings-11-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-11-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-11-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-12",
+                          "nombre":  "Stranger Things #12",
+                          "mockup40":  "images/strangerthings/strangerthings-12-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-12-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-12-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-13",
+                          "nombre":  "Stranger Things #13",
+                          "mockup40":  "images/strangerthings/strangerthings-13-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-13-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-13-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-14",
+                          "nombre":  "Stranger Things #14",
+                          "mockup40":  "images/strangerthings/strangerthings-14-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-14-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-14-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
+                      },
+                      {
+                          "id":  "strangerthings-15",
+                          "nombre":  "Stranger Things #15",
+                          "mockup40":  "images/strangerthings/strangerthings-15-mockup-40x30.jpg",
+                          "mockup80":  "images/strangerthings/strangerthings-15-mockup-80x60.jpg",
+                          "art":  "images/strangerthings/strangerthings-15-art.jpg",
+                          "categoria":  "Stranger Things",
+                          "orientacion":  "horizontal"
                       },
                       {
                           "id":  "thelastofus-01",
@@ -892,20 +712,20 @@
                           "orientacion":  "vertical"
                       },
                       {
-                          "id":  "videojuegos-01",
-                          "nombre":  "Videojuegos #1",
-                          "mockup40":  "images/videojuegos/videojuegos-01-mockup-40x30.jpg",
-                          "mockup80":  "images/videojuegos/videojuegos-01-mockup-80x60.jpg",
-                          "art":  "images/videojuegos/videojuegos-01-art.jpg",
-                          "categoria":  "Videojuegos",
-                          "orientacion":  "vertical"
-                      },
-                      {
                           "id":  "videojuegos-02",
                           "nombre":  "Videojuegos #2",
                           "mockup40":  "images/videojuegos/videojuegos-02-mockup-40x30.jpg",
                           "mockup80":  "images/videojuegos/videojuegos-02-mockup-80x60.jpg",
                           "art":  "images/videojuegos/videojuegos-02-art.jpg",
+                          "categoria":  "Videojuegos",
+                          "orientacion":  "vertical"
+                      },
+                      {
+                          "id":  "videojuegos-03",
+                          "nombre":  "Videojuegos #3",
+                          "mockup40":  "images/videojuegos/videojuegos-03-mockup-40x30.jpg",
+                          "mockup80":  "images/videojuegos/videojuegos-03-mockup-80x60.jpg",
+                          "art":  "images/videojuegos/videojuegos-03-art.jpg",
                           "categoria":  "Videojuegos",
                           "orientacion":  "vertical"
                       }
