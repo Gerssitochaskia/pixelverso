@@ -2,7 +2,8 @@
     "productos":  [
                       {
                           "id":  "anime-02",
-                          "nombre":  "Anime #2",
+                          "nombre":  "Nezuko Kamado",
+                          "tags":  "nezuko kamado demon slayer kimetsu no yaiba anime",
                           "mockup40":  "images/anime/anime-02-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-02-mockup-80x60.jpg",
                           "art":  "images/anime/anime-02-art.jpg",
@@ -11,7 +12,8 @@
                       },
                       {
                           "id":  "anime-04",
-                          "nombre":  "Anime #4",
+                          "nombre":  "Levi Ackerman",
+                          "tags":  "levi ackerman attack on titan shingeki no kyojin aot anime",
                           "mockup40":  "images/anime/anime-04-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-04-mockup-80x60.jpg",
                           "art":  "images/anime/anime-04-art.jpg",
@@ -20,7 +22,8 @@
                       },
                       {
                           "id":  "anime-05",
-                          "nombre":  "Anime #5",
+                          "nombre":  "Tanjiro Kamado",
+                          "tags":  "tanjiro kamado demon slayer kimetsu no yaiba anime",
                           "mockup40":  "images/anime/anime-05-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-05-mockup-80x60.jpg",
                           "art":  "images/anime/anime-05-art.jpg",
@@ -29,7 +32,8 @@
                       },
                       {
                           "id":  "anime-06",
-                          "nombre":  "Anime #6",
+                          "nombre":  "Naruto vs Sasuke",
+                          "tags":  "naruto sasuke uchiha uzumaki naruto shippuden anime",
                           "mockup40":  "images/anime/anime-06-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-06-mockup-80x60.jpg",
                           "art":  "images/anime/anime-06-art.jpg",
@@ -38,7 +42,8 @@
                       },
                       {
                           "id":  "anime-07",
-                          "nombre":  "Anime #7",
+                          "nombre":  "Sasuke Uchiha",
+                          "tags":  "sasuke uchiha naruto shippuden susanoo anime",
                           "mockup40":  "images/anime/anime-07-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-07-mockup-80x60.jpg",
                           "art":  "images/anime/anime-07-art.jpg",
@@ -47,7 +52,8 @@
                       },
                       {
                           "id":  "anime-08",
-                          "nombre":  "Anime #8",
+                          "nombre":  "Goku y Shenron",
+                          "tags":  "goku shenron dragon ball dragon ball z anime",
                           "mockup40":  "images/anime/anime-08-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-08-mockup-80x60.jpg",
                           "art":  "images/anime/anime-08-art.jpg",
@@ -56,7 +62,8 @@
                       },
                       {
                           "id":  "anime-09",
-                          "nombre":  "Anime #9",
+                          "nombre":  "Eren Yeager",
+                          "tags":  "eren yeager jaeger attack on titan shingeki no kyojin aot anime",
                           "mockup40":  "images/anime/anime-09-mockup-40x30.jpg",
                           "mockup80":  "images/anime/anime-09-mockup-80x60.jpg",
                           "art":  "images/anime/anime-09-art.jpg",
@@ -65,7 +72,8 @@
                       },
                       {
                           "id":  "autos-02",
-                          "nombre":  "Autos #2",
+                          "nombre":  "Lamborghini Huracán",
+                          "tags":  "lamborghini huracan superdeportivo lujo negro lluvia autos",
                           "mockup40":  "images/autos/autos-02-mockup-40x30.jpg",
                           "mockup80":  "images/autos/autos-02-mockup-80x60.jpg",
                           "art":  "images/autos/autos-02-art.jpg",
@@ -74,7 +82,8 @@
                       },
                       {
                           "id":  "autos-03",
-                          "nombre":  "Autos #3",
+                          "nombre":  "Toyota GR Yaris WRC Rally Tierra",
+                          "tags":  "toyota gr yaris wrc rally rally dirt tierra rally sport",
                           "mockup40":  "images/autos/autos-03-mockup-40x30.jpg",
                           "mockup80":  "images/autos/autos-03-mockup-80x60.jpg",
                           "art":  "images/autos/autos-03-art.jpg",
@@ -83,7 +92,8 @@
                       },
                       {
                           "id":  "autos-04",
-                          "nombre":  "Autos #4",
+                          "nombre":  "Toyota GR Yaris WRC Rally Nieve",
+                          "tags":  "toyota gr yaris wrc rally nieve snow evans martin autos",
                           "mockup40":  "images/autos/autos-04-mockup-40x30.jpg",
                           "mockup80":  "images/autos/autos-04-mockup-80x60.jpg",
                           "art":  "images/autos/autos-04-art.jpg",
@@ -92,7 +102,8 @@
                       },
                       {
                           "id":  "autos-05",
-                          "nombre":  "Autos #5",
+                          "nombre":  "Toyota GR Yaris WRC Bosque Nevado",
+                          "tags":  "toyota gr yaris wrc rally bosque nieve winter drift autos",
                           "mockup40":  "images/autos/autos-05-mockup-40x30.jpg",
                           "mockup80":  "images/autos/autos-05-mockup-80x60.jpg",
                           "art":  "images/autos/autos-05-art.jpg",
@@ -101,16 +112,18 @@
                       },
                       {
                           "id":  "collage-05",
-                          "nombre":  "Collage #5",
+                          "nombre":  "Collage Mascotas — Gato Nonito",
+                          "tags":  "collage gato mascota personalizado recuerdo familia nonito",
                           "mockup40":  "images/collage/collage-05-mockup-40x30.jpg",
-                          "mockup80":  "images/collage/collage-05-mockup-80x60.jpg",
+                          "mockup80":  "images/collage/collage-06-mockup-80x60.jpg",
                           "art":  "images/collage/collage-05-art.jpg",
                           "categoria":  "Collage",
                           "orientacion":  "horizontal"
                       },
                       {
                           "id":  "collage-06",
-                          "nombre":  "Collage #6",
+                          "nombre":  "Collage Mascotas — Perros",
+                          "tags":  "collage perro mascota personalizado caniche poodle familia",
                           "mockup40":  "images/collage/collage-06-mockup-40x30.jpg",
                           "mockup80":  "images/collage/collage-06-mockup-80x60.jpg",
                           "art":  "images/collage/collage-06-art.jpg",
@@ -119,7 +132,8 @@
                       },
                       {
                           "id":  "cristiana-01",
-                          "nombre":  "Cristiana #1",
+                          "nombre":  "Jesús — Corona de Espinas I",
+                          "tags":  "jesus cristo corona espinas silueta fuego religioso cristiano dios",
                           "mockup40":  "images/cristiana/cristiana-01-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-01-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-01-art.jpg",
@@ -128,7 +142,8 @@
                       },
                       {
                           "id":  "cristiana-02",
-                          "nombre":  "Cristiana #2",
+                          "nombre":  "Jesús — Corona de Espinas II",
+                          "tags":  "jesus cristo corona espinas silueta religioso cristiano dios pasion",
                           "mockup40":  "images/cristiana/cristiana-02-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-02-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-02-art.jpg",
@@ -137,7 +152,8 @@
                       },
                       {
                           "id":  "cristiana-03",
-                          "nombre":  "Cristiana #3",
+                          "nombre":  "Jesús — Retrato Cosmos",
+                          "tags":  "jesus cristo retrato cosmos universo religioso cristiano dios arte",
                           "mockup40":  "images/cristiana/cristiana-03-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-03-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-03-art.jpg",
@@ -146,7 +162,8 @@
                       },
                       {
                           "id":  "cristiana-04",
-                          "nombre":  "Cristiana #4",
+                          "nombre":  "Jesús Abraza al Niño",
+                          "tags":  "jesus cristo abrazo nino acuarela colorido religioso cristiano dios",
                           "mockup40":  "images/cristiana/cristiana-04-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-04-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-04-art.jpg",
@@ -155,7 +172,8 @@
                       },
                       {
                           "id":  "cristiana-05",
-                          "nombre":  "Cristiana #5",
+                          "nombre":  "Jesús Resucitado",
+                          "tags":  "jesus cristo resucitado resurreccion manto rojo montanas religioso cristiano dios",
                           "mockup40":  "images/cristiana/cristiana-05-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-05-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-05-art.jpg",
@@ -164,7 +182,8 @@
                       },
                       {
                           "id":  "cristiana-07",
-                          "nombre":  "Cristiana #7",
+                          "nombre":  "Jesús Orando",
+                          "tags":  "jesus cristo oracion acuarela meditacion religioso cristiano dios",
                           "mockup40":  "images/cristiana/cristiana-07-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-07-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-07-art.jpg",
@@ -173,7 +192,8 @@
                       },
                       {
                           "id":  "cristiana-08",
-                          "nombre":  "Cristiana #8",
+                          "nombre":  "Jesús el Buen Pastor",
+                          "tags":  "jesus cristo buen pastor cordero oveja religioso cristiano dios",
                           "mockup40":  "images/cristiana/cristiana-08-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-08-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-08-art.jpg",
@@ -182,7 +202,8 @@
                       },
                       {
                           "id":  "cristiana-09",
-                          "nombre":  "Cristiana #9",
+                          "nombre":  "Jesús — Arte Urbano",
+                          "tags":  "jesus cristo graffiti arte urbano street art colorido religioso cristiano",
                           "mockup40":  "images/cristiana/cristiana-09-mockup-40x30.jpg",
                           "mockup80":  "images/cristiana/cristiana-09-mockup-80x60.jpg",
                           "art":  "images/cristiana/cristiana-09-art.jpg",
@@ -191,7 +212,8 @@
                       },
                       {
                           "id":  "dc-01",
-                          "nombre":  "DC Comics #1",
+                          "nombre":  "Joker",
+                          "tags":  "joker guason joaquin phoenix dc comics batman villano",
                           "mockup40":  "images/dc/dc-01-mockup-40x30.jpg",
                           "mockup80":  "images/dc/dc-01-mockup-80x60.jpg",
                           "art":  "images/dc/dc-01-art.jpg",
@@ -200,7 +222,8 @@
                       },
                       {
                           "id":  "dc-02",
-                          "nombre":  "DC Comics #2",
+                          "nombre":  "Batman",
+                          "tags":  "batman bruce wayne dc comics murcielago oscuro superhero",
                           "mockup40":  "images/dc/dc-02-mockup-40x30.jpg",
                           "mockup80":  "images/dc/dc-02-mockup-80x60.jpg",
                           "art":  "images/dc/dc-02-art.jpg",
@@ -209,7 +232,8 @@
                       },
                       {
                           "id":  "dc-03",
-                          "nombre":  "DC Comics #3",
+                          "nombre":  "Batman — The Batman 2022",
+                          "tags":  "batman robert pattinson the batman 2022 batimovil dc comics",
                           "mockup40":  "images/dc/dc-03-mockup-40x30.jpg",
                           "mockup80":  "images/dc/dc-03-mockup-80x60.jpg",
                           "art":  "images/dc/dc-03-art.jpg",
@@ -218,7 +242,8 @@
                       },
                       {
                           "id":  "deportes-01",
-                          "nombre":  "Deportes #1",
+                          "nombre":  "Arturo Fernández Vial — Escudo",
+                          "tags":  "arturo fernandez vial ccd escudo club futbol chileno deportes concepcion",
                           "mockup40":  "images/deportes/deportes-01-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-01-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-01-art.jpg",
@@ -227,7 +252,8 @@
                       },
                       {
                           "id":  "deportes-02",
-                          "nombre":  "Deportes #2",
+                          "nombre":  "Deportes Concepción — Escudo",
+                          "tags":  "deportes concepcion escudo futbol chileno club deportes",
                           "mockup40":  "images/deportes/deportes-02-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-02-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-02-art.jpg",
@@ -236,7 +262,8 @@
                       },
                       {
                           "id":  "deportes-03",
-                          "nombre":  "Deportes #3",
+                          "nombre":  "Messi — Copa del Mundo Qatar",
+                          "tags":  "messi lionel messi copa mundial futbol argentina 10 qatar 2022",
                           "mockup40":  "images/deportes/deportes-03-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-03-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-03-art.jpg",
@@ -245,7 +272,8 @@
                       },
                       {
                           "id":  "deportes-04",
-                          "nombre":  "Deportes #4",
+                          "nombre":  "Messi — Con la Copa",
+                          "tags":  "messi lionel messi copa mundial futbol argentina 10 estadio trofeo",
                           "mockup40":  "images/deportes/deportes-04-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-04-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-04-art.jpg",
@@ -254,7 +282,8 @@
                       },
                       {
                           "id":  "deportes-05",
-                          "nombre":  "Deportes #5",
+                          "nombre":  "Cristiano Ronaldo — Portugal Arte",
+                          "tags":  "cristiano ronaldo cr7 portugal seleccion eurocopa futbol",
                           "mockup40":  "images/deportes/deportes-05-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-05-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-05-art.jpg",
@@ -263,7 +292,8 @@
                       },
                       {
                           "id":  "deportes-06",
-                          "nombre":  "Deportes #6",
+                          "nombre":  "Cristiano Ronaldo — RONALDO",
+                          "tags":  "cristiano ronaldo cr7 portugal seleccion gol celebracion futbol",
                           "mockup40":  "images/deportes/deportes-06-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-06-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-06-art.jpg",
@@ -272,7 +302,8 @@
                       },
                       {
                           "id":  "deportes-07",
-                          "nombre":  "Deportes #7",
+                          "nombre":  "Cristiano Ronaldo — Juventus Chilena",
+                          "tags":  "cristiano ronaldo cr7 juventus 7 chilena volea gol futbol",
                           "mockup40":  "images/deportes/deportes-07-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-07-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-07-art.jpg",
@@ -281,7 +312,8 @@
                       },
                       {
                           "id":  "deportes-08",
-                          "nombre":  "Deportes #8",
+                          "nombre":  "Cristiano Ronaldo — Rey Al Nassr",
+                          "tags":  "cristiano ronaldo cr7 al nassr rey trono oro futbol arabia",
                           "mockup40":  "images/deportes/deportes-08-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-08-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-08-art.jpg",
@@ -290,7 +322,8 @@
                       },
                       {
                           "id":  "deportes-09",
-                          "nombre":  "Deportes #9",
+                          "nombre":  "Neymar Jr. — Brasil",
+                          "tags":  "neymar neymar jr brasil brazil 10 seleccion futbol ney",
                           "mockup40":  "images/deportes/deportes-09-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-09-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-09-art.jpg",
@@ -299,7 +332,8 @@
                       },
                       {
                           "id":  "deportes-10",
-                          "nombre":  "Deportes #10",
+                          "nombre":  "Neymar Jr. — Brasil 10",
+                          "tags":  "neymar neymar jr brasil brazil 10 seleccion futbol ney drible",
                           "mockup40":  "images/deportes/deportes-10-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-10-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-10-art.jpg",
@@ -308,7 +342,8 @@
                       },
                       {
                           "id":  "deportes-11",
-                          "nombre":  "Deportes #11",
+                          "nombre":  "Cristiano Ronaldo — Champions League",
+                          "tags":  "cristiano ronaldo cr7 real madrid champions league copa europa 5 futbol",
                           "mockup40":  "images/deportes/deportes-11-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-11-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-11-art.jpg",
@@ -317,7 +352,8 @@
                       },
                       {
                           "id":  "deportes-12",
-                          "nombre":  "Deportes #12",
+                          "nombre":  "Messi — Copa América 2021",
+                          "tags":  "messi lionel messi argentina afa copa america 2021 capitan futbol",
                           "mockup40":  "images/deportes/deportes-12-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-12-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-12-art.jpg",
@@ -326,7 +362,8 @@
                       },
                       {
                           "id":  "deportes-13",
-                          "nombre":  "Deportes #13",
+                          "nombre":  "Alexis Sánchez — Arsenal",
+                          "tags":  "alexis sanchez arsenal 17 chile futbol premier league gol",
                           "mockup40":  "images/deportes/deportes-13-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-13-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-13-art.jpg",
@@ -335,7 +372,8 @@
                       },
                       {
                           "id":  "deportes-14",
-                          "nombre":  "Deportes #14",
+                          "nombre":  "Arturo Vidal — Colo-Colo Dorado",
+                          "tags":  "arturo vidal colo colo 23 rey de corazones futbol chile campeon",
                           "mockup40":  "images/deportes/deportes-14-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-14-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-14-art.jpg",
@@ -344,7 +382,8 @@
                       },
                       {
                           "id":  "deportes-15",
-                          "nombre":  "Deportes #15",
+                          "nombre":  "Arturo Vidal — Colo-Colo Blanco",
+                          "tags":  "arturo vidal colo colo 23 futbol chile campeon arte digital",
                           "mockup40":  "images/deportes/deportes-15-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-15-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-15-art.jpg",
@@ -353,7 +392,8 @@
                       },
                       {
                           "id":  "deportes-16",
-                          "nombre":  "Deportes #16",
+                          "nombre":  "Colo-Colo — Campeonato",
+                          "tags":  "colo colo futbol chile campeon campeonato equipo hincha leyenda pavez",
                           "mockup40":  "images/deportes/deportes-16-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-16-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-16-art.jpg",
@@ -362,7 +402,8 @@
                       },
                       {
                           "id":  "deportes-17",
-                          "nombre":  "Deportes #17",
+                          "nombre":  "Fernando Zampedri — UC Celebración",
+                          "tags":  "zampedri fernando zampedri universidad católica uc 9 futbol chile gol cruzado",
                           "mockup40":  "images/deportes/deportes-17-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-17-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-17-art.jpg",
@@ -371,7 +412,8 @@
                       },
                       {
                           "id":  "deportes-18",
-                          "nombre":  "Deportes #18",
+                          "nombre":  "Fernando Zampedri — UC Festejo",
+                          "tags":  "zampedri fernando zampedri universidad católica uc 9 futbol chile gol cruzado",
                           "mockup40":  "images/deportes/deportes-18-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-18-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-18-art.jpg",
@@ -380,7 +422,8 @@
                       },
                       {
                           "id":  "deportes-19",
-                          "nombre":  "Deportes #19",
+                          "nombre":  "Universidad Católica — Escudo",
+                          "tags":  "universidad católica uc cduc escudo futbol chile cruzados",
                           "mockup40":  "images/deportes/deportes-19-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-19-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-19-art.jpg",
@@ -389,7 +432,8 @@
                       },
                       {
                           "id":  "deportes-20",
-                          "nombre":  "Deportes #20",
+                          "nombre":  "Universidad de Chile — Jugador",
+                          "tags":  "universidad de chile u de chile azul 11 futbol chile bulldog celebracion",
                           "mockup40":  "images/deportes/deportes-20-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-20-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-20-art.jpg",
@@ -398,7 +442,8 @@
                       },
                       {
                           "id":  "deportes-21",
-                          "nombre":  "Deportes #21",
+                          "nombre":  "Universidad de Chile — Festejo",
+                          "tags":  "universidad de chile u de chile azul futbol chile celebracion gol",
                           "mockup40":  "images/deportes/deportes-21-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-21-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-21-art.jpg",
@@ -407,7 +452,8 @@
                       },
                       {
                           "id":  "deportes-22",
-                          "nombre":  "Deportes #22",
+                          "nombre":  "Charles Aránguiz — U de Chile",
+                          "tags":  "aránguiz aranguiz charles universidad de chile 20 futbol chile bayer leverkusen",
                           "mockup40":  "images/deportes/deportes-22-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-22-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-22-art.jpg",
@@ -416,7 +462,8 @@
                       },
                       {
                           "id":  "deportes-23",
-                          "nombre":  "Deportes #23",
+                          "nombre":  "Universidad de Chile — Stitch Fan",
+                          "tags":  "universidad de chile u de chile stitch lilo anime fan art azul futbol",
                           "mockup40":  "images/deportes/deportes-23-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-23-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-23-art.jpg",
@@ -425,7 +472,8 @@
                       },
                       {
                           "id":  "deportes-24",
-                          "nombre":  "Deportes #24",
+                          "nombre":  "Universidad de Chile — Escudo Clásico",
+                          "tags":  "universidad de chile u de chile escudo logo azul futbol chile bulla",
                           "mockup40":  "images/deportes/deportes-24-mockup-40x30.jpg",
                           "mockup80":  "images/deportes/deportes-24-mockup-80x60.jpg",
                           "art":  "images/deportes/deportes-24-art.jpg",
@@ -434,7 +482,8 @@
                       },
                       {
                           "id":  "dragonball-01",
-                          "nombre":  "Dragon Ball Z #1",
+                          "nombre":  "Goku Niño en Shenron",
+                          "tags":  "goku nino shenron dragon ball dragon bola noche luna dragon ball z",
                           "mockup40":  "images/dragonball/dragonball-01-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-01-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-01-art.jpg",
@@ -443,7 +492,8 @@
                       },
                       {
                           "id":  "dragonball-03",
-                          "nombre":  "Dragon Ball Z #3",
+                          "nombre":  "Goku y Shenron",
+                          "tags":  "goku shenron dragon ball nino dragon bola dragon ball z",
                           "mockup40":  "images/dragonball/dragonball-03-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-03-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-03-art.jpg",
@@ -452,7 +502,8 @@
                       },
                       {
                           "id":  "dragonball-04",
-                          "nombre":  "Dragon Ball Z #4",
+                          "nombre":  "Broly",
+                          "tags":  "broly dragon ball super broly saiyajin legendario verde dragon ball z",
                           "mockup40":  "images/dragonball/dragonball-04-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-04-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-04-art.jpg",
@@ -461,7 +512,8 @@
                       },
                       {
                           "id":  "dragonball-06",
-                          "nombre":  "Dragon Ball Z #6",
+                          "nombre":  "Goku y las Bolas de Dragon",
+                          "tags":  "goku shenron bolas dragon dragon ball bola de dragon dragon ball z",
                           "mockup40":  "images/dragonball/dragonball-06-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-06-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-06-art.jpg",
@@ -470,7 +522,8 @@
                       },
                       {
                           "id":  "dragonball-07",
-                          "nombre":  "Dragon Ball Z #7",
+                          "nombre":  "Goku Ultra Instinto",
+                          "tags":  "goku ultra instinto instinct plateado aura dragon ball super",
                           "mockup40":  "images/dragonball/dragonball-07-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-07-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-07-art.jpg",
@@ -479,7 +532,8 @@
                       },
                       {
                           "id":  "dragonball-08",
-                          "nombre":  "Dragon Ball Z #8",
+                          "nombre":  "Vegeta — Street Art",
+                          "tags":  "vegeta dragon ball z saiyajin principe adidas street art dragon ball",
                           "mockup40":  "images/dragonball/dragonball-08-mockup-40x30.jpg",
                           "mockup80":  "images/dragonball/dragonball-08-mockup-80x60.jpg",
                           "art":  "images/dragonball/dragonball-08-art.jpg",
@@ -488,7 +542,8 @@
                       },
                       {
                           "id":  "enamorados-01",
-                          "nombre":  "Enamorados #1",
+                          "nombre":  "Pareja — Collage Te Amo",
+                          "tags":  "pareja enamorados te amo collage personalizado playa amor",
                           "mockup40":  "images/enamorados/enamorados-01-mockup-40x30.jpg",
                           "mockup80":  "images/enamorados/enamorados-01-mockup-80x60.jpg",
                           "art":  "images/enamorados/enamorados-01-art.jpg",
@@ -497,7 +552,8 @@
                       },
                       {
                           "id":  "enamorados-03",
-                          "nombre":  "Enamorados #3",
+                          "nombre":  "Pareja — Collage Corazón Puzzle",
+                          "tags":  "pareja enamorados collage corazon puzzle personalizado amor aniversario",
                           "mockup40":  "images/enamorados/enamorados-03-mockup-40x30.jpg",
                           "mockup80":  "images/enamorados/enamorados-03-mockup-80x60.jpg",
                           "art":  "images/enamorados/enamorados-03-art.jpg",
@@ -506,7 +562,8 @@
                       },
                       {
                           "id":  "enamorados-04",
-                          "nombre":  "Enamorados #4",
+                          "nombre":  "Pareja — Collage Fecha Especial",
+                          "tags":  "pareja enamorados collage corazon fecha aniversario amor personalizado",
                           "mockup40":  "images/enamorados/enamorados-04-mockup-40x30.jpg",
                           "mockup80":  "images/enamorados/enamorados-04-mockup-80x60.jpg",
                           "art":  "images/enamorados/enamorados-04-art.jpg",
@@ -515,7 +572,8 @@
                       },
                       {
                           "id":  "familia-01",
-                          "nombre":  "Cuadros familiares #1",
+                          "nombre":  "Cuadro Familiar — Atardecer",
+                          "tags":  "familia pareja abuela abuelo padres atardecer abrazo personalizado regalo",
                           "mockup40":  "images/familia/familia-01-mockup-40x30.jpg",
                           "mockup80":  "images/familia/familia-01-mockup-80x60.jpg",
                           "art":  "images/familia/familia-01-art.jpg",
@@ -524,7 +582,8 @@
                       },
                       {
                           "id":  "familia-02",
-                          "nombre":  "Cuadros familiares #2",
+                          "nombre":  "Cuadro Familiar — Bajo la Lluvia",
+                          "tags":  "familia pareja lluvia paraguas calle personalizado regalo romantco",
                           "mockup40":  "images/familia/familia-02-mockup-40x30.jpg",
                           "mockup80":  "images/familia/familia-02-mockup-80x60.jpg",
                           "art":  "images/familia/familia-02-art.jpg",
@@ -533,7 +592,8 @@
                       },
                       {
                           "id":  "johnwick-01",
-                          "nombre":  "John Wick #1",
+                          "nombre":  "John Wick — Halo Neón",
+                          "tags":  "john wick keanu reeves neon halo armas accion pelicula",
                           "mockup40":  "images/johnwick/johnwick-01-mockup-40x30.jpg",
                           "mockup80":  "images/johnwick/johnwick-01-mockup-80x60.jpg",
                           "art":  "images/johnwick/johnwick-01-art.jpg",
@@ -542,7 +602,8 @@
                       },
                       {
                           "id":  "johnwick-02",
-                          "nombre":  "John Wick #2",
+                          "nombre":  "John Wick y su Perro",
+                          "tags":  "john wick keanu reeves perro dog the continental vitral pelicula",
                           "mockup40":  "images/johnwick/johnwick-02-mockup-40x30.jpg",
                           "mockup80":  "images/johnwick/johnwick-02-mockup-80x60.jpg",
                           "art":  "images/johnwick/johnwick-02-art.jpg",
@@ -551,7 +612,8 @@
                       },
                       {
                           "id":  "mafia-01",
-                          "nombre":  "Mafia #1",
+                          "nombre":  "Tommy Shelby — Peaky Blinders",
+                          "tags":  "tommy shelby peaky blinders gorra cigarrillo mafia serie netflix",
                           "mockup40":  "images/mafia/mafia-01-mockup-40x30.jpg",
                           "mockup80":  "images/mafia/mafia-01-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-01-art.jpg",
@@ -560,7 +622,8 @@
                       },
                       {
                           "id":  "mafia-03",
-                          "nombre":  "Mafia #3",
+                          "nombre":  "Scarface — Tony Montana Póster",
+                          "tags":  "scarface tony montana al pacino pelicula mafia cartel rojo",
                           "mockup40":  "images/mafia/mafia-03-mockup-40x30.jpg",
                           "mockup80":  "images/mafia/mafia-03-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-03-art.jpg",
@@ -569,7 +632,8 @@
                       },
                       {
                           "id":  "mafia-04",
-                          "nombre":  "Mafia #4",
+                          "nombre":  "Scarface — Tony Montana en el Trono",
+                          "tags":  "scarface tony montana al pacino pelicula mafia trono oro jefe",
                           "mockup40":  "images/mafia/mafia-04-mockup-40x30.jpg",
                           "mockup80":  "images/mafia/mafia-04-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-04-art.jpg",
@@ -578,7 +642,8 @@
                       },
                       {
                           "id":  "mafia-06",
-                          "nombre":  "Mafia #6",
+                          "nombre":  "Scarface — Tony Montana Retrato",
+                          "tags":  "scarface tony montana al pacino pelicula mafia blanco negro cigarro",
                           "mockup40":  "images/mafia/mafia-06-mockup-40x30.jpg",
                           "mockup80":  "images/mafia/mafia-06-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-06-art.jpg",
@@ -587,7 +652,8 @@
                       },
                       {
                           "id":  "mafia-08",
-                          "nombre":  "Mafia #8",
+                          "nombre":  "Mike Tyson — Campeón Indiscutido",
+                          "tags":  "mike tyson boxeo boxeador campeon cinturones wbc wba ibf firma",
                           "mockup40":  "images/mafia/mafia-08-mockup-40x30.jpg",
                           "mockup80":  "images/mafia/mafia-08-mockup-80x60.jpg",
                           "art":  "images/mafia/mafia-08-art.jpg",
@@ -596,7 +662,8 @@
                       },
                       {
                           "id":  "marvel-01",
-                          "nombre":  "Marvel #1",
+                          "nombre":  "Iron Man vs Doctor Doom",
+                          "tags":  "iron man tony stark doctor doom marvel vengadores avengers",
                           "mockup40":  "images/marvel/marvel-01-mockup-40x30.jpg",
                           "mockup80":  "images/marvel/marvel-01-mockup-80x60.jpg",
                           "art":  "images/marvel/marvel-01-art.jpg",
@@ -605,7 +672,8 @@
                       },
                       {
                           "id":  "marvel-02",
-                          "nombre":  "Marvel #2",
+                          "nombre":  "Thanos",
+                          "tags":  "thanos marvel villano vengadores avengers infinito rey corona",
                           "mockup40":  "images/marvel/marvel-02-mockup-40x30.jpg",
                           "mockup80":  "images/marvel/marvel-02-mockup-80x60.jpg",
                           "art":  "images/marvel/marvel-02-art.jpg",
@@ -614,7 +682,8 @@
                       },
                       {
                           "id":  "musica-01",
-                          "nombre":  "Musica #1",
+                          "nombre":  "Chayanne",
+                          "tags":  "chayanne latin pop cantante musica flores romantico",
                           "mockup40":  "images/musica/musica-01-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-01-mockup-80x60.jpg",
                           "art":  "images/musica/musica-01-art.jpg",
@@ -623,7 +692,8 @@
                       },
                       {
                           "id":  "musica-02",
-                          "nombre":  "Musica #2",
+                          "nombre":  "Bad Bunny — Zapatillas",
+                          "tags":  "bad bunny benito ocasio reggaeton trap urbano zapatillas adidas musica",
                           "mockup40":  "images/musica/musica-02-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-02-mockup-80x60.jpg",
                           "art":  "images/musica/musica-02-art.jpg",
@@ -632,7 +702,8 @@
                       },
                       {
                           "id":  "musica-03",
-                          "nombre":  "Musica #3",
+                          "nombre":  "Bad Bunny — Estadio",
+                          "tags":  "bad bunny benito ocasio reggaeton trap urbano estadio concierto musica",
                           "mockup40":  "images/musica/musica-03-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-03-mockup-80x60.jpg",
                           "art":  "images/musica/musica-03-art.jpg",
@@ -641,7 +712,8 @@
                       },
                       {
                           "id":  "musica-05",
-                          "nombre":  "Musica #5",
+                          "nombre":  "Tupac Shakur — Retrato",
+                          "tags":  "tupac shakur 2pac rap hip hop musica rapper california blanco negro",
                           "mockup40":  "images/musica/musica-05-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-05-mockup-80x60.jpg",
                           "art":  "images/musica/musica-05-art.jpg",
@@ -650,7 +722,8 @@
                       },
                       {
                           "id":  "musica-08",
-                          "nombre":  "Musica #8",
+                          "nombre":  "Chris Brown — Collage",
+                          "tags":  "chris brown cb r&b rnb musica cantante collage breezy",
                           "mockup40":  "images/musica/musica-08-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-08-mockup-80x60.jpg",
                           "art":  "images/musica/musica-08-art.jpg",
@@ -659,7 +732,8 @@
                       },
                       {
                           "id":  "musica-09",
-                          "nombre":  "Musica #9",
+                          "nombre":  "Tupac Shakur — Ilustración Gold",
+                          "tags":  "tupac shakur 2pac rap hip hop musica rapper ilustracion dorado",
                           "mockup40":  "images/musica/musica-09-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-09-mockup-80x60.jpg",
                           "art":  "images/musica/musica-09-art.jpg",
@@ -668,7 +742,8 @@
                       },
                       {
                           "id":  "musica-10",
-                          "nombre":  "Musica #10",
+                          "nombre":  "Tupac Shakur — Ilustración Amarilla",
+                          "tags":  "tupac shakur 2pac rap hip hop musica rapper ilustracion amarillo",
                           "mockup40":  "images/musica/musica-10-mockup-40x30.jpg",
                           "mockup80":  "images/musica/musica-10-mockup-80x60.jpg",
                           "art":  "images/musica/musica-10-art.jpg",
@@ -677,7 +752,8 @@
                       },
                       {
                           "id":  "nintendo-01",
-                          "nombre":  "Nintendo #1",
+                          "nombre":  "Donkey Kong y Diddy Kong",
+                          "tags":  "donkey kong diddy kong nintendo dkc donkey kong country vagoneta mina",
                           "mockup40":  "images/nintendo/nintendo-01-mockup-40x30.jpg",
                           "mockup80":  "images/nintendo/nintendo-01-mockup-80x60.jpg",
                           "art":  "images/nintendo/nintendo-01-art.jpg",
@@ -686,7 +762,8 @@
                       },
                       {
                           "id":  "peliculas-01",
-                          "nombre":  "Peliculas #1",
+                          "nombre":  "Darth Vader — Star Wars",
+                          "tags":  "darth vader star wars estrella de la muerte sable rojo sith pelicula",
                           "mockup40":  "images/peliculas/peliculas-01-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-01-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-01-art.jpg",
@@ -695,7 +772,8 @@
                       },
                       {
                           "id":  "peliculas-02",
-                          "nombre":  "Peliculas #2",
+                          "nombre":  "Star Wars — Paisaje Espacial",
+                          "tags":  "star wars espacio planets tie fighter galaxia scifi ciencia ficcion pelicula",
                           "mockup40":  "images/peliculas/peliculas-02-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-02-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-02-art.jpg",
@@ -704,7 +782,8 @@
                       },
                       {
                           "id":  "peliculas-03",
-                          "nombre":  "Peliculas #3",
+                          "nombre":  "Kill Bill — The Bride",
+                          "tags":  "kill bill the bride beatrix kiddo uma thurman tarantino pelicula katana",
                           "mockup40":  "images/peliculas/peliculas-03-mockup-40x30.jpg",
                           "mockup80":  "images/peliculas/peliculas-03-mockup-80x60.jpg",
                           "art":  "images/peliculas/peliculas-03-art.jpg",
@@ -713,7 +792,8 @@
                       },
                       {
                           "id":  "personalizado-01",
-                          "nombre":  "Espacio personalizado #1",
+                          "nombre":  "Collage Mascotas — Perros",
+                          "tags":  "mascotas perro caniche poodle collage personalizado regalo familia",
                           "mockup40":  "images/personalizado/personalizado-01-mockup-40x30.jpg",
                           "mockup80":  "images/personalizado/personalizado-01-mockup-80x60.jpg",
                           "art":  "images/personalizado/personalizado-01-art.jpg",
@@ -722,7 +802,8 @@
                       },
                       {
                           "id":  "personalizado-02",
-                          "nombre":  "Espacio personalizado #2",
+                          "nombre":  "Maxi — Cuadro Mascota",
+                          "tags":  "mascota perro caniche poodle maxi personalizado regalo mascota",
                           "mockup40":  "images/personalizado/personalizado-02-mockup-40x30.jpg",
                           "mockup80":  "images/personalizado/personalizado-02-mockup-80x60.jpg",
                           "art":  "images/personalizado/personalizado-02-art.jpg",
@@ -731,7 +812,8 @@
                       },
                       {
                           "id":  "personalizado-03",
-                          "nombre":  "Espacio personalizado #3",
+                          "nombre":  "Messi — Beso a la Copa",
+                          "tags":  "messi lionel messi copa mundial futbol argentina 10 qatar 2022 beso trofeo",
                           "mockup40":  "images/personalizado/personalizado-03-mockup-40x30.jpg",
                           "mockup80":  "images/personalizado/personalizado-03-mockup-80x60.jpg",
                           "art":  "images/personalizado/personalizado-03-art.jpg",
@@ -740,7 +822,8 @@
                       },
                       {
                           "id":  "pokemon-02",
-                          "nombre":  "Pokemon #2",
+                          "nombre":  "Pikachu y Charizard",
+                          "tags":  "pikachu charizard lizardon pokemon ash vuelo anime nintendo",
                           "mockup40":  "images/pokemon/pokemon-02-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-02-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-02-art.jpg",
@@ -749,7 +832,8 @@
                       },
                       {
                           "id":  "pokemon-03",
-                          "nombre":  "Pokemon #3",
+                          "nombre":  "Flareon",
+                          "tags":  "flareon eevee evolucion fuego pokemon rojo atardecer anime nintendo",
                           "mockup40":  "images/pokemon/pokemon-03-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-03-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-03-art.jpg",
@@ -758,7 +842,8 @@
                       },
                       {
                           "id":  "pokemon-04",
-                          "nombre":  "Pokemon #4",
+                          "nombre":  "Vaporeon",
+                          "tags":  "vaporeon eevee evolucion agua cascada pokemon azul anime nintendo",
                           "mockup40":  "images/pokemon/pokemon-04-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-04-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-04-art.jpg",
@@ -767,7 +852,8 @@
                       },
                       {
                           "id":  "pokemon-05",
-                          "nombre":  "Pokemon #5",
+                          "nombre":  "Espeon",
+                          "tags":  "espeon eevee evolucion psiquico cristales morado pokemon anime nintendo",
                           "mockup40":  "images/pokemon/pokemon-05-mockup-40x30.jpg",
                           "mockup80":  "images/pokemon/pokemon-05-mockup-80x60.jpg",
                           "art":  "images/pokemon/pokemon-05-art.jpg",
@@ -776,7 +862,8 @@
                       },
                       {
                           "id":  "strangerthings-01",
-                          "nombre":  "Stranger Things #1",
+                          "nombre":  "Eddie Munson — Héroe de Hawkins",
+                          "tags":  "eddie munson stranger things 4 guitarra hawkins heroe netflix",
                           "mockup40":  "images/strangerthings/strangerthings-01-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-01-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-01-art.jpg",
@@ -785,7 +872,8 @@
                       },
                       {
                           "id":  "strangerthings-04",
-                          "nombre":  "Stranger Things #4",
+                          "nombre":  "Steve Harrington — Scoops Ahoy",
+                          "tags":  "steve harrington scoops ahoy marinero stranger things netflix",
                           "mockup40":  "images/strangerthings/strangerthings-04-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-04-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-04-art.jpg",
@@ -794,7 +882,8 @@
                       },
                       {
                           "id":  "strangerthings-07",
-                          "nombre":  "Stranger Things #7",
+                          "nombre":  "Stranger Things — Póster Elenco Completo",
+                          "tags":  "stranger things elenco once eleven will mike dustin lucas demogorgon netflix",
                           "mockup40":  "images/strangerthings/strangerthings-07-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-07-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-07-art.jpg",
@@ -803,7 +892,8 @@
                       },
                       {
                           "id":  "strangerthings-08",
-                          "nombre":  "Stranger Things #8",
+                          "nombre":  "Stranger Things — Bicis a Hawkins",
+                          "tags":  "stranger things bicicletas hawkins ninos demogorgon nubes cielo netflix",
                           "mockup40":  "images/strangerthings/strangerthings-08-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-08-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-08-art.jpg",
@@ -812,7 +902,8 @@
                       },
                       {
                           "id":  "strangerthings-09",
-                          "nombre":  "Stranger Things #9",
+                          "nombre":  "Stranger Things 5 — Poster Final",
+                          "tags":  "stranger things 5 temporada final once eleven demogorgon elenco netflix",
                           "mockup40":  "images/strangerthings/strangerthings-09-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-09-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-09-art.jpg",
@@ -821,7 +912,8 @@
                       },
                       {
                           "id":  "strangerthings-10",
-                          "nombre":  "Stranger Things #10",
+                          "nombre":  "Max Mayfield",
+                          "tags":  "max mayfield pelirroja stranger things fuegos artificiales netflix",
                           "mockup40":  "images/strangerthings/strangerthings-10-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-10-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-10-art.jpg",
@@ -830,7 +922,8 @@
                       },
                       {
                           "id":  "strangerthings-11",
-                          "nombre":  "Stranger Things #11",
+                          "nombre":  "Eleven y el Grupo",
+                          "tags":  "eleven once stranger things grupo pandilla hawkins netflix",
                           "mockup40":  "images/strangerthings/strangerthings-11-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-11-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-11-art.jpg",
@@ -839,7 +932,8 @@
                       },
                       {
                           "id":  "strangerthings-12",
-                          "nombre":  "Stranger Things #12",
+                          "nombre":  "Billy Hargrove y Eddie Munson",
+                          "tags":  "billy hargrove eddie munson stranger things hellfire club netflix",
                           "mockup40":  "images/strangerthings/strangerthings-12-mockup-40x30.jpg",
                           "mockup80":  "images/strangerthings/strangerthings-12-mockup-80x60.jpg",
                           "art":  "images/strangerthings/strangerthings-12-art.jpg",
@@ -848,7 +942,8 @@
                       },
                       {
                           "id":  "thelastofus-01",
-                          "nombre":  "The Last of Us #1",
+                          "nombre":  "Ellie — The Last of Us Part II",
+                          "tags":  "ellie the last of us part 2 tlou videojuego naughty dog",
                           "mockup40":  "images/thelastofus/thelastofus-01-mockup-40x30.jpg",
                           "mockup80":  "images/thelastofus/thelastofus-01-mockup-80x60.jpg",
                           "art":  "images/thelastofus/thelastofus-01-art.jpg",
@@ -857,7 +952,8 @@
                       },
                       {
                           "id":  "thelastofus-02",
-                          "nombre":  "The Last of Us #2",
+                          "nombre":  "Joel y Ellie",
+                          "tags":  "joel ellie the last of us tlou videojuego naughty dog blanco negro",
                           "mockup40":  "images/thelastofus/thelastofus-02-mockup-40x30.jpg",
                           "mockup80":  "images/thelastofus/thelastofus-02-mockup-80x60.jpg",
                           "art":  "images/thelastofus/thelastofus-02-art.jpg",
@@ -866,7 +962,8 @@
                       },
                       {
                           "id":  "thelastofus-03",
-                          "nombre":  "The Last of Us #3",
+                          "nombre":  "The Last of Us — Póster Serie",
+                          "tags":  "the last of us tlou serie hbo abby personaje poster",
                           "mockup40":  "images/thelastofus/thelastofus-03-mockup-40x30.jpg",
                           "mockup80":  "images/thelastofus/thelastofus-03-mockup-80x60.jpg",
                           "art":  "images/thelastofus/thelastofus-03-art.jpg",
@@ -875,7 +972,8 @@
                       },
                       {
                           "id":  "thelastofus-04",
-                          "nombre":  "The Last of Us #4",
+                          "nombre":  "Joel y Ellie — Serie HBO",
+                          "tags":  "joel ellie the last of us hbo serie pedro pascal bella ramsey",
                           "mockup40":  "images/thelastofus/thelastofus-04-mockup-40x30.jpg",
                           "mockup80":  "images/thelastofus/thelastofus-04-mockup-80x60.jpg",
                           "art":  "images/thelastofus/thelastofus-04-art.jpg",
@@ -884,7 +982,8 @@
                       },
                       {
                           "id":  "videojuegos-02",
-                          "nombre":  "Videojuegos #2",
+                          "nombre":  "Bomberman",
+                          "tags":  "bomberman super bomberman bomba retro videojuego pixel art clasico",
                           "mockup40":  "images/videojuegos/videojuegos-02-mockup-40x30.jpg",
                           "mockup80":  "images/videojuegos/videojuegos-02-mockup-80x60.jpg",
                           "art":  "images/videojuegos/videojuegos-02-art.jpg",
@@ -893,7 +992,8 @@
                       },
                       {
                           "id":  "videojuegos-03",
-                          "nombre":  "Videojuegos #3",
+                          "nombre":  "Call of Duty — Ghost",
+                          "tags":  "call of duty ghost soldado mascara cod videojuego accion fps",
                           "mockup40":  "images/videojuegos/videojuegos-03-mockup-40x30.jpg",
                           "mockup80":  "images/videojuegos/videojuegos-03-mockup-80x60.jpg",
                           "art":  "images/videojuegos/videojuegos-03-art.jpg",

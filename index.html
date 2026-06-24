@@ -309,6 +309,43 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .mosaic-3 {grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);}
 .mosaic img{width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(1.3);transition:filter .3s ease,transform .4s ease;}
 .mosaic img:hover{filter:brightness(1) saturate(1.4);transform:scale(1.06);}
+/* Foto real hero */
+.hero-photo-wrap{
+  position:relative;border-radius:22px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.07);
+  height:480px;
+}
+.hero-photo-wrap img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  animation:kenBurns 18s ease-in-out infinite alternate;
+  transform-origin:center center;
+}
+@keyframes kenBurns{
+  from{transform:scale(1) translate(0,0);}
+  to{transform:scale(1.07) translate(-1.5%,-1%);}
+}
+.hero-photo-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%);
+  pointer-events:none;
+}
+.hero-photo-badge{
+  position:absolute;bottom:20px;left:20px;z-index:2;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,10,20,.58);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.14);border-radius:14px;
+  padding:10px 16px;color:#fff;font-size:13px;font-weight:600;letter-spacing:.03em;
+  animation:badgePop .6s .4s cubic-bezier(.34,1.56,.64,1) both;
+}
+.hero-photo-badge .badge-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 8px rgba(0,212,255,.8);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+@keyframes badgePop{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.hero-photo-badge .badge-stars{color:#f7c948;font-size:11px;margin-top:2px;}
+
 /* Pixelito flotante */
 .pixelito-hero{
   position:absolute;right:38px;bottom:24px;width:160px;z-index:5;
@@ -322,13 +359,13 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 /* ============================================================
    5. TRUST BAR
    ============================================================ */
-.trust{padding:54px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);}
+.trust{padding:22px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);}
 .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);}
-.trust-item{padding:0 28px;text-align:center;border-right:1px solid var(--border);}
+.trust-item{padding:0 20px;text-align:center;border-right:1px solid var(--border);}
 .trust-item:last-child{border-right:none;}
-.trust-item h4{font-family:'Rajdhani';font-size:18px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
-.trust-item p{color:var(--muted);font-size:14px;}
-.trust-icon{font-size:30px;margin-bottom:8px;color:var(--cyan);}
+.trust-item h4{font-family:'Rajdhani';font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px;}
+.trust-item p{color:var(--muted);font-size:12px;}
+.trust-icon{font-size:22px;margin-bottom:4px;color:var(--cyan);}
 .trust-bottom{margin-top:34px;text-align:center;color:var(--muted);font-size:14px;}
 .trust-bottom .stars{color:#FFD43B;font-size:18px;letter-spacing:.1em;margin-right:10px;}
 
@@ -370,9 +407,7 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
   font-weight:700;font-size:10.5px;padding:4px 9px;border-radius:6px;letter-spacing:.1em;text-transform:uppercase;
 }
 .card .orient-tag{
-  position:absolute;top:10px;right:10px;background:rgba(0,212,255,.18);color:var(--cyan);
-  border:1px solid rgba(0,212,255,.4);
-  font-size:10px;padding:3px 7px;border-radius:6px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  display:none;
 }
 /* Tarjeta respeta orientación real del cuadro */
 .card.orient-vertical{ aspect-ratio: 3 / 4; }
@@ -554,8 +589,45 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .wall-card .meta .tag{color:var(--muted);font-size:12px;margin-top:5px;display:flex;align-items:center;gap:5px;}
 
 /* ============================================================
-  11. VISUALIZADOR 3D — eliminado
+  11. FAN CAROUSEL — cuadros en abanico 3D
   ============================================================ */
+.fan-wrap{
+  position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;height:560px;
+}
+.fan-stage{
+  position:relative;width:100%;flex:1;
+  overflow:visible;
+}
+.fan-card{
+  position:absolute;
+  width:265px;height:353px;
+  top:50%;left:50%;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 56px rgba(0,0,0,.72);
+  cursor:pointer;
+  transition:transform .32s cubic-bezier(.25,1,.3,1),
+             opacity .32s ease,
+             box-shadow .32s ease;
+  transform-origin:center center;
+  will-change:transform,opacity;
+  border:1.5px solid rgba(255,255,255,.12);
+}
+.fan-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  pointer-events:none;
+}
+.fan-card.fc-active{
+  box-shadow:0 32px 80px rgba(0,0,0,.88),0 0 0 2px rgba(0,224,255,.5);
+  border-color:rgba(0,224,255,.55);
+}
+.fan-dots{display:flex;gap:7px;align-items:center;margin-top:16px;}
+.fan-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transition:background .3s,transform .3s;cursor:pointer;
+}
+.fan-dot.active{background:var(--cyan);transform:scale(1.45);}
 
 /* ============================================================
   12. ENVÍOS
@@ -625,8 +697,8 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .step h5{font-family:'Bebas Neue';font-size:20px;margin-bottom:4px;}
 .step p{font-size:13.5px;color:var(--muted);}
 
-.lottie-personaliza{width:100%;max-width:420px;margin:0 auto;border-radius:18px;overflow:hidden;}
-.lottie-personaliza video{width:100%;display:block;}
+.lottie-personaliza{width:100%;max-width:360px;margin:0 auto;border-radius:18px;overflow:hidden;aspect-ratio:9/16;}
+.lottie-personaliza video{width:100%;height:100%;display:block;object-fit:cover;object-position:center;}
 
 /* ============================================================
   14. VIDEOS
@@ -1019,6 +1091,8 @@ svg.ic-lg{width:26px;height:26px;}
   .slide-text h1{ font-size:clamp(36px,6vw,56px); }
   .slide-text p.lead{ font-size:15px; }
   .mosaic{ height:300px; }
+  .fan-wrap{ height:340px; }
+  .fan-card{ width:155px; height:245px; }
   .pixelito-hero{ width:100px; bottom:12px; }
   .dots{ gap:6px; }
   .dot, .dot.active{ width:8px; }
@@ -1134,6 +1208,8 @@ svg.ic-lg{width:26px;height:26px;}
   .slide-text .ribbon-cta .btn{ padding:10px 18px; font-size:12px; }
   .discount{ font-size:clamp(56px,8vw,90px); }
   .mosaic{ height:220px; grid-template-columns:repeat(3,1fr); }
+  .fan-wrap{ height:260px; }
+  .fan-card{ width:120px; height:190px; border-radius:12px; }
   .pixelito-hero{ width:80px; }
 
   /* GENERAL */
@@ -1262,6 +1338,8 @@ svg.ic-lg{width:26px;height:26px;}
   .preview-close{ top:12px; right:12px; width:38px; height:38px; }
 
   .mosaic{ height:180px; }
+  .fan-wrap{ height:220px; }
+  .fan-card{ width:100px; height:160px; border-radius:10px; }
   .hex-grid{ grid-template-columns:1fr; }
 
   .hero{ min-height:340px; }
@@ -1325,21 +1403,21 @@ svg.ic-lg{width:26px;height:26px;}
     </a>
     <div class="nav-links">
       <a href="#top">Inicio</a>
-      <a href="#explorar">Explorar</a>
+      <a href="#explorar">Catálogo</a>
       <a href="#personalizar">Personalizar</a>
-      <a href="#galeria">Galería</a>
+      <a href="#galeria">Categorías</a>
       <a href="#nosotros">Nosotros</a>
     </div>
     <div class="nav-tools">
       <div class="nav-search">
         <input id="search-input" type="text" placeholder="Busca tu universo..." aria-label="Buscar" />
-        <button onclick="onSearch()">Search</button>
+        <button onclick="onSearch()">Buscar</button>
       </div>
-      <a class="nav-icon" href="#nosotros" title="Mi cuenta" aria-label="Cuenta">
-        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+      <a class="nav-icon" href="https://wa.me/56932734706" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.096.539 4.064 1.484 5.778L.057 23.077a.75.75 0 0 0 .92.919l5.42-1.422A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.848 0-3.587-.49-5.088-1.346l-.362-.214-3.755.985.998-3.65-.235-.376A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       </a>
-      <a class="nav-icon" href="#galeria" title="Wishlist" aria-label="Wishlist">
-        <svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+      <a class="nav-icon" href="https://www.instagram.com/pixelversostudiocl/" target="_blank" title="Instagram" aria-label="Instagram">
+        <svg class="ic" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
       </a>
       <button class="nav-icon" onclick="openCart()" title="Carrito" aria-label="Carrito">
         <svg class="ic" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1356,9 +1434,9 @@ svg.ic-lg{width:26px;height:26px;}
 <aside class="mobile-menu" id="mobile-menu">
   <div class="close" onclick="toggleMobileMenu()">✕  Cerrar</div>
   <a href="#top" onclick="toggleMobileMenu()">Inicio</a>
-  <a href="#explorar" onclick="toggleMobileMenu()">Explorar</a>
+  <a href="#explorar" onclick="toggleMobileMenu()">Catálogo</a>
   <a href="#personalizar" onclick="toggleMobileMenu()">Personalizar</a>
-  <a href="#galeria" onclick="toggleMobileMenu()">Galería</a>
+  <a href="#galeria" onclick="toggleMobileMenu()">Categorías</a>
   <a href="#nosotros" onclick="toggleMobileMenu()">Nosotros</a>
 </aside>
 
@@ -1379,24 +1457,20 @@ svg.ic-lg{width:26px;height:26px;}
           <a class="btn btn-outline" href="#personalizar">Personalizar mi cuadro</a>
         </div>
       </div>
-      <div class="mosaic">
-        <!-- REEMPLAZAR: imágenes destacadas hero slide 1 -->
-        <img src="images/cat-anime.png" loading="lazy" alt="Anime"/>
-        <img src="images/cat-marvel.png" loading="lazy" alt="Marvel"/>
-        <img src="images/cat-dragonball.png" loading="lazy" alt="Dragon Ball"/>
-        <img src="images/cat-videojuegos.png" loading="lazy" alt="Videojuegos"/>
-        <img src="images/cat-pokemon.png" loading="lazy" alt="Pokemon"/>
-        <img src="images/cat-strangerthings.png" loading="lazy" alt="Stranger Things"/>
-        <img src="images/cat-thelastofus.png" loading="lazy" alt="The Last of Us"/>
-        <img src="images/cat-johnwick.png" loading="lazy" alt="John Wick"/>
-        <img src="images/cat-mafia.png" loading="lazy" alt="Mafia"/>
-        <img src="images/cat-nintendo.png" loading="lazy" alt="Nintendo"/>
-        <img src="images/cat-musica.png" loading="lazy" alt="Música"/>
-        <img src="images/cat-autos.png" loading="lazy" alt="Autos"/>
-        <img src="images/cat-dc.png" loading="lazy" alt="DC"/>
-        <img src="images/cat-collage.png" loading="lazy" alt="Collage"/>
-        <img src="images/cat-peliculas.png" loading="lazy" alt="Películas"/>
-        <img src="images/cat-personalizado.png" loading="lazy" alt="Personalizado"/>
+      <div class="fan-wrap" id="fan-wrap">
+        <div class="fan-stage" id="fan-stage">
+          <div class="fan-card"><img src="images/anime/anime-02-mockup-80x60.jpg"                   loading="eager" alt="Cuadro Anime"/></div>
+          <div class="fan-card"><img src="images/dragonball/dragonball-04-mockup-80x60.jpg"         loading="eager" alt="Cuadro Dragon Ball"/></div>
+          <div class="fan-card"><img src="images/marvel/marvel-02-mockup-80x60.jpg"                 loading="eager" alt="Cuadro Marvel"/></div>
+          <div class="fan-card"><img src="images/johnwick/johnwick-01-mockup-80x60.jpg"             loading="lazy"  alt="Cuadro John Wick"/></div>
+          <div class="fan-card"><img src="images/mafia/mafia-01-mockup-80x60.jpg"                   loading="lazy"  alt="Cuadro Mafia"/></div>
+          <div class="fan-card"><img src="images/strangerthings/strangerthings-01-mockup-80x60.jpg" loading="lazy"  alt="Cuadro Stranger Things"/></div>
+          <div class="fan-card"><img src="images/dc/dc-02-mockup-80x60.jpg"                         loading="lazy"  alt="Cuadro DC"/></div>
+          <div class="fan-card"><img src="images/musica/musica-01-mockup-80x60.jpg"                 loading="lazy"  alt="Cuadro Música"/></div>
+          <div class="fan-card"><img src="images/videojuegos/videojuegos-02-mockup-80x60.jpg"       loading="lazy"  alt="Cuadro Videojuegos"/></div>
+          <div class="fan-card"><img src="images/pokemon/pokemon-02-mockup-80x60.jpg"               loading="lazy"  alt="Cuadro Pokémon"/></div>
+        </div>
+        <div class="fan-dots" id="fan-dots"></div>
       </div>
     </div>
 
@@ -1411,17 +1485,15 @@ svg.ic-lg{width:26px;height:26px;}
           <a class="btn btn-outline" href="#envios">Ver envíos</a>
         </div>
       </div>
-      <div class="mosaic mosaic-3">
-        <!-- REEMPLAZAR: imágenes destacadas hero slide 2 -->
-        <img src="images/cat-enamorados.png" loading="lazy" alt="Enamorados"/>
-        <img src="images/cat-familia.png" loading="lazy" alt="Familia"/>
-        <img src="images/cat-cristiana.png" loading="lazy" alt="Cristiana"/>
-        <img src="images/cat-marvel.png" loading="lazy" alt="Marvel"/>
-        <img src="images/cat-anime.png" loading="lazy" alt="Anime"/>
-        <img src="images/cat-videojuegos.png" loading="lazy" alt="Videojuegos"/>
-        <img src="images/cat-johnwick.png" loading="lazy" alt="John Wick"/>
-        <img src="images/cat-pokemon.png" loading="lazy" alt="Pokemon"/>
-        <img src="images/cat-collage.png" loading="lazy" alt="Collage"/>
+      <div class="hero-photo-wrap">
+        <img src="images/hero-familia-real.jpg" loading="eager" alt="Familia recibiendo su cuadro personalizado"/>
+        <div class="hero-photo-badge">
+          <span class="badge-dot"></span>
+          <div>
+            <div>Cuadro 80×60 cm — Cuadros familiares</div>
+            <div class="badge-stars">★★★★★ Cliente verificado · Concepción</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1633,7 +1705,7 @@ svg.ic-lg{width:26px;height:26px;}
 
     <div class="custom-grid">
       <div class="lottie-personaliza" id="lottie-personaliza">
-        <video src="videos/02_pixelito-personaliza.mp4" autoplay muted loop playsinline></video>
+        <video src="videos/personaliza-real.mp4" autoplay muted loop playsinline></video>
       </div>
 
       <form class="custom-form" id="custom-form" onsubmit="submitCustom(event)">
@@ -1814,17 +1886,17 @@ svg.ic-lg{width:26px;height:26px;}
       <div>
         <h5>Síguenos</h5>
         <div class="socials">
-          <a class="social-ico" href="https://instagram.com/pixelverso.studio" target="_blank" aria-label="Instagram">
+          <a class="social-ico" href="https://www.instagram.com/pixelversostudiocl/" target="_blank" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a class="social-ico" href="#" target="_blank" aria-label="Facebook">
+          <a class="social-ico" href="https://www.facebook.com/profile.php?id=61584239833676" target="_blank" aria-label="Facebook">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
           <a class="social-ico" href="https://wa.me/56932734706" target="_blank" aria-label="WhatsApp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4a10 10 0 0 0-17 10l-1 4 4-1a10 10 0 0 0 14-13zM8 9c.4-.4 1.5-1 2 0l1 2c.2.4 0 .8-.3 1l-.7.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.7c.2-.3.6-.5 1-.3l2 1c1 .5.4 1.6 0 2-1.5 1.5-4 1-6.4-1.4S6.5 10.5 8 9z"/></svg>
           </a>
         </div>
-        <p class="muted" style="margin-top:14px;font-size:13px;">@pixelverso.studio</p>
+        <p class="muted" style="margin-top:14px;font-size:13px;">@pixelversostudiocl</p>
       </div>
     </div>
     <div class="copyright">
@@ -1858,7 +1930,7 @@ svg.ic-lg{width:26px;height:26px;}
   <div class="cart-body" id="cart-body">
     <div class="cart-empty" id="cart-empty">
       <div class="lottie-box" id="lottie-busqueda">
-        <video src="videos/08_pixelito-busqueda.mp4" autoplay muted loop playsinline></video>
+        <video src="videos/07_pixelito-pedido-enviado.mp4" autoplay muted loop playsinline></video>
       </div>
       <p style="color:#fff;font-weight:700;font-size:17px;margin-bottom:6px;">Tu carrito todavía está vacío</p>
       <p style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">Agrega tu cuadro favorito y empecemos a inmortalizarlo</p>
@@ -1868,7 +1940,7 @@ svg.ic-lg{width:26px;height:26px;}
     <!-- estado: éxito tras enviar -->
     <div class="cart-success" id="cart-success">
       <div class="lottie-box">
-        <video src="videos/07_pixelito-pedido-enviado.mp4" autoplay muted loop playsinline></video>
+        <video src="videos/08_pixelito-busqueda.mp4" autoplay muted loop playsinline></video>
       </div>
       <p>¡Pedido enviado!<br/>Te contactaremos pronto.</p>
     </div>
@@ -2379,6 +2451,70 @@ function slideRow(id, dir){
 }
 
 /* =========================================================
+ * Fan Carousel 3D — Hero
+ * ========================================================= */
+(function(){
+  const stage = document.getElementById('fan-stage');
+  if(!stage) return;
+  const cards = Array.from(stage.querySelectorAll('.fan-card'));
+  const dotsEl = document.getElementById('fan-dots');
+  const N = cards.length;
+  let cur = 2; // empieza en el tercero (centro visual)
+  let timer;
+
+  // [transX(px), scale, opacity, zIndex] — 3 posiciones visibles, cards 265×353px
+  const POS = [
+    [-270, 0.83, 0.72, 2],  // -1  izquierda
+    [   0, 1.00, 1.00,10],  //  0  centro (activo)
+    [ 270, 0.83, 0.72, 2],  // +1  derecha
+  ];
+
+  cards.forEach((_,i)=>{
+    const d = document.createElement('span');
+    d.className = 'fan-dot'+(i===cur?' active':'');
+    d.addEventListener('click',()=>go(i));
+    dotsEl.appendChild(d);
+  });
+
+  function go(idx){
+    cur = ((idx % N) + N) % N;
+    render();
+    resetTimer();
+  }
+
+  function render(){
+    cards.forEach((card, i)=>{
+      let o = i - cur;
+      if(o >  N/2) o -= N;
+      if(o < -N/2) o += N;
+      const pi = o + 1;  // offset: -1=0, 0=1, +1=2
+      if(pi < 0 || pi >= POS.length){
+        card.style.opacity = '0';
+        card.style.zIndex  = '0';
+        card.style.pointerEvents = 'none';
+        card.style.transform = `translate(-50%,-50%) scale(0.5)`;
+        return;
+      }
+      const [tx, sc, op, zi] = POS[pi];
+      card.style.opacity  = op;
+      card.style.zIndex   = zi;
+      card.style.pointerEvents = op > 0.3 ? 'auto' : 'none';
+      card.style.transform = `translate(-50%,-50%) translateX(${tx}px) scale(${sc})`;
+      card.classList.toggle('fc-active', o === 0);
+    });
+    dotsEl.querySelectorAll('.fan-dot').forEach((d,i)=>d.classList.toggle('active', i===cur));
+  }
+
+  function resetTimer(){
+    clearInterval(timer);
+    timer = setInterval(()=>go(cur+1), 500);
+  }
+
+  render();
+  resetTimer();
+})();
+
+/* =========================================================
  * Radio pills (personalización)
  * ========================================================= */
 document.querySelectorAll('.radio-row').forEach(row=>{
@@ -2530,12 +2666,30 @@ function waMsg(text){
 function onSearch(){
   const q = (document.getElementById('search-input').value || '').toLowerCase().trim();
   if(!q) return;
+
+  // 1. Buscar en nombre y tags de productos individuales
+  const matchProduct = PRODUCT_INDEX.find(p =>
+    (p.nombre || '').toLowerCase().includes(q) ||
+    (p.tags  || '').toLowerCase().includes(q) ||
+    (p.categoria || '').toLowerCase().includes(q)
+  );
+  if(matchProduct){
+    const slug = matchProduct.categoria.toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g,'')
+      .replace(/\s+/g,'-');
+    const catEl = document.getElementById('cat-'+slug);
+    if(catEl){ catEl.scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+  }
+
+  // 2. Buscar en categorías
   const found = CATEGORIAS.find(c => c.nombre.toLowerCase().includes(q) || c.slug.includes(q));
   if(found){
     document.getElementById('cat-'+found.slug).scrollIntoView({ behavior:'smooth', block:'start' });
-  } else {
-    waMsg('Hola! Estoy buscando: '+q+'. ¿Tienen algo así?');
+    return;
   }
+
+  // 3. No encontrado → WhatsApp con la búsqueda
+  waMsg('Hola Pixelverso! Estoy buscando: "'+q+'". ¿Tienen algo así disponible?');
 }
 
 /* =========================================================
