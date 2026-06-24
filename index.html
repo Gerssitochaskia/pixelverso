@@ -249,7 +249,7 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 }
 .nav-inner{display:flex;align-items:center;gap:28px;width:100%;}
 .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;color:var(--cyan);}
-.nav-logo img{width:36px;height:36px;object-fit:cover;border-radius:50%;background:transparent;}
+.nav-logo img{width:38px;height:38px;object-fit:contain;border-radius:50%;background:transparent;}
 .nav-links{display:flex;gap:26px;margin-left:18px;}
 .nav-links a{font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#cdd5e0;transition:color .2s;}
 .nav-links a:hover{color:var(--cyan);}
@@ -860,6 +860,8 @@ svg.ic-lg{width:26px;height:26px;}
 .preview-art{position:relative;transform-style:preserve-3d;transition:transform .18s cubic-bezier(.2,.8,.2,1), filter .35s ease;will-change:transform;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(0,212,255,.45),0 0 60px rgba(0,212,255,.2);border-radius:8px;overflow:hidden;cursor:none;}
 .preview-art.vertical{width:min(360px,72vw);aspect-ratio:3/4;}
 .preview-art.horizontal{width:min(560px,88vw);aspect-ratio:4/3;}
+.preview-art.size-40.vertical{width:min(230px,46vw)!important;}
+.preview-art.size-40.horizontal{width:min(360px,57vw)!important;}
 .preview-art img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;}
 .preview-size-label{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.55);text-transform:uppercase;pointer-events:none;white-space:nowrap;}
 .preview-art .scan{position:absolute;inset:0;pointer-events:none;border-radius:6px;overflow:hidden;background:linear-gradient(180deg,transparent 0%,transparent 45%,rgba(0,212,255,.18) 50%,transparent 55%,transparent 100%);background-size:100% 200%;animation:scanMove 2.6s linear infinite;}
@@ -1397,8 +1399,7 @@ svg.ic-lg{width:26px;height:26px;}
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a class="nav-logo" href="#top">
-      <!-- REEMPLAZAR: logo Pixelverso -->
-      <img src="images/logo.png" alt="Pixelverso Studio" onerror="this.style.display='none'" />
+      <img src="images/logo-circular.png" alt="Pixelverso Studio" style="width:40px;height:40px;object-fit:contain;border-radius:50%;margin-right:-4px;" />
       <span>PIXELVERSO STUDIO</span>
     </a>
     <div class="nav-links">
@@ -1459,16 +1460,19 @@ svg.ic-lg{width:26px;height:26px;}
       </div>
       <div class="fan-wrap" id="fan-wrap">
         <div class="fan-stage" id="fan-stage">
-          <div class="fan-card"><img src="images/anime/anime-02-mockup-80x60.jpg"                   loading="eager" alt="Cuadro Anime"/></div>
-          <div class="fan-card"><img src="images/dragonball/dragonball-04-mockup-80x60.jpg"         loading="eager" alt="Cuadro Dragon Ball"/></div>
-          <div class="fan-card"><img src="images/marvel/marvel-02-mockup-80x60.jpg"                 loading="eager" alt="Cuadro Marvel"/></div>
-          <div class="fan-card"><img src="images/johnwick/johnwick-01-mockup-80x60.jpg"             loading="lazy"  alt="Cuadro John Wick"/></div>
-          <div class="fan-card"><img src="images/mafia/mafia-01-mockup-80x60.jpg"                   loading="lazy"  alt="Cuadro Mafia"/></div>
-          <div class="fan-card"><img src="images/strangerthings/strangerthings-01-mockup-80x60.jpg" loading="lazy"  alt="Cuadro Stranger Things"/></div>
-          <div class="fan-card"><img src="images/dc/dc-02-mockup-80x60.jpg"                         loading="lazy"  alt="Cuadro DC"/></div>
-          <div class="fan-card"><img src="images/musica/musica-01-mockup-80x60.jpg"                 loading="lazy"  alt="Cuadro Música"/></div>
-          <div class="fan-card"><img src="images/videojuegos/videojuegos-02-mockup-80x60.jpg"       loading="lazy"  alt="Cuadro Videojuegos"/></div>
-          <div class="fan-card"><img src="images/pokemon/pokemon-02-mockup-80x60.jpg"               loading="lazy"  alt="Cuadro Pokémon"/></div>
+          <div class="fan-card"><img src="images/deportes/deportes-04-mockup-80x60.jpg"           loading="eager" alt="Messi con la Copa"/></div>
+          <div class="fan-card"><img src="images/cristiana/cristiana-01-mockup-80x60.jpg"           loading="eager" alt="Jesús Corona de Espinas"/></div>
+          <div class="fan-card"><img src="images/anime/anime-06-mockup-80x60.jpg"                   loading="eager" alt="Naruto vs Sasuke"/></div>
+          <div class="fan-card"><img src="images/musica/musica-05-mockup-80x60.jpg"                 loading="lazy"  alt="Tupac Shakur Retrato"/></div>
+          <div class="fan-card"><img src="images/dragonball/dragonball-07-mockup-80x60.jpg"         loading="lazy"  alt="Goku Ultra Instinto"/></div>
+          <div class="fan-card"><img src="images/mafia/mafia-06-mockup-80x60.jpg"                   loading="lazy"  alt="Tony Montana Retrato"/></div>
+          <div class="fan-card"><img src="images/autos/autos-02-mockup-80x60.jpg"                   loading="lazy"  alt="Lamborghini Huracán"/></div>
+          <div class="fan-card"><img src="images/pokemon/pokemon-05-mockup-80x60.jpg"               loading="lazy"  alt="Espeon"/></div>
+          <div class="fan-card"><img src="images/thelastofus/thelastofus-04-mockup-80x60.jpg"       loading="lazy"  alt="Joel y Ellie Serie HBO"/></div>
+          <div class="fan-card"><img src="images/peliculas/peliculas-01-mockup-80x60.jpg"           loading="lazy"  alt="Darth Vader"/></div>
+          <div class="fan-card"><img src="images/dc/dc-03-mockup-80x60.jpg"                         loading="lazy"  alt="Batman The Batman"/></div>
+          <div class="fan-card"><img src="images/johnwick/johnwick-02-mockup-80x60.jpg"             loading="lazy"  alt="John Wick y su Perro"/></div>
+          <div class="fan-card"><img src="images/marvel/marvel-02-mockup-80x60.jpg"                 loading="lazy"  alt="Thanos"/></div>
         </div>
         <div class="fan-dots" id="fan-dots"></div>
       </div>
@@ -1771,8 +1775,8 @@ svg.ic-lg{width:26px;height:26px;}
       </div>
       <div class="step">
         <div class="num">3</div>
-        <h5>Imprimimos en madera</h5>
-        <p>Bastidor MDF artesanal, impresión ultra HD 4K DPI, embalaje rígido y despacho.</p>
+        <h5>Tu foto en vinilo HD</h5>
+        <p>Bastidor MDF artesanal con foto impresa en vinilo autoadhesivo de alta calidad. Embalaje rígido y despacho.</p>
       </div>
     </div>
   </div>
@@ -1847,30 +1851,30 @@ svg.ic-lg{width:26px;height:26px;}
       <div>
         <h5>Categorías</h5>
         <ul>
-          <li><a href="#galeria">Anime</a></li>
-          <li><a href="#galeria">Videojuegos</a></li>
-          <li><a href="#galeria">Dragon Ball Z</a></li>
-          <li><a href="#galeria">Marvel</a></li>
-          <li><a href="#galeria">DC</a></li>
-          <li><a href="#galeria">Música</a></li>
-          <li><a href="#galeria">Autos</a></li>
-          <li><a href="#galeria">Pokémon</a></li>
-          <li><a href="#galeria">Mafia</a></li>
+          <li><a href="#cat-anime">Anime</a></li>
+          <li><a href="#cat-videojuegos">Videojuegos</a></li>
+          <li><a href="#cat-dragonball">Dragon Ball Z</a></li>
+          <li><a href="#cat-marvel">Marvel</a></li>
+          <li><a href="#cat-dc">DC Comics</a></li>
+          <li><a href="#cat-musica">Música</a></li>
+          <li><a href="#cat-autos">Autos</a></li>
+          <li><a href="#cat-pokemon">Pokémon</a></li>
+          <li><a href="#cat-mafia">Mafia</a></li>
         </ul>
       </div>
       <div>
         <h5>Más categorías</h5>
         <ul>
-          <li><a href="#galeria">Enamorados</a></li>
-          <li><a href="#galeria">Cuadros familiares</a></li>
-          <li><a href="#galeria">Stranger Things</a></li>
-          <li><a href="#galeria">The Last of Us</a></li>
-          <li><a href="#galeria">John Wick</a></li>
-          <li><a href="#galeria">Nintendo</a></li>
-          <li><a href="#galeria">Cristiana</a></li>
-          <li><a href="#galeria">Collage</a></li>
-          <li><a href="#galeria">Películas</a></li>
-          <li><a href="#galeria">Espacio personalizado</a></li>
+          <li><a href="#cat-enamorados">Enamorados</a></li>
+          <li><a href="#cat-familia">Cuadros familiares</a></li>
+          <li><a href="#cat-strangerthings">Stranger Things</a></li>
+          <li><a href="#cat-thelastofus">The Last of Us</a></li>
+          <li><a href="#cat-johnwick">John Wick</a></li>
+          <li><a href="#cat-nintendo">Nintendo</a></li>
+          <li><a href="#cat-cristiana">Cristiana</a></li>
+          <li><a href="#cat-collage">Collage</a></li>
+          <li><a href="#cat-peliculas">Películas</a></li>
+          <li><a href="#cat-deportes">Deportes</a></li>
         </ul>
       </div>
       <div>
@@ -2103,7 +2107,7 @@ document.addEventListener('click', e=>{
   const art = document.getElementById('preview-art');
   const tag = document.getElementById('preview-size-tag');
   if(art){
-    art.className = 'preview-art '+orient;
+    art.className = 'preview-art '+orient+(sz==='40'?' size-40':'');
     const previewImg = document.getElementById('preview-img');
     if(previewImg && PREVIEW_CURRENT){
       previewImg.src = _mockupForSize(PREVIEW_CURRENT, sz);
@@ -2507,7 +2511,7 @@ function slideRow(id, dir){
 
   function resetTimer(){
     clearInterval(timer);
-    timer = setInterval(()=>go(cur+1), 500);
+    timer = setInterval(()=>go(cur+1), 1000);
   }
 
   render();
