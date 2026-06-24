@@ -2462,22 +2462,22 @@ function slideRow(id, dir){
  * Visualizador 3D
  * ========================================================= */
 const MOCKUP_COORDS = {
-  'dormitorio-40v': { l:34, t:6,  w:32, h:43 },
-  'dormitorio-40h': { l:28, t:20, w:44, h:33 },
-  'dormitorio-80v': { l:27, t:4,  w:46, h:62 },
-  'dormitorio-80h': { l:17, t:13, w:66, h:50 },
-  'gaming-40v':     { l:37, t:26, w:26, h:35 },
-  'gaming-40h':     { l:28, t:33, w:44, h:33 },
-  'gaming-80v':     { l:32, t:14, w:36, h:48 },
-  'gaming-80h':     { l:15, t:24, w:70, h:53 },
-  'living-40v':     { l:12, t:26, w:26, h:35 },
-  'living-40h':     { l:6,  t:32, w:44, h:33 },
-  'living-80v':     { l:8,  t:12, w:36, h:48 },
-  'living-80h':     { l:4,  t:22, w:66, h:50 },
-  'oficina-40v':    { l:36, t:18, w:26, h:35 },
-  'oficina-40h':    { l:28, t:26, w:44, h:33 },
-  'oficina-80v':    { l:30, t:6,  w:40, h:53 },
-  'oficina-80h':    { l:18, t:18, w:64, h:48 },
+  'dormitorio-40h': { l:28, t:22, w:27, h:26 },
+  'dormitorio-40v': { l:33, t:13, w:23, h:39 },
+  'dormitorio-80h': { l:18, t:12, w:54, h:40 },
+  'dormitorio-80v': { l:22, t:2,  w:43, h:55 },
+  'gaming-40h':     { l:28, t:17, w:36, h:27 },
+  'gaming-40v':     { l:32, t:15, w:16, h:30 },
+  'gaming-80h':     { l:18, t:8,  w:52, h:39 },
+  'gaming-80v':     { l:22, t:10, w:38, h:48 },
+  'living-40h':     { l:28, t:12, w:32, h:24 },
+  'living-40v':     { l:28, t:8,  w:18, h:42 },
+  'living-80h':     { l:16, t:5,  w:55, h:41 },
+  'living-80v':     { l:18, t:5,  w:30, h:40 },
+  'oficina-40h':    { l:32, t:12, w:33, h:25 },
+  'oficina-40v':    { l:33, t:10, w:19, h:40 },
+  'oficina-80h':    { l:16, t:8,  w:54, h:40 },
+  'oficina-80v':    { l:28, t:3,  w:34, h:45 },
 };
 const MOCKUP_RATIO = { dormitorio:'1586/992', gaming:'1448/1086', living:'1448/1086', oficina:'1448/1086' };
 let visuEnv = 'living'; let visuSize = '40'; let visuOrient = 'v'; let visuArt = '';
@@ -2499,11 +2499,20 @@ async function applyVisu(){
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // Arte a tamaño completo — solo visible donde el PNG tiene transparencia (el marco)
-  if(artImg) ctx.drawImage(artImg, 0, 0, W, H);
-
-  // PNG de habitación encima: marco=transparente (muestra arte), resto=opaco (muestra habitación)
+  // 1. Dibujar la habitación completa
   ctx.drawImage(roomImg, 0, 0, W, H);
+
+  // 2. Dibujar el arte encima, exactamente en el área del marco negro
+  if(artImg) {
+    const c = MOCKUP_COORDS[key];
+    if(c) {
+      const fx = c.l/100 * W;
+      const fy = c.t/100 * H;
+      const fw = c.w/100 * W;
+      const fh = c.h/100 * H;
+      ctx.drawImage(artImg, fx, fy, fw, fh);
+    }
+  }
 }
 
 function initVisuFromJSON(){
