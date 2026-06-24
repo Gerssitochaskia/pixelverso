@@ -2107,7 +2107,7 @@ document.addEventListener('click', e=>{
   const art = document.getElementById('preview-art');
   const tag = document.getElementById('preview-size-tag');
   if(art){
-    art.className = 'preview-art '+orient+(sz==='40'?' size-40':'');
+    art.className = 'preview-art '+orient+(sz==='40' && PREVIEW_CURRENT && PREVIEW_CURRENT.esPersonalizado ? ' size-40' : '');
     const previewImg = document.getElementById('preview-img');
     if(previewImg && PREVIEW_CURRENT){
       previewImg.src = _mockupForSize(PREVIEW_CURRENT, sz);
