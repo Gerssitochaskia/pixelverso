@@ -554,33 +554,8 @@ h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.
 .wall-card .meta .tag{color:var(--muted);font-size:12px;margin-top:5px;display:flex;align-items:center;gap:5px;}
 
 /* ============================================================
-  11. VISUALIZADOR 3D
+  11. VISUALIZADOR 3D — eliminado
   ============================================================ */
-.visu-wrap{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
-.visu-wrap > div{min-width:0;}
-.visu-stage{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;min-width:0;}
-#visu-canvas{display:block;width:100%;height:100%;}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
-.pill{
-  padding:9px 16px;border-radius:30px;background:rgba(255,255,255,.05);
-  border:1px solid var(--border-2);font-size:13px;font-weight:600;letter-spacing:.05em;
-  color:#cdd5e0;transition:.25s;
-}
-.pill.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
-.visu-cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;margin-bottom:8px;}
-.visu-cat-tab{padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid var(--border-2);font-size:11px;font-weight:600;color:#cdd5e0;cursor:pointer;transition:.2s;white-space:nowrap;}
-.visu-cat-tab:hover{border-color:var(--cyan);color:var(--cyan);}
-.visu-cat-tab.active{background:var(--cyan);border-color:var(--cyan);color:#001018;}
-.thumb-row{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;margin-top:4px;padding-bottom:4px;}
-.thumb-row::-webkit-scrollbar{height:4px;} .thumb-row::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:4px;}
-.thumb{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;}
-.thumb.active{border-color:var(--cyan);}
-.thumb img{width:100%;height:100%;object-fit:cover;}
-.visu-side{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px;}
-.visu-side h4{font-family:'Bebas Neue';font-size:24px;margin-bottom:8px;}
-.visu-side .note{margin-top:14px;font-size:12px;color:var(--muted);}
-.visu-side .lottie-box{margin-top:18px;border-radius:10px;overflow:hidden;}
-.visu-side .lottie-box video{width:100%;}
 
 /* ============================================================
   12. ENVÍOS
@@ -1009,7 +984,6 @@ svg.ic-lg{width:26px;height:26px;}
   .slide-text .ribbon-cta{ justify-content:center; }
   .hex-section{ grid-template-columns:1fr; gap:40px; }
   .custom-grid{ grid-template-columns:1fr; gap:40px; }
-  .visu-wrap{ grid-template-columns:1fr; }
   .video-grid{ grid-template-columns:1fr; }
   /* footer: 2 cols en tablet para aprovechar ancho */
   .footer-grid{ grid-template-columns:repeat(2,1fr); gap:28px; }
@@ -1088,10 +1062,6 @@ svg.ic-lg{width:26px;height:26px;}
   .review{ flex:0 0 260px; padding:16px; }
   .wall-row{ gap:12px; }
   .wall-card{ flex:none; }
-
-  /* VISUALIZER */
-  .visu-wrap{ grid-template-columns:1fr; gap:20px; }
-  .visu-side{ padding:16px; }
 
   /* SHIPPING */
   .ship-grid{ grid-template-columns:1fr; gap:14px; }
@@ -1205,12 +1175,6 @@ svg.ic-lg{width:26px;height:26px;}
   /* WALL */
   .wall-row{ grid-template-columns:repeat(2,1fr); gap:10px; }
   .wall-card .meta .nm-ct{ font-size:14px; }
-
-  /* VISU */
-  .visu-stage{ aspect-ratio:4/3; }
-  .thumb-row{ flex-wrap:wrap; }
-  .visu-side{ padding:14px; }
-  .visu-side h4{ font-size:20px; }
 
   /* SHIPPING */
   .ship-card{ padding:16px; }
@@ -1603,49 +1567,6 @@ svg.ic-lg{width:26px;height:26px;}
       <div class="wall-row" id="wall-row">
         <!-- REEMPLAZAR: fotos reales de coleccionistas -->
         <!-- Se rellena por JS -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-    10. VISUALIZADOR 3D
-     ============================================================ -->
-<section class="section">
-  <div class="container">
-    <span class="eyebrow">Visualizador</span>
-    <h2 class="section-title">¿Cómo se vería en tu espacio?</h2>
-    <p class="sub">Elige ambiente, cuadro y tamaño. Vista previa instantánea.</p>
-
-    <div class="visu-wrap">
-      <div>
-        <div class="pills" id="env-pills">
-          <button class="pill active" data-env="living">Living Room</button>
-          <button class="pill" data-env="gaming">Gaming Setup</button>
-          <button class="pill" data-env="oficina">Oficina</button>
-          <button class="pill" data-env="dormitorio">Dormitorio</button>
-        </div>
-        <div class="visu-stage" id="visu-stage">
-          <canvas id="visu-canvas" style="width:100%;height:100%;display:block;"></canvas>
-        </div>
-        <div class="visu-cat-tabs" id="visu-cat-tabs"></div>
-        <div class="thumb-row" id="visu-thumbs"></div>
-      </div>
-      <div class="visu-side">
-        <h4>Configura tu cuadro</h4>
-        <p class="muted" style="font-size:13.5px;">Tamaño elegido</p>
-        <div class="pills" id="size-pills" style="margin-top:8px;">
-          <button class="pill active" data-size="40">40×30 cm</button>
-          <button class="pill" data-size="80">80×60 cm</button>
-        </div>
-        <p class="muted" style="font-size:12.5px;margin-top:12px;">Material: madera · Disponible vertical u horizontal.</p>
-        <button class="btn btn-primary btn-shimmer" style="margin-top:18px;width:100%;" onclick="addCustomFromVisu()">
-          ★ Me gusta este — Pedir ahora
-        </button>
-        <p class="note">Simulación aproximada. Los colores pueden variar según pantalla.</p>
-        <div class="lottie-box" id="lottie-visualizador" style="width:100%;">
-          <video src="videos/03_pixelito-como-funciona.mp4" autoplay muted loop playsinline></video>
-        </div>
       </div>
     </div>
   </div>
@@ -2222,7 +2143,6 @@ async function loadProductosJSON(){
 
     _renderCategoriasFromJSON();
     renderBestSellersFromJSON();
-    initVisuFromJSON();
     console.log('✓ productos.json cargado:', Object.keys(PRODUCT_INDEX).length+' productos en índice');
   }catch(e){ /* fallback silencioso */ }
 }
@@ -2459,159 +2379,6 @@ function slideRow(id, dir){
 }
 
 /* =========================================================
- * Visualizador 3D
- * ========================================================= */
-const MOCKUP_COORDS = {
-  'dormitorio-40h': { l:28, t:22, w:27, h:26 },
-  'dormitorio-40v': { l:33, t:13, w:23, h:39 },
-  'dormitorio-80h': { l:18, t:12, w:54, h:40 },
-  'dormitorio-80v': { l:22, t:2,  w:43, h:55 },
-  'gaming-40h':     { l:28, t:17, w:36, h:27 },
-  'gaming-40v':     { l:32, t:15, w:16, h:30 },
-  'gaming-80h':     { l:18, t:8,  w:52, h:39 },
-  'gaming-80v':     { l:22, t:10, w:38, h:48 },
-  'living-40h':     { l:28, t:12, w:32, h:24 },
-  'living-40v':     { l:28, t:8,  w:18, h:42 },
-  'living-80h':     { l:16, t:5,  w:55, h:41 },
-  'living-80v':     { l:18, t:5,  w:30, h:40 },
-  'oficina-40h':    { l:32, t:12, w:33, h:25 },
-  'oficina-40v':    { l:33, t:10, w:19, h:40 },
-  'oficina-80h':    { l:16, t:8,  w:54, h:40 },
-  'oficina-80v':    { l:28, t:3,  w:34, h:45 },
-};
-const MOCKUP_RATIO = { dormitorio:'1586/992', gaming:'1448/1086', living:'1448/1086', oficina:'1448/1086' };
-let visuEnv = 'living'; let visuSize = '40'; let visuOrient = 'v'; let visuArt = '';
-
-function loadImg(src){ return new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=src; }); }
-
-async function applyVisu(){
-  const key = `${visuEnv}-${visuSize}${visuOrient}`;
-  document.getElementById('visu-stage').style.aspectRatio = MOCKUP_RATIO[visuEnv] || '1448/1086';
-
-  const [roomImg, artImg] = await Promise.all([
-    loadImg(`images/mockups/${key}.png`),
-    visuArt ? loadImg(visuArt) : Promise.resolve(null)
-  ]);
-  if(!roomImg) return;
-
-  const canvas = document.getElementById('visu-canvas');
-  const W = roomImg.naturalWidth, H = roomImg.naturalHeight;
-  canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-
-  // 1. Dibujar la habitación completa
-  ctx.drawImage(roomImg, 0, 0, W, H);
-
-  // 2. Dibujar el arte encima, exactamente en el área del marco negro
-  if(artImg) {
-    const c = MOCKUP_COORDS[key];
-    if(c) {
-      const fx = c.l/100 * W;
-      const fy = c.t/100 * H;
-      const fw = c.w/100 * W;
-      const fh = c.h/100 * H;
-      ctx.drawImage(artImg, fx, fy, fw, fh);
-    }
-  }
-}
-
-function initVisuFromJSON(){
-  const pool = Object.values(PRODUCT_INDEX).filter(p => p.mockup80);
-  if(!pool.length) return;
-
-  // Agrupar por categoría
-  const byCat = {};
-  pool.forEach(p=>{
-    if(!byCat[p.categoria]) byCat[p.categoria] = [];
-    byCat[p.categoria].push(p);
-  });
-
-  const catTabs = document.getElementById('visu-cat-tabs');
-  const thumbRow = document.getElementById('visu-thumbs');
-
-  function renderThumbs(prods){
-    thumbRow.innerHTML = '';
-    prods.forEach((p,i)=>{
-      const div = document.createElement('div');
-      div.className = 'thumb'+(i===0?' active':'');
-      div.style.cssText = 'width:72px;height:72px;flex-shrink:0;';
-      div.innerHTML = `<img src="${p.imgArt||p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"/>`;
-      div.addEventListener('click',()=>{
-        thumbRow.querySelectorAll('.thumb').forEach(x=>x.classList.remove('active'));
-        div.classList.add('active');
-        visuArt = p.imgArt;
-        visuOrient = (p.orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
-        applyVisu();
-      });
-      thumbRow.appendChild(div);
-    });
-    if(prods.length){
-      visuArt = prods[0].imgArt;
-      visuOrient = (prods[0].orientacion||'vertical') === 'horizontal' ? 'h' : 'v';
-      applyVisu();
-    }
-  }
-
-  // Botón "Mix" — 1 producto random por categoría
-  catTabs.innerHTML = '';
-  const allBtn = document.createElement('button');
-  allBtn.className = 'visu-cat-tab active';
-  allBtn.textContent = 'Mix';
-  allBtn.addEventListener('click',()=>{
-    catTabs.querySelectorAll('.visu-cat-tab').forEach(x=>x.classList.remove('active'));
-    allBtn.classList.add('active');
-    const mix = Object.values(byCat).map(arr=>arr[Math.floor(Math.random()*arr.length)]).slice(0,8);
-    renderThumbs(mix);
-  });
-  catTabs.appendChild(allBtn);
-
-  // Un botón por categoría, orden alfabético
-  Object.keys(byCat).sort().forEach(cat=>{
-    const btn = document.createElement('button');
-    btn.className = 'visu-cat-tab';
-    btn.textContent = cat;
-    btn.addEventListener('click',()=>{
-      catTabs.querySelectorAll('.visu-cat-tab').forEach(x=>x.classList.remove('active'));
-      btn.classList.add('active');
-      renderThumbs(byCat[cat]);
-    });
-    catTabs.appendChild(btn);
-  });
-
-  // Mostrar mix inicial
-  const mix = Object.values(byCat).map(arr=>arr[Math.floor(Math.random()*arr.length)]);
-  renderThumbs(mix);
-}
-
-document.querySelectorAll('#env-pills .pill').forEach(p=>{
-  p.addEventListener('click',()=>{
-    document.querySelectorAll('#env-pills .pill').forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    visuEnv = p.dataset.env;
-    applyVisu();
-  });
-});
-document.querySelectorAll('#size-pills .pill').forEach(p=>{
-  p.addEventListener('click',()=>{
-    document.querySelectorAll('#size-pills .pill').forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    visuSize = p.dataset.size;
-    applyVisu();
-  });
-});
-function addCustomFromVisu(){
-  const sizeName = document.querySelector('#size-pills .pill.active')?.textContent || '40×30 cm';
-  addToCart({
-    id:'visu-'+Date.now(),
-    nombre:'Cuadro elegido en visualizador',
-    tamano: sizeName,
-    tipo:'Madera',
-    img: visuArt,
-    esPersonalizado:false
-  });
-}
-
-/* =========================================================
  * Radio pills (personalización)
  * ========================================================= */
 document.querySelectorAll('.radio-row').forEach(row=>{
@@ -2814,12 +2581,11 @@ function tryLottie(containerId, jsonName){
     })
     .catch(()=>{ /* fallback ya está en el DOM */ });
 }
-['lottie-personaliza','lottie-visualizador','lottie-busqueda']
+['lottie-personaliza','lottie-busqueda']
   .forEach(id=>{
     const map = {
       'lottie-galeria':'05_pixelito-galeria.json',
       'lottie-personaliza':'02_pixelito-personaliza.json',
-      'lottie-visualizador':'09_pixelito-visualizador-3d.json',
       'lottie-busqueda':'08_pixelito-busqueda.json',
     };
     tryLottie(id, map[id]);
