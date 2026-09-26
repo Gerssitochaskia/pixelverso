@@ -141,7 +141,7 @@ cd C:\Users\elbol\PROYECTOS\pixelverso
 git add index.html data/productos.json
 git commit -m "..."
 git push origin main
-firebase login:use respetadoresdocentes@gmail.com
+firebase login:use gerssoneduardol@gmail.com   # ⚠️ NO respetadoresdocentes: esa cuenta no tiene acceso
 firebase use pixelverso-studio-cl
 firebase deploy --only hosting
 ```
