@@ -1452,7 +1452,7 @@ svg.ic-lg{width:26px;height:26px;}
       <div class="slide-text">
         <span class="eyebrow">Cuadros personalizados en madera</span>
         <h1>AQUÍ INMORTALIZAMOS<br/>TUS FOTOS FAVORITAS</h1>
-        <p class="lead">Convierte tus recuerdos, personajes y momentos especiales en cuadros únicos impresos sobre madera. Disponible en 40×30 cm y 80×60 cm — vertical u horizontal.</p>
+        <p class="lead">Convierte tus recuerdos, personajes y momentos especiales en cuadros únicos impresos sobre madera. Disponible en 40×30 cm y 80×60 cm — vertical u horizontal — y en trípticos de 3 piezas de 25×70 cm.</p>
         <div class="ribbon-cta">
           <a class="btn btn-primary btn-shimmer" href="#explorar">Ver categorías</a>
           <a class="btn btn-outline" href="#personalizar">Personalizar mi cuadro</a>
@@ -1462,12 +1462,12 @@ svg.ic-lg{width:26px;height:26px;}
         <div class="fan-stage" id="fan-stage">
           <div class="fan-card"><img src="images/deportes/deportes-04-mockup-80x60.jpg"           loading="eager" alt="Messi con la Copa"/></div>
           <div class="fan-card"><img src="images/cristiana/cristiana-01-mockup-80x60.jpg"           loading="eager" alt="Jesús Corona de Espinas"/></div>
-          <div class="fan-card"><img src="images/anime/anime-06-mockup-80x60.jpg"                   loading="eager" alt="Naruto vs Sasuke"/></div>
+          <div class="fan-card"><img src="images/anime/anime-04-mockup-80x60.jpg"                   loading="eager" alt="Naruto vs Sasuke"/></div>
           <div class="fan-card"><img src="images/musica/musica-05-mockup-80x60.jpg"                 loading="lazy"  alt="Tupac Shakur Retrato"/></div>
           <div class="fan-card"><img src="images/dragonball/dragonball-07-mockup-80x60.jpg"         loading="lazy"  alt="Goku Ultra Instinto"/></div>
           <div class="fan-card"><img src="images/mafia/mafia-06-mockup-80x60.jpg"                   loading="lazy"  alt="Tony Montana Retrato"/></div>
           <div class="fan-card"><img src="images/autos/autos-02-mockup-80x60.jpg"                   loading="lazy"  alt="Lamborghini Huracán"/></div>
-          <div class="fan-card"><img src="images/pokemon/pokemon-05-mockup-80x60.jpg"               loading="lazy"  alt="Espeon"/></div>
+          <div class="fan-card"><img src="images/pokemon/pokemon-04-mockup-80x60.jpg"               loading="lazy"  alt="Espeon"/></div>
           <div class="fan-card"><img src="images/thelastofus/thelastofus-04-mockup-80x60.jpg"       loading="lazy"  alt="Joel y Ellie Serie HBO"/></div>
           <div class="fan-card"><img src="images/peliculas/peliculas-01-mockup-80x60.jpg"           loading="lazy"  alt="Darth Vader"/></div>
           <div class="fan-card"><img src="images/dc/dc-03-mockup-80x60.jpg"                         loading="lazy"  alt="Batman The Batman"/></div>
@@ -1483,7 +1483,7 @@ svg.ic-lg{width:26px;height:26px;}
       <div class="slide-text">
         <span class="eyebrow">Tus recuerdos, en madera</span>
         <h1>TUS MOMENTOS<br/>HECHOS CUADRO</h1>
-        <p class="lead">Familia, parejas, mascotas, anime, gaming, autos. Tú envías la idea — nosotros la imprimimos sobre madera con acabado premium. Solo dos tamaños: 40×30 y 80×60 cm.</p>
+        <p class="lead">Familia, parejas, mascotas, anime, gaming, autos. Tú envías la idea — nosotros la imprimimos sobre madera con acabado premium. Tamaños 40×30 y 80×60 cm, o tríptico de 3 × 25×70 cm.</p>
         <div class="ribbon-cta">
           <a class="btn btn-primary btn-shimmer" href="#personalizar">Personalizar ahora</a>
           <a class="btn btn-outline" href="#envios">Ver envíos</a>
@@ -1546,7 +1546,7 @@ svg.ic-lg{width:26px;height:26px;}
   <div class="container">
     <span class="eyebrow">Catálogo</span>
     <h2 class="section-title">Cuadros destacados</h2>
-    <p class="sub">Una muestra de los estilos que más nos piden. Todos en madera, 40×30 cm o 80×60 cm.</p>
+    <p class="sub">Una muestra de los estilos que más nos piden. Todos en madera: 40×30, 80×60 o trípticos de 3 × 25×70 cm.</p>
     <div class="grid-6 reveal" id="bestsellers-grid">
       <!-- card especial upload -->
       <a class="card card-upload" href="#personalizar">
@@ -1771,7 +1771,7 @@ svg.ic-lg{width:26px;height:26px;}
       <div class="step">
         <div class="num">2</div>
         <h5>Elegimos tamaño</h5>
-        <p>40×30 cm o 80×60 cm, vertical u horizontal. Confirmamos todo por WhatsApp.</p>
+        <p>40×30 cm u 80×60 cm, vertical u horizontal, o tríptico de 3 × 25×70 cm. Confirmamos todo por WhatsApp.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
@@ -1875,6 +1875,8 @@ svg.ic-lg{width:26px;height:26px;}
           <li><a href="#cat-collage">Collage</a></li>
           <li><a href="#cat-peliculas">Películas</a></li>
           <li><a href="#cat-deportes">Deportes</a></li>
+          <li><a href="#cat-abstracto">Arte abstracto</a></li>
+          <li><a href="#cat-infantil">Infantil</a></li>
         </ul>
       </div>
       <div>
@@ -2008,6 +2010,12 @@ function _mockupForSize(p, sz){
   // Devuelve el mockup correcto según el tamaño seleccionado
   return sz === '80' ? (p.mockup80 || p.img) : (p.mockup40 || p.img);
 }
+/* Trípticos / cuádruples: tienen una sola medida fija (p.medida) */
+const FORMATO_NOMBRE = { triptico:'Tríptico', cuadruple:'Cuádruple' };
+function _tagProducto(p){
+  if(p.formato) return '▥ '+(FORMATO_NOMBRE[p.formato]||'Multipanel');
+  return p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal';
+}
 
 function openPreview(productId){
   const p = (window.PRODUCT_INDEX||{})[productId];
@@ -2025,12 +2033,20 @@ function openPreview(productId){
   // Foto personalizada: fondo de pared de ladrillos
   const wrap = document.getElementById('preview-art-wrap');
   if(wrap) wrap.classList.toggle('wall-bg', !!p.esPersonalizado);
-  sizeTag.textContent = '80 × 60 cm';
+  sizeTag.textContent = p.formato ? p.medida : '80 × 60 cm';
 
   document.getElementById('preview-name').textContent = p.nombre;
   document.getElementById('preview-cat').textContent  = p.categoria || 'Cuadro';
-  document.getElementById('preview-orient').textContent = (orient==='horizontal')?'Horizontal':'Vertical';
-  document.querySelectorAll('#preview-sizes .sz').forEach(b => b.classList.toggle('active', b.dataset.size==='80'));
+  document.getElementById('preview-orient-lab').textContent = p.formato ? 'Formato' : 'Orientación';
+  document.getElementById('preview-orient').textContent = p.formato
+    ? (FORMATO_NOMBRE[p.formato]||'Multipanel')+' · '+(p.formato==='cuadruple'?'4':'3')+' piezas'
+    : ((orient==='horizontal')?'Horizontal':'Vertical');
+  // Multipanel: un solo botón con su medida; cuadro normal: 40×30 / 80×60
+  const sizes = document.getElementById('preview-sizes');
+  sizes.innerHTML = p.formato
+    ? `<button class="sz active" data-size="fijo">${p.medida}</button>`
+    : `<button class="sz" data-size="40">40×30 cm</button><button class="sz active" data-size="80">80×60 cm</button>`;
+  if(p.formato) PREVIEW_SIZE = 'fijo';
 
   document.getElementById('preview-overlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -2098,7 +2114,7 @@ document.addEventListener('touchend', _resetTilt);
 /* Cambio de tamaño — el frame REALMENTE crece/decrece */
 document.addEventListener('click', e=>{
   const b = e.target.closest('#preview-sizes .sz');
-  if(!b) return;
+  if(!b || b.dataset.size==='fijo') return;
   document.querySelectorAll('#preview-sizes .sz').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   const sz = b.dataset.size;
@@ -2117,14 +2133,18 @@ document.addEventListener('click', e=>{
   if(tag) tag.textContent = (sz==='80')?'80 × 60 cm':'40 × 30 cm';
 });
 
-function _sizeLabel(s){ return s==='80' ? '80x60 cm' : '40x30 cm'; }
+function _sizeLabel(s){
+  if(s==='fijo' && PREVIEW_CURRENT && PREVIEW_CURRENT.medida) return PREVIEW_CURRENT.medida;
+  return s==='80' ? '80x60 cm' : '40x30 cm';
+}
 function addFromPreview(){
   if(!PREVIEW_CURRENT) return;
   addToCart({
     id: PREVIEW_CURRENT.id+'-'+Date.now(),
     nombre: PREVIEW_CURRENT.nombre,
     tamano: _sizeLabel(PREVIEW_SIZE),
-    tipo: 'Madera · '+(PREVIEW_CURRENT.orientacion==='horizontal'?'Horizontal':'Vertical'),
+    tipo: 'Madera · '+(PREVIEW_CURRENT.formato ? (FORMATO_NOMBRE[PREVIEW_CURRENT.formato]||'Multipanel')
+                       : (PREVIEW_CURRENT.orientacion==='horizontal'?'Horizontal':'Vertical')),
     img: PREVIEW_CURRENT.img,
     esPersonalizado: !!PREVIEW_CURRENT.esPersonalizado
   });
@@ -2213,7 +2233,9 @@ async function loadProductosJSON(){
         mockup80:    p.mockup80 || p.imagenMockup || p.imagen || '', // modal tamaño 80
         orientacion: p.orientacion || 'vertical',
         categoria:   p.categoria   || '',
-        descripcion: p.descripcion || ''
+        descripcion: p.descripcion || '',
+        formato:     p.formato     || '',   // 'triptico' | 'cuadruple' → medida fija
+        medida:      p.medida      || ''    // ej: '3 × 25×70 cm'
       };
     });
 
@@ -2247,6 +2269,8 @@ const CATEGORIAS = [
   { slug:'marvel',        nombre:'Marvel',                img:'images/cat-marvel.png' },
   { slug:'videojuegos',   nombre:'Videojuegos',           img:'images/cat-videojuegos.png' },
   { slug:'nintendo',      nombre:'Nintendo',              img:'images/cat-nintendo.png' },
+  { slug:'abstracto',     nombre:'Arte abstracto',        img:'images/cat-abstracto.png' },
+  { slug:'infantil',      nombre:'Infantil',              img:'images/cat-infantil.png' },
 ];
 
 /* genera 6 productos por categoría usando la imagen base + picsum random como variantes */
@@ -2307,7 +2331,7 @@ function renderBestSellersFromJSON(){
     el.style.cssText = `--fd:${fd};--fd-delay:${fdDelay};--bp:${bp};--bp-delay:${bpDelay};--sf:${sf};--sf-delay:${sfDelay}`;
 
     el.innerHTML = `
-      <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+      <span class="orient-tag">${_tagProducto(p)}</span>
       <div class="scene-layer" style="position:absolute;inset:0;">
         <img loading="lazy" src="${p.mockup80}" alt="${p.nombre}" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s ease;"/>
       </div>
@@ -2358,7 +2382,7 @@ function renderCategorias(){
           const slug = _sceneSlug(cat.nombre);
           return `
           <div class="card orient-${p.orientacion}" data-id="${p.id}" onclick="openPreview('${p.id}')">
-            <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+            <span class="orient-tag">${_tagProducto(p)}</span>
             <div class="scene-layer">
               <div class="scene scene-${slug}" style="aspect-ratio:auto;height:100%;border-radius:0;">
                 <div class="wood-frame size-40 ${p.orientacion}">
@@ -2781,6 +2805,9 @@ const CAT_SLUG_MAP = {
   'películas':           'peliculas',
   'espacio personalizado':'personalizado',
   'personalizado':       'personalizado',
+  'arte abstracto':      'abstracto',
+  'abstracto':           'abstracto',
+  'infantil':            'infantil',
 };
 function _catToSlug(cat){
   if(!cat) return null;
@@ -2817,7 +2844,7 @@ function _renderCategoriasFromJSON(){
       el.dataset.id = p.id;
       el.dataset.fromJson = '1';
       el.innerHTML = `
-        <span class="orient-tag">${p.orientacion==='vertical'?'↑ Vertical':'→ Horizontal'}</span>
+        <span class="orient-tag">${_tagProducto(p)}</span>
         <div class="scene-layer">
           <img loading="lazy" src="${p.img}" alt="${p.nombre}"/>
         </div>
@@ -2875,7 +2902,7 @@ document.querySelectorAll('.cat-block, .card, .review, .wall-card').forEach(el=>
       <p class="desc">Cuadro personalizado impreso sobre madera con acabado premium. Mueve el mouse para inspeccionarlo en 3D.</p>
       <div class="preview-meta">
         <div class="m-item"><div class="lab">Material</div><div class="val">Madera</div></div>
-        <div class="m-item"><div class="lab">Orientación</div><div class="val" id="preview-orient">Vertical</div></div>
+        <div class="m-item"><div class="lab" id="preview-orient-lab">Orientación</div><div class="val" id="preview-orient">Vertical</div></div>
       </div>
       <div style="font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:8px;">Tamaño</div>
       <div class="preview-sizes" id="preview-sizes">

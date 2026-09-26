@@ -44,15 +44,16 @@ project/
 
 - **Material:** Bastidor MDF artesanal con impresión UV
 - **Tamaños:** 40×30 cm · 80×60 cm
+- **Multipanel:** tríptico 3 × 25×70 cm · cuádruple 4 × 25×70 cm (una sola medida, sin elegir tamaño)
 - **Orientación:** Vertical u horizontal
 - **Fijación:** Cola fría de madera (sin clavos ni taladros)
 - **Envío:** Retiro local · Delivery en Concepción · Blue Express / Starken a todo Chile
 
 ---
 
-## Las 18 categorías
+## Las 22 categorías
 
-Anime · Videojuegos · Dragon Ball Z · Marvel · DC · Música · Autos · Pokémon · Mafia · Enamorados · Cuadros familiares · Stranger Things · The Last of Us · John Wick · Nintendo · Cristiana · Collage · Espacio personalizado
+Anime · Videojuegos · Dragon Ball Z · Marvel · DC · Música · Autos · Pokémon · Mafia · Enamorados · Cuadros familiares · Stranger Things · The Last of Us · John Wick · Nintendo · Cristiana · Collage · Espacio personalizado · Deportes · Películas · **Arte abstracto** · **Infantil**
 
 ---
 
@@ -117,6 +118,49 @@ images/
 
 ---
 
+### Cuadros multipanel (trípticos / cuádruples)
+
+Usan **una sola imagen** (el mockup en la pared) guardada como `images/<cat>/<cat>-NN-mockup-80x60.jpg`, así cumplen la regla "producto válido = tiene mockup-80x60" y la renumeración normal. En `productos.json` llevan:
+
+```json
+{ "id": "anime-08", "nombre": "Naruto, Sakura y Sasuke — Equipo 7",
+  "mockup40": "images/anime/anime-08-mockup-80x60.jpg", "mockup80": "…mismo…", "art": "…mismo…",
+  "categoria": "Anime", "orientacion": "horizontal",
+  "formato": "triptico", "medida": "3 × 25×70 cm", "origen": "NARUTO 2.png" }
+```
+
+La web muestra la etiqueta **▥ Tríptico** en la card y, en la vista previa, un solo botón con la medida (el carrito y WhatsApp usan esa medida).
+
+- `importar_multipanel.py` — importa desde `Downloads\CUADROS TRIPLES` (lista de archivos → categoría/nombre adentro del script; salta los ya importados por `origen`).
+- `renumerar.py <cats…>` / `--todas` — deja las carpetas sin huecos y actualiza **a la vez** archivos, `productos.json` e `index.html` (el hero usa rutas fijas como `anime-04`). Verifica al final que todas las rutas existan.
+
+## Deploy a producción
+
+```powershell
+cd C:\Users\elbol\PROYECTOS\pixelverso
+git add index.html data/productos.json
+git commit -m "..."
+git push origin main
+firebase login:use respetadoresdocentes@gmail.com
+firebase use pixelverso-studio-cl
+firebase deploy --only hosting
+```
+
+### ⚠️ Ojo: hay DOS proyectos Firebase de Pixelverso
+
+Ambos responden y sirven el mismo sitio, lo que hace muy fácil desplegar al equivocado y creer que "no se aplicó el cambio":
+
+| Proyecto Firebase | URL | Último deploy detectado |
+|---|---|---|
+| `pixelverso-studio-cl` | https://pixelverso-studio-cl.web.app | 24 jun 2026, 20:17 ← **más reciente** |
+| `pixelverso-studio` | https://pixelverso-studio.web.app | 24 jun 2026, 15:16 |
+
+**El `.firebaserc` de esta carpeta apunta a `pixelverso-studio-cl`**, y es el que tiene el deploy más nuevo — así que ese es el bueno. Ten presente que `CLAUDE.md` decía `pixelverso-studio` (sin `-cl`), que es el proyecto antiguo.
+
+Si un deploy "no se ve reflejado", lo primero a revisar es a cuál de los dos se subió.
+
+---
+
 ## Contacto / Redes
 
 - **WhatsApp:** +56 9 3273 4706
@@ -126,6 +170,13 @@ images/
 ---
 
 ## Historial de cambios
+
+### v1.5 — 2026-09-26 · Trípticos y categorías nuevas
+- 24 cuadros multipanel (23 trípticos 3 × 25×70 cm + 1 cuádruple 4 × 25×70 cm) repartidos en sus categorías
+- Categorías nuevas: **Arte abstracto** (10) e **Infantil** (2), con portada, menú del footer y `CAT_SLUG_MAP`
+- Campo `formato`/`medida` en `productos.json`; card con etiqueta ▥ Tríptico y vista previa con medida fija
+- Renumeración sin huecos de anime, pokemon y videojuegos (referencias del hero actualizadas)
+- Textos de la web mencionan los trípticos
 
 ### v1.0 — 2026-05-10 · Construcción inicial
 - Sitio construido desde cero como single-file HTML
